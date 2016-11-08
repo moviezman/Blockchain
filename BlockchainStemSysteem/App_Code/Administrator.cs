@@ -15,9 +15,4 @@ public class Administrator
         // TODO: Add constructor logic here
         //
     }
-
-    //public nieuweStemming(string naam)
-    //{
-    //    Stemming 
-    //}
 }

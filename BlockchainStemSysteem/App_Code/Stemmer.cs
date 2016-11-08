@@ -10,10 +10,12 @@ public class Stemmer
 {
     public string UniekeCode = "1";
     public Boolean HeeftStem = true;
+
     public Stemmer(string uc)
     {
         this.UniekeCode = uc;
     }
+
     public void Stem()
     {
 
