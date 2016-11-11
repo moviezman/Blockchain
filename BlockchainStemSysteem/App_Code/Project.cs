@@ -21,12 +21,15 @@ public class Project
             this.AantalStemmen++;
         }
     }
-    public Project()
+    public Project(string uc, string naam)
     {
-        //
-        // TODO: Add constructor logic here
-        //
+        this.UniekeCode = uc;
+        this.Naam = naam;
     }
 
+    public override string ToString()
+    {
+        return this.UniekeCode + " " + this.Naam;
+    }
 
 }

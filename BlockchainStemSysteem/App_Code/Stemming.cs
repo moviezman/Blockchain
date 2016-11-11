@@ -11,13 +11,18 @@ public class Stemming
 {
     public string Naam;
     public int aantalStemmers;
-    public List<Project> Projecten;
-    public List<Stemmer> Stemmers;
+    public List<Project> Projecten = new List<Project>();
+    public List<Stemmer> Stemmers = new List<Stemmer>();
     public Boolean Actief;
 
     public void nieuwProject(Project project)
     {
         Projecten.Add(project);
+    }
+
+    public void nieuweStemmer(Stemmer stemmer)
+    {
+        Stemmers.Add(stemmer);
     }
 
     public void StopStemming()
@@ -34,16 +39,23 @@ public class Stemming
         //}
     }
 
-    public Stemming(string naam, int aantal)
+    public Stemming(string naam, int aantalS)
     {
         // Alleen aan te maken door een admin
+        
         this.Naam = naam;
-        this.aantalStemmers = aantal;
-        for (int i = 1; i <= aantal; i++)
+        this.aantalStemmers = aantalS;
+        for (int i = 1; i <= aantalS; i++)
         {
-            RandomString rString = new RandomString();
+            Stemmer Test = new Stemmer(i.ToString());
+            nieuweStemmer(Test);
+            //RandomString rString = new RandomString();
             //Stemmer i = new Stemmer(rString)
-                //genereer de random code met RNGCryptoServiceProvider
+            //genereer de random code met RNGCryptoServiceProvider
         }
+        Project project1 = new Project("1", "Blockchain");
+        Project project2 = new Project("2", "Ahrma");
+        this.Projecten.Add(project1);
+        this.Projecten.Add(project2);
     }
 }

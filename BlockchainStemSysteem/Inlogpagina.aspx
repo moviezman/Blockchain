@@ -6,15 +6,18 @@
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+
     }
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        Stemmer Henk = new Stemmer("5");
-        if (TextBox1.Text == Henk.UniekeCode)
+        Stemming Test = new Stemming("Test", 2);
+        if (Test.Stemmers.Exists(x => x.UniekeCode == TextBox1.Text) && TextBox1.Text != "")
         {
-            Label1.Text = "Succes!";
+            Server.Transfer("Projectenoverzicht.aspx", true);
+        } else
+        {
+            Label1.Text = "Faal!";
         }
     }
 </script>

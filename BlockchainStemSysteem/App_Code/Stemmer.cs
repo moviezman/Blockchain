@@ -8,7 +8,7 @@ using System.Web;
 /// </summary>
 public class Stemmer
 {
-    public string UniekeCode = "1";
+    public string UniekeCode = "";
     public Boolean HeeftStem = true;
 
     public Stemmer(string uc)
