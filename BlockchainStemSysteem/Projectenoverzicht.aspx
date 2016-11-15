@@ -10,14 +10,15 @@
 <head runat="server">
     <title></title>
 </head>
-<body>
+<body style="height: 139px">
     <form id="form1" runat="server">
     <div>
         <h2>Kies hier op wie u wilt stemmen:</h2>
-        <% foreach(Project proj in Test.Projecten) %> 
-        <% { Response.Write(proj.ToString() + "<br>"); }%>
+        <% foreach(Project proj in Test.Projecten) %>       
+        <% { Response.Write("<button type='button'>" + proj.ToString() + "</button></br>"); }%>
         <div>Ingelogd als:</div>
     </div>
+        <asp:Label ID="lbl_IngelogdAls" runat="server" Text=" "></asp:Label>
     </form>
 </body>
 </html>

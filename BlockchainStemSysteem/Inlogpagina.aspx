@@ -14,7 +14,7 @@
         Stemming Test = new Stemming("Test", 2);
         if (Test.Stemmers.Exists(x => x.UniekeCode == TextBox1.Text) && TextBox1.Text != "")
         {
-            Server.Transfer("Projectenoverzicht.aspx", true);
+            Response.Redirect("Projectenoverzicht.aspx?Stemmer=" + TextBox1.Text);
         } else
         {
             Label1.Text = "Faal!";
