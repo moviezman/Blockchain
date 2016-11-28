@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -9,17 +10,28 @@ public partial class Projectenoverzicht : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        Stemming Test = new Stemming("Test", 2);
-        if (Test.Stemmers.Exists(x => x.UniekeCode == Request.QueryString["Stemmer"]))
+        //Vangt veranderen van de URL op
+        if (string.IsNullOrEmpty(Convert.ToString(Request.QueryString["Stemmer"])))
         {
-            
-        } else
-        {
-            //Redirect naar de inlogpagina als de unieke code van de stemmer niet bestaat
             Response.Redirect("Inlogpagina");
         }
-        this.lbl_IngelogdAls.Text = Request.QueryString["Stemmer"];
-        
 
+        SqlConnection sqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Windesheim\Blockchain\C#\BlockchainStemSysteem\App_Data\Database.mdf;Integrated Security=True");
+        sqlConnection.Open();
+        SqlCommand CheckUniekeCode = new SqlCommand("Select COUNT(*) From UC WHERE ([UniekeCode] = @UniekeCode)", sqlConnection);
+        CheckUniekeCode.Parameters.AddWithValue("@UniekeCode", Request.QueryString["Stemmer"]);
+        int CodeBestaat = (int)CheckUniekeCode.ExecuteScalar();
+
+        if (CodeBestaat > 0)
+        {
+
+        }
+        else
+        //Redirect naar de loginpagina als de unieke code niet bestaat.
+        {
+            Response.Redirect("Inlogpagina");
+        }
+        sqlConnection.Close();
+        this.lbl_IngelogdAls.Text = Request.QueryString["Stemmer"];
     }
 }

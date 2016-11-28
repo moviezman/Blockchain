@@ -1,5 +1,6 @@
 ﻿using Microsoft.Owin;
 using Owin;
+using System.Data.SqlClient;
 
 [assembly: OwinStartupAttribute(typeof(WebSite2.Startup))]
 namespace WebSite2
