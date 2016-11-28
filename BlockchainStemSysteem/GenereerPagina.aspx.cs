@@ -55,7 +55,8 @@ public partial class _Default : System.Web.UI.Page
         }
 
         int hoeveelheidCodes = Convert.ToInt32(txtbx_Nummer.Text);
-        SqlConnection sqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Windesheim\Blockchain\C#\BlockchainStemSysteem\App_Data\Database.mdf;Integrated Security=True");
+        DatabaseConnectie dbconnect = new DatabaseConnectie();
+        SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
         sqlConnection.Open();
         //SqlCommand CheckStemmingsNaam = new SqlCommand("SELECT StemmingsNaam FROM UC WHERE StemmingsNaam = '" + Txtbx_StemmingsNaam.Text + "'", sqlConnection);
         //SqlCommand CheckStemmingsNaam = new SqlCommand("SELECT StemmingsNaam FROM UC WHERE StemmingsNaam = 'Test'", sqlConnection);

@@ -10,7 +10,8 @@
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        SqlConnection sqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Windesheim\Blockchain\C#\BlockchainStemSysteem\App_Data\Database.mdf;Integrated Security=True");
+        DatabaseConnectie dbconnect = new DatabaseConnectie();
+        SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
         sqlConnection.Open();
         SqlCommand CheckUniekeCode = new SqlCommand("Select COUNT(*) From UC WHERE ([UniekeCode] = @UniekeCode)", sqlConnection);
         CheckUniekeCode.Parameters.AddWithValue("@UniekeCode", TextBox1.Text);

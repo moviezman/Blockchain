@@ -11,8 +11,9 @@
     <div>
         <h2>Kies hier op wie u wilt stemmen:</h2>
         <%
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Windesheim\Blockchain\C#\BlockchainStemSysteem\App_Data\Database.mdf;Integrated Security=True");
-            SqlDataAdapter asd = new SqlDataAdapter("Select Naam From Project", con);
+            DatabaseConnectie dbconnect = new DatabaseConnectie();
+            SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
+            SqlDataAdapter asd = new SqlDataAdapter("Select Naam From Project", sqlConnection);
             DataTable dt = new DataTable();
             asd.Fill(dt);
             foreach (DataRow row in dt.Rows) { Response.Write("<button formaction='ResultatenPagina.aspx?GestemdOp=" + row["Naam"] + "' style='width:200px'>" + row["Naam"] + "</button><br />"); }
