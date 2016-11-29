@@ -14,6 +14,7 @@
         <asp:Label ID="lbl_GestemdOp" runat="server" Text="Label"></asp:Label>
     
     </div>
+        <asp:Button ID="btn_redirect_naar_home" runat="server" OnClick="Button1_Click" Text="Home" />
     </form>
 </body>
 </html>
