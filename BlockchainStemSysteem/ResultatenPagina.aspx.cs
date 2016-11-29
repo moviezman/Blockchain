@@ -10,31 +10,31 @@ public partial class ResultatenPagina : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        string Team = Request.QueryString["GestemdOp"];
-        this.lbl_GestemdOp.Text = Team;
-        string code = ("UPDATE Project SET " + Team + "SET  ");
-
-        DatabaseConnectie dbconnect = new DatabaseConnectie();
-        SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
-        sqlConnection.Open();
-        SqlCommand CheckUniekeCode = new SqlCommand("UPDATE CODE HIER", sqlConnection);
-        CheckUniekeCode.Parameters.AddWithValue("@UniekeCode", TextBox1.Text);
-        int CodeBestaat = (int)CheckUniekeCode.ExecuteScalar();
-
-        if (CodeBestaat > 0)
+        if (!IsPostBack)
         {
-            Response.Redirect("Projectenoverzicht.aspx?Stemmer=" + TextBox1.Text);
-        }
-        else
-        {
-            Label1.Visible = true;
-            Label1.Text = "false";
-        }
-        sqlConnection.Close();
+            string Team = Request.QueryString["GestemdOp"];
 
+            DatabaseConnectie dbconnect = new DatabaseConnectie();
+            SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
 
+            string Query = "UPDATE Project SET AantalStemmen = AantalStemmen + 1 WHERE Naam = '" + Team + "';";
+
+            SqlCommand UpdateTeam = new SqlCommand(Query, sqlConnection);
+
+            sqlConnection.Open();
+
+            UpdateTeam.ExecuteNonQuery();
+
+            sqlConnection.Close();
+
+            lbl_GestemdOp.Text = Team;
+        }
+
+        
 
     }
+
+    
 
     protected void Button1_Click(object sender, EventArgs e)
     {
