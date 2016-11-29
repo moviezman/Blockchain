@@ -24,7 +24,7 @@ public partial class ResultatenPagina : System.Web.UI.Page
             sqlConnection.Open();
 
             UpdateTeam.ExecuteNonQuery();
-
+            
             sqlConnection.Close();
 
             lbl_GestemdOp.Text = Team;

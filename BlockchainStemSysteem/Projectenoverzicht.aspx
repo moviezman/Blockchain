@@ -16,7 +16,10 @@
             SqlDataAdapter asd = new SqlDataAdapter("Select Naam From Project", sqlConnection);
             DataTable dt = new DataTable();
             asd.Fill(dt);
-            foreach (DataRow row in dt.Rows) { Response.Write("<button formaction='ResultatenPagina.aspx?GestemdOp=" + row["Naam"] + "' style='width:200px'>" + row["Naam"] + "</button><br />"); }
+            foreach (DataRow row in dt.Rows)
+            {
+                Response.Write("<button formaction='ResultatenPagina.aspx?GestemdOp=" + row["Naam"] + "' style='width:200px'>" + row["Naam"] + "</button><br />");
+            }
         %>
         <div>Ingelogd als:</div>
         <asp:Label ID="lbl_IngelogdAls" runat="server" Text=" "></asp:Label>
