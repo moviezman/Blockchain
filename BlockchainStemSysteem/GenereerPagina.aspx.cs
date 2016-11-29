@@ -58,31 +58,36 @@ public partial class _Default : System.Web.UI.Page
         DatabaseConnectie dbconnect = new DatabaseConnectie();
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
         sqlConnection.Open();
-        //SqlCommand CheckStemmingsNaam = new SqlCommand("SELECT StemmingsNaam FROM UC WHERE StemmingsNaam = '" + Txtbx_StemmingsNaam.Text + "'", sqlConnection);
-        //SqlCommand CheckStemmingsNaam = new SqlCommand("SELECT StemmingsNaam FROM UC WHERE StemmingsNaam = 'Test'", sqlConnection);
-        //int StemmingBestaat = (int)CheckStemmingsNaam.ExecuteScalar();
-        //if(StemmingBestaat > 0)
-        //{
-        //    lbl_Codes.Text = "Deze Stemming bestaat al, koekwaus";
-        //} else
-        //{
-        if(hoeveelheidCodes < 1001)
+        SqlCommand CheckStemmingsNaam = new SqlCommand("SELECT COUNT(*) FROM UC WHERE StemmingsNaam = '" + Txtbx_StemmingsNaam.Text + "'", sqlConnection);
+        //SqlCommand CheckStemmingsNaam = new SqlCommand("SELECT COUNT(*) FROM UC WHERE StemmingsNaam = '1'", sqlConnection);
+        int StemmingBestaat;
+        StemmingBestaat = (int)CheckStemmingsNaam.ExecuteScalar();
+
+        if(StemmingBestaat > 0)
         {
-            for (int i = 1; i <= hoeveelheidCodes; i++)
-            {
-                SqlCommand CheckUniekeCode = new SqlCommand("INSERT INTO UC (UniekeCode, StemmingsNaam) VALUES ('" + GenerateIdentifier(10).ToString() + "', '" + Txtbx_StemmingsNaam.Text + "');", sqlConnection);
-                CheckUniekeCode.ExecuteNonQuery();
-                lbl_Info.Visible = true;
-                lbl_Info.Text = "Stemming met de naam " + Txtbx_StemmingsNaam.Text + " aangemaakt.";
-            }
+            lbl_Info.Visible = true;
+            lbl_Info.Text = "Deze Stemming bestaat al, koekwaus";
         }
         else
         {
-            lbl_Info.Visible = true;
-            lbl_Info.Text = "Kies 1000 stemcodes of minder.";
+            lbl_Info.Visible = false;
+            if(hoeveelheidCodes < 1001)
+            {
+                for (int i = 1; i <= hoeveelheidCodes; i++)
+                {
+                    SqlCommand CheckUniekeCode = new SqlCommand("INSERT INTO UC (UniekeCode, StemmingsNaam) VALUES ('" + GenerateIdentifier(10).ToString() + "', '" + Txtbx_StemmingsNaam.Text + "');", sqlConnection);
+                    CheckUniekeCode.ExecuteNonQuery();
+                    lbl_Info.Visible = true;
+                    lbl_Info.Text = "Stemming met de naam " + Txtbx_StemmingsNaam.Text + " aangemaakt.";
+                }
+            }
+            else
+            {
+                lbl_Info.Visible = true;
+                lbl_Info.Text = "Kies 1000 stemcodes of minder.";
+            }
+
         }
-            
-        //}
         sqlConnection.Close();
     }
 }

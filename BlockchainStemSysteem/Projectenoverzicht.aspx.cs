@@ -16,10 +16,11 @@ public partial class Projectenoverzicht : System.Web.UI.Page
             Response.Redirect("Inlogpagina");
         }
 
-        SqlConnection sqlConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Windesheim\Blockchain\C#\BlockchainStemSysteem\App_Data\Database.mdf;Integrated Security=True");
+        DatabaseConnectie dbconnect = new DatabaseConnectie();
+        SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
         sqlConnection.Open();
-        SqlCommand CheckUniekeCode = new SqlCommand("Select COUNT(*) From UC WHERE ([UniekeCode] = @UniekeCode)", sqlConnection);
-        CheckUniekeCode.Parameters.AddWithValue("@UniekeCode", Request.QueryString["Stemmer"]);
+        SqlCommand CheckUniekeCode = new SqlCommand("Select COUNT(*) From UC WHERE ([UniekeCode] = '" + Request.QueryString["Stemmer"] + "' COLLATE SQL_Latin1_General_CP1_CS_AS)", sqlConnection);
+
         int CodeBestaat = (int)CheckUniekeCode.ExecuteScalar();
 
         if (CodeBestaat > 0)
