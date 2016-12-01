@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Cryptography;
@@ -9,9 +12,11 @@ using System.Web.UI.WebControls;
 
 public partial class _Default : System.Web.UI.Page
 {
+    DataTable dt = new DataTable();
+
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        
     }
 
     static readonly char[] AvailableCharacters =
@@ -44,13 +49,15 @@ public partial class _Default : System.Web.UI.Page
 
     protected void btn_Genereer_Click(object sender, EventArgs e)
     {
-        if(txtbx_Nummer.Text == "")
+        if (txtbx_Nummer.Text == "")
         {
+            lbl_Info.Text = "Vul een hoeveelheid codes in";
             return;
         }
 
-        if(Txtbx_StemmingsNaam.Text == "")
+        if (Txtbx_StemmingsNaam.Text == "")
         {
+            lbl_Info.Text = "Vul een stemmingsnaam in";
             return;
         }
 
@@ -59,35 +66,53 @@ public partial class _Default : System.Web.UI.Page
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
         sqlConnection.Open();
         SqlCommand CheckStemmingsNaam = new SqlCommand("SELECT COUNT(*) FROM UC WHERE StemmingsNaam = '" + Txtbx_StemmingsNaam.Text + "'", sqlConnection);
-        //SqlCommand CheckStemmingsNaam = new SqlCommand("SELECT COUNT(*) FROM UC WHERE StemmingsNaam = '1'", sqlConnection);
-        int StemmingBestaat;
-        StemmingBestaat = (int)CheckStemmingsNaam.ExecuteScalar();
 
-        if(StemmingBestaat > 0)
+        int StemmingBestaat = (int)CheckStemmingsNaam.ExecuteScalar();
+
+        if (StemmingBestaat > 0)
         {
-            lbl_Info.Visible = true;
-            lbl_Info.Text = "Deze Stemming bestaat al, koekwaus";
+            lbl_Info.Text = "Deze Stemming bestaat al";
         }
         else
         {
-            lbl_Info.Visible = false;
-            if(hoeveelheidCodes < 1001)
+            if (hoeveelheidCodes <= 1000)
             {
                 for (int i = 1; i <= hoeveelheidCodes; i++)
                 {
                     SqlCommand CheckUniekeCode = new SqlCommand("INSERT INTO UC (UniekeCode, StemmingsNaam) VALUES ('" + GenerateIdentifier(10).ToString() + "', '" + Txtbx_StemmingsNaam.Text + "');", sqlConnection);
                     CheckUniekeCode.ExecuteNonQuery();
-                    lbl_Info.Visible = true;
                     lbl_Info.Text = "Stemming met de naam " + Txtbx_StemmingsNaam.Text + " aangemaakt.";
                 }
             }
             else
             {
-                lbl_Info.Visible = true;
                 lbl_Info.Text = "Kies 1000 stemcodes of minder.";
             }
 
         }
         sqlConnection.Close();
+    }
+
+    
+
+    protected void btn_ProjectToevoegen_Click(object sender, EventArgs e)
+    {
+        dt.Rows.Add(txtbx_Project.Text);
+    }
+
+    protected void GridView1_Load(object sender, EventArgs e)
+    {
+        //dt.Columns.AddRange(new DataColumn[1] { new DataColumn("Projectnaam", typeof(string)) });
+        //dt.Rows.Add("test");
+
+        //BoundField lastNameBoundField = new BoundField();
+        //lastNameBoundField.DataField = "au_lname";
+        //lastNameBoundField.HeaderText = "Last Name";
+
+        //GridViewRow test = new GridViewRow();
+        //test.
+        //GridView1.Columns.Add(lastNameBoundField);
+        //GridView1.Rows.Add()
+        //GridView1.DataBind();
     }
 }

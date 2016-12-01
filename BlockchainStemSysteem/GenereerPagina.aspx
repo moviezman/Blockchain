@@ -15,7 +15,18 @@
         <asp:Button ID="btn_Genereer" runat="server" OnClick="btn_Genereer_Click" Text="Genereer" />
     
     </div>
-        <asp:Label ID="lbl_Info" runat="server" Visible="False"></asp:Label>
+        <asp:Label ID="lbl_Info" runat="server"></asp:Label>
+        <h2>Projecten:</h2>
+        <asp:TextBox runat="server" MaxLength="4" Width="200px" ID="txtbx_Project"></asp:TextBox>
+        <asp:Button runat="server" OnClick="btn_ProjectToevoegen_Click" Text="Toevoegen" ID="btn_ProjectToevoegen" />
+        <br />
+        
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="true" OnLoad="GridView1_Load">
+            <Columns>
+                <asp:BoundField HeaderText="Projectnaam" ReadOnly="True" />
+            </Columns>
+        </asp:GridView>
+        
     </form>
 </body>
 </html>
