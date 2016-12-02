@@ -13,6 +13,7 @@ public partial class ResultatenPagina : System.Web.UI.Page
         if (!IsPostBack)
         {
             string Team = Request.QueryString["GestemdOp"];
+            string StemCode = Request.QueryString["StemCode"];
 
             DatabaseConnectie dbconnect = new DatabaseConnectie();
             SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);

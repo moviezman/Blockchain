@@ -13,7 +13,7 @@ public class Buttons
     public string TeamButtons;
 
 
-    public Buttons()
+    public Buttons(string StemCode)
     {
         DatabaseConnectie dbconnect = new DatabaseConnectie();
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
@@ -22,7 +22,7 @@ public class Buttons
         asd.Fill(dt);
         foreach (DataRow row in dt.Rows)
         {
-            this.TeamButtons += "<button formaction='ResultatenPagina.aspx?GestemdOp=" + row["Naam"] + "' style='width:200px'>" + row["Naam"] + "</button><br />"; ;
+            this.TeamButtons += "<button formaction='ResultatenPagina.aspx?GestemdOp=" + row["Naam"] + "&StemCode=" + StemCode + "' style='width:200px'>" + row["Naam"] + "</button><br />"; ;
         }
     }
 
