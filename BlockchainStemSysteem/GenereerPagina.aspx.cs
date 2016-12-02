@@ -12,11 +12,13 @@ using System.Web.UI.WebControls;
 
 public partial class _Default : System.Web.UI.Page
 {
-    DataTable dt = new DataTable();
+    
+
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        DataTable dt = new DataTable("Projecten");
+        DataColumn column = new DataColumn();
     }
 
     static readonly char[] AvailableCharacters =
@@ -93,26 +95,55 @@ public partial class _Default : System.Web.UI.Page
         sqlConnection.Close();
     }
 
-    
+
+
+
+    List<string> Projecten = new List<string>();
+    string test;
 
     protected void btn_ProjectToevoegen_Click(object sender, EventArgs e)
     {
-        dt.Rows.Add(txtbx_Project.Text);
+        if(txtbx_Project.Text != "")
+        {
+            this.Projecten.Add("test");
+            this.Projecten.Add(txtbx_Project.Text);
+            lbl_Info.Text = string.Join(", ", this.Projecten.ToArray());
+        }
+        else
+        {
+            lbl_Info.Text = "Vul eerst een projectnaam in.";
+        }
+
+
+        //// Total number of rows.
+        //int rowCnt;
+        //// Current row count.
+        //int rowCtr;
+        //// Total number of cells per row (columns).
+        //int cellCtr;
+        //// Current cell counter
+        //int cellCnt;
+
+        //rowCnt = int.Parse(TextBox1.Text);
+        //cellCnt = int.Parse(TextBox2.Text);
+
+        //for (rowCtr = 1; rowCtr <= rowCnt; rowCtr++)
+        //{
+        //    // Create new row and add it to the table.
+        //    TableRow tRow = new TableRow();
+        //    Table1.Rows.Add(tRow);
+        //    for (cellCtr = 1; cellCtr <= cellCnt; cellCtr++)
+        //    {
+        //        // Create a new cell and add it to the row.
+        //        TableCell tCell = new TableCell();
+        //        tCell.Text = txtbx_Project.Text;
+        //        tRow.Cells.Add(tCell);
+        //    }
+        //}
     }
 
     protected void GridView1_Load(object sender, EventArgs e)
     {
-        //dt.Columns.AddRange(new DataColumn[1] { new DataColumn("Projectnaam", typeof(string)) });
-        //dt.Rows.Add("test");
-
-        //BoundField lastNameBoundField = new BoundField();
-        //lastNameBoundField.DataField = "au_lname";
-        //lastNameBoundField.HeaderText = "Last Name";
-
-        //GridViewRow test = new GridViewRow();
-        //test.
-        //GridView1.Columns.Add(lastNameBoundField);
-        //GridView1.Rows.Add()
-        //GridView1.DataBind();
+        int counter = 1;
     }
 }

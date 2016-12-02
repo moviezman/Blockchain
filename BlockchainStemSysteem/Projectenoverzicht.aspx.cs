@@ -19,6 +19,7 @@ public partial class Projectenoverzicht : System.Web.UI.Page
         DatabaseConnectie dbconnect = new DatabaseConnectie();
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
         sqlConnection.Open();
+        // Checkt of de uniekecode bestaat. Checkt ook op hoofdletters
         SqlCommand CheckUniekeCode = new SqlCommand("Select COUNT(*) From UC WHERE ([UniekeCode] = '" + Request.QueryString["Stemmer"] + "' COLLATE SQL_Latin1_General_CP1_CS_AS)", sqlConnection);
 
         int CodeBestaat = (int)CheckUniekeCode.ExecuteScalar();
