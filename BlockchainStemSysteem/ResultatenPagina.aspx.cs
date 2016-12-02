@@ -12,8 +12,16 @@ public partial class ResultatenPagina : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
+
             string Team = Request.QueryString["GestemdOp"];
             string StemCode = Request.QueryString["StemCode"];
+            string Standaardpagina = "Inlogpagina";
+
+            //Vangt veranderen van de URL op
+            if (string.IsNullOrEmpty(Convert.ToString(StemCode)))
+            {
+                Response.Redirect(Standaardpagina);
+            }
 
             DatabaseConnectie dbconnect = new DatabaseConnectie();
             SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
@@ -21,12 +29,13 @@ public partial class ResultatenPagina : System.Web.UI.Page
             string StemToevoegen = "UPDATE Project SET AantalStemmen = AantalStemmen + 1 WHERE Naam = '" + Team + "';";
             string DeactiveerCode = "UPDATE UC SET ingezet = 1 WHERE UniekeCode = '" + StemCode + "';";
 
-            //Deactiveer een gebruikte code 
+            //Deactiveer een gebruikte code
             SqlCommand CodeDeactiveren = new SqlCommand(DeactiveerCode, sqlConnection);
 
             //Stem toevoegen 
             SqlCommand UpdateTeam = new SqlCommand(StemToevoegen, sqlConnection);
 
+            //Verbinding maken met database
             sqlConnection.Open();
 
             UpdateTeam.ExecuteNonQuery();
@@ -38,11 +47,9 @@ public partial class ResultatenPagina : System.Web.UI.Page
             lbl_GestemdOp.Text = "Dank voor u stem";
         }
 
-        
-
     }
 
-    
+
 
     protected void Button1_Click(object sender, EventArgs e)
     {
