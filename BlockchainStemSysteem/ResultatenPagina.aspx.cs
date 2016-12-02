@@ -21,10 +21,16 @@ public partial class ResultatenPagina : System.Web.UI.Page
 
             SqlCommand UpdateTeam = new SqlCommand(Query, sqlConnection);
 
+            //Deactiveer een gebruikte code 
+            //Stemcode moet nog worden doorgevoerd
+            //SqlCommand CodeDeactiveren = new SqlCommand("UPDATE UC SET ingezet = 1 WHERE UniekeCode = '" + StemCode + "';", sqlConnection);
+
             sqlConnection.Open();
 
             UpdateTeam.ExecuteNonQuery();
-            
+            //Ingevulde StemCode deactiveren 
+            //CodeDeactiveren.ExecuteNonQuery();
+
             sqlConnection.Close();
 
             lbl_GestemdOp.Text = Team;
