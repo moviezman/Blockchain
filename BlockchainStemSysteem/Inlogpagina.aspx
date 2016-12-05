@@ -24,7 +24,7 @@
         else
         {
             Label1.Visible = true;
-            Label1.Text = "Faal!";
+            Label1.Text = "Uw code is ongeldig";
         }
         sqlConnection.Close();
     }

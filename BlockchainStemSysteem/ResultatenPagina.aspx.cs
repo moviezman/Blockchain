@@ -38,6 +38,7 @@ public partial class ResultatenPagina : System.Web.UI.Page
             //Verbinding maken met database
             sqlConnection.Open();
 
+            //update het aantal stemmen van een team
             UpdateTeam.ExecuteNonQuery();
             //Ingevulde StemCode deactiveren 
             CodeDeactiveren.ExecuteNonQuery();
