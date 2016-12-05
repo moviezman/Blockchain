@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 
 /// <summary>
-/// Summary description for Buttons
+/// Buttons maak knoppen aan voor elke groep. Daar kan op geklikt worden om aan te geven dat je voor een team stemt. 
 /// </summary>
 public class Buttons
 {
