@@ -56,7 +56,7 @@ public partial class Projectenoverzicht : System.Web.UI.Page
             Response.Redirect(Standaardpagina);
         }
 
-
+        //maak een label met tekst erin
         this.lbl_IngelogdAls.Text = StemCode;
 
 
