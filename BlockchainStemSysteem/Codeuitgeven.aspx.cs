@@ -30,7 +30,7 @@ public partial class Codeuitgeven : System.Web.UI.Page
         Nummercontrole check = new Nummercontrole();
 
         //Checken of een telefoonnummer wel een geldig nummer is
-        //if (check.Nummercheck(Convert.ToInt32(TextBox1.Text)))
+        //if (check.Nummercheck(Convert.ToString(TextBox1.Text)))
         //hieronder een tijdelijke check 
         if (TextBox1.Text != "")
         {
