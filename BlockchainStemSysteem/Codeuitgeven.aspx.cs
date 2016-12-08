@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net.Mail;
+using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
 public partial class Codeuitgeven : System.Web.UI.Page
 {
+
+
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -16,23 +19,22 @@ public partial class Codeuitgeven : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-
         DatabaseConnectie dbconnect = new DatabaseConnectie();
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
 
         // query ophalen laatste code
         SqlCommand NieuweCodeQuery = new SqlCommand("SELECT Top 1 UniekeCode FROM UC WHERE Ingezet = 'false'", sqlConnection);
         // nummer toevoegen aan database
-        SqlCommand UpdateNummer = new SqlCommand("INSERT INTO Stemmer VALUES(" + TextBox1.Text + ", 'true');",sqlConnection);
+        SqlCommand UpdateNummer = new SqlCommand("INSERT INTO Stemmer VALUES(" + TextBox1.Text + ", 'true');", sqlConnection);
         // Kijkt of telefoonnnummer al is ingevoerd
-        SqlCommand ZoekNummer = new SqlCommand("SELECT COUNT (HeeftStem) as Aantal FROM Stemmer WHERE TelefoonNummer = '" + TextBox1.Text + "';",sqlConnection);
+        SqlCommand ZoekNummer = new SqlCommand("SELECT COUNT (HeeftStem) as Aantal FROM Stemmer WHERE TelefoonNummer = '" + TextBox1.Text + "';", sqlConnection);
 
         Nummercontrole check = new Nummercontrole();
 
         //Checken of een telefoonnummer wel een geldig nummer is
-        //if (check.Nummercheck(Convert.ToString(TextBox1.Text)))
+        if (check.Nummercheck(Convert.ToString("06" + TextBox1.Text)))
         //hieronder een tijdelijke check 
-        if (TextBox1.Text != "")
+        //if (TextBox1.Text != "")
         {
 
             sqlConnection.Open();
@@ -75,13 +77,18 @@ public partial class Codeuitgeven : System.Web.UI.Page
 
                     Label4.Visible = true;
                     Label4.Text += " Hier is uw code voor de Winnovation: localhost:50512/projectenoverzicht?Stemmer=" + NieuweCode;
+                    TextBox1.Text = "";
+
 
                 }
             }
             else
             {
                 Label4.Visible = true;
-                Label4.Text = "Dit nummer is al gebruikt + " + Bestaandnummer;
+                Label4.Text = "Dit nummer is al gebruikt";
+                TextBox1.Text = "";
+
+
             }
         }
 
@@ -89,7 +96,57 @@ public partial class Codeuitgeven : System.Web.UI.Page
         {
             Label4.Visible = true;
             Label4.Text = "Het nummer is ongeldig";
+            TextBox1.Text = "";
         }
 
+    }
+
+
+    protected void Buttonnr1_Click(object sender, EventArgs e)
+    {
+        TextBox1.Text = TextBox1.Text += "1";
+    }
+    protected void Buttonnr2_Click(object sender, EventArgs e)
+    {
+        TextBox1.Text = TextBox1.Text += "2";
+    }
+    protected void Buttonnr3_Click(object sender, EventArgs e)
+    {
+        TextBox1.Text = TextBox1.Text += "3";
+    }
+    protected void Buttonnr4_Click(object sender, EventArgs e)
+    {
+        TextBox1.Text = TextBox1.Text += "4";
+    }
+    protected void Buttonnr5_Click(object sender, EventArgs e)
+    {
+        TextBox1.Text = TextBox1.Text += "5";
+    }
+    protected void Buttonnr6_Click(object sender, EventArgs e)
+    {
+        TextBox1.Text = TextBox1.Text += "6";
+    }
+    protected void Buttonnr7_Click(object sender, EventArgs e)
+    {
+        TextBox1.Text = TextBox1.Text += "7";
+    }
+    protected void Buttonnr8_Click(object sender, EventArgs e)
+    {
+        TextBox1.Text = TextBox1.Text += "8";
+    }
+    protected void Buttonnr9_Click(object sender, EventArgs e)
+    {
+        TextBox1.Text = TextBox1.Text += "9";
+    }
+    protected void Buttonnr0_Click(object sender, EventArgs e)
+    {
+        TextBox1.Text = TextBox1.Text += "0";
+    }
+    protected void ButtonnrB_Click(object sender, EventArgs e)
+    {
+        if (TextBox1.Text.Length > 0)
+        {
+            TextBox1.Text = TextBox1.Text.Remove(TextBox1.Text.Length - 1);
+        }
     }
 }
