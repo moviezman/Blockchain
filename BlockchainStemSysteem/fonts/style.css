@@ -2,7 +2,7 @@ body {
     background-color: lightblue;
 }
 
-.ImageButton {
+ImageButton {
     background-color: #4CAF50; /* Green */
     border: none;
     color: white;
