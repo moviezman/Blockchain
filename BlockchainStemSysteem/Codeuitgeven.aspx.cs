@@ -104,49 +104,46 @@ public partial class Codeuitgeven : System.Web.UI.Page
 
     protected void Buttonnr1_Click(object sender, EventArgs e)
     {
-        TextBox1.Text = TextBox1.Text += "1";
+        if (TextBox1.Text.Length < 8) { TextBox1.Text = TextBox1.Text += "1"; }
     }
     protected void Buttonnr2_Click(object sender, EventArgs e)
     {
-        TextBox1.Text = TextBox1.Text += "2";
+        if (TextBox1.Text.Length < 8) { TextBox1.Text = TextBox1.Text += "2"; }
     }
     protected void Buttonnr3_Click(object sender, EventArgs e)
     {
-        TextBox1.Text = TextBox1.Text += "3";
+        if (TextBox1.Text.Length < 8) { TextBox1.Text = TextBox1.Text += "3"; }
     }
     protected void Buttonnr4_Click(object sender, EventArgs e)
     {
-        TextBox1.Text = TextBox1.Text += "4";
+        if (TextBox1.Text.Length < 8) { TextBox1.Text = TextBox1.Text += "4"; }
     }
     protected void Buttonnr5_Click(object sender, EventArgs e)
     {
-        TextBox1.Text = TextBox1.Text += "5";
+        if (TextBox1.Text.Length < 8) { TextBox1.Text = TextBox1.Text += "5"; }
     }
     protected void Buttonnr6_Click(object sender, EventArgs e)
     {
-        TextBox1.Text = TextBox1.Text += "6";
+        if (TextBox1.Text.Length < 8) { TextBox1.Text = TextBox1.Text += "6"; }
     }
     protected void Buttonnr7_Click(object sender, EventArgs e)
     {
-        TextBox1.Text = TextBox1.Text += "7";
+        if (TextBox1.Text.Length < 8) { TextBox1.Text = TextBox1.Text += "7"; }
     }
     protected void Buttonnr8_Click(object sender, EventArgs e)
     {
-        TextBox1.Text = TextBox1.Text += "8";
+        if (TextBox1.Text.Length < 8) { TextBox1.Text = TextBox1.Text += "8"; }
     }
     protected void Buttonnr9_Click(object sender, EventArgs e)
     {
-        TextBox1.Text = TextBox1.Text += "9";
+        if (TextBox1.Text.Length < 8) { TextBox1.Text = TextBox1.Text += "9"; }
     }
     protected void Buttonnr0_Click(object sender, EventArgs e)
     {
-        TextBox1.Text = TextBox1.Text += "0";
+        if (TextBox1.Text.Length < 8) { TextBox1.Text = TextBox1.Text += "0"; }
     }
     protected void ButtonnrB_Click(object sender, EventArgs e)
     {
-        if (TextBox1.Text.Length > 0)
-        {
-            TextBox1.Text = TextBox1.Text.Remove(TextBox1.Text.Length - 1);
-        }
+        if (TextBox1.Text.Length > 0) { TextBox1.Text = TextBox1.Text.Remove(TextBox1.Text.Length - 1); }
     }
 }

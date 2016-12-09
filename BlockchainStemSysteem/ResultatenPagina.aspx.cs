@@ -46,6 +46,7 @@ public partial class ResultatenPagina : System.Web.UI.Page
             sqlConnection.Close();
 
             lbl_GestemdOp.Text = "Dank voor u stem";
+            Label1.Text = Team;
         }
 
     }

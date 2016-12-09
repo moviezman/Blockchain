@@ -45,13 +45,8 @@ public partial class Projectenoverzicht : System.Web.UI.Page
         sqlConnection.Close();
 
         //Als de code als is gebruikt dan wordt de gebruiker doorgestuurd naar de inlogpagina 
-        if (ActiveCode == true)
-        {
-            Response.Redirect(Standaardpagina);
-        }
-
         //Als de URL wordt aangepast dan wordt de gebruikers teruggestuurd naar de inlogpagina 
-        if (CodeBestaat != 1)
+        if (ActiveCode == true || CodeBestaat != 1)
         {
             Response.Redirect(Standaardpagina);
         }

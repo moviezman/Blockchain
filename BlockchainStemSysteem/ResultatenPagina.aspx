@@ -8,7 +8,9 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <h3>U heeft gestemd op:</h3>
+        <h3>U heeft gestemd op:
+            <asp:Label ID="Label1" runat="server"></asp:Label>
+        </h3>
     <div>
     
         <asp:Label ID="lbl_GestemdOp" runat="server" Text="Label"></asp:Label>
