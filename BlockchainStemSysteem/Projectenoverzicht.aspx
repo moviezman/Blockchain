@@ -4,7 +4,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>Winnovation Teams</title>
+    <link rel="stylesheet" type="text/css" href="fonts/style.css">
 </head>
 <body style="height: 139px">
     <form id='form1' runat='server'>
