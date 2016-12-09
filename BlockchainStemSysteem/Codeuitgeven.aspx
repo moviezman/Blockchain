@@ -10,6 +10,7 @@
             width: 31px;
         }
     </style>
+    <link rel="stylesheet" type="text/css" href="fonts/style.css">
 </head>
 <body>
     <form id="form1" runat="server">
