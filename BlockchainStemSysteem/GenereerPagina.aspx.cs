@@ -12,13 +12,34 @@ using System.Web.UI.WebControls;
 
 public partial class _Default : System.Web.UI.Page
 {
-    
-
+    public List<string> Projecten = new List<string>();
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        DataTable dt = new DataTable("Projecten");
-        DataColumn column = new DataColumn();
+        //Tabel
+        TableHeaderRow header = new TableHeaderRow();
+        Tbl_Projecten.Rows.Add(header);
+        TableHeaderCell headerTableCell1 = new TableHeaderCell();
+        headerTableCell1.Text = "Projecten:";
+        header.Cells.Add(headerTableCell1);
+
+        ////gridview
+        //GridView1.DataSource = Global.Projecten;
+        //GridView1.DataBind();
+
+        if (!IsPostBack)
+        {
+            
+        }
+
+    }
+
+    protected void Page_Init(object sender, EventArgs e)
+    {
+        if (!IsPostBack)
+        {
+            Global.Projecten.Clear();
+        }
     }
 
     static readonly char[] AvailableCharacters =
@@ -68,7 +89,7 @@ public partial class _Default : System.Web.UI.Page
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
         sqlConnection.Open();
         SqlCommand CheckStemmingsNaam = new SqlCommand("SELECT COUNT(*) FROM UC WHERE StemmingsNaam = '" + Txtbx_StemmingsNaam.Text + "'", sqlConnection);
-
+        SqlCommand CheckBestaandeProjecten = new SqlCommand("");
         int StemmingBestaat = (int)CheckStemmingsNaam.ExecuteScalar();
 
         if (StemmingBestaat > 0)
@@ -83,67 +104,50 @@ public partial class _Default : System.Web.UI.Page
                 {
                     SqlCommand CheckUniekeCode = new SqlCommand("INSERT INTO UC (UniekeCode, StemmingsNaam) VALUES ('" + GenerateIdentifier(10).ToString() + "', '" + Txtbx_StemmingsNaam.Text + "');", sqlConnection);
                     CheckUniekeCode.ExecuteNonQuery();
-                    lbl_Info.Text = "Stemming met de naam " + Txtbx_StemmingsNaam.Text + " aangemaakt.";
                 }
+
+                foreach (string project in Projecten)
+                {
+                    SqlCommand MaakProjecten = new SqlCommand("INSERT INTO ");
+                    MaakProjecten.ExecuteNonQuery();
+                }
+
+                lbl_Info.Text = "Stemming met de naam " + Txtbx_StemmingsNaam.Text + " aangemaakt.";
             }
             else
             {
                 lbl_Info.Text = "Kies 1000 stemcodes of minder.";
             }
-
         }
         sqlConnection.Close();
     }
 
 
-
-
-    List<string> Projecten = new List<string>();
-    string test;
+    
+    
 
     protected void btn_ProjectToevoegen_Click(object sender, EventArgs e)
     {
-        if(txtbx_Project.Text != "")
+        if (txtbx_Project.Text != "")
         {
-            this.Projecten.Add("test");
-            this.Projecten.Add(txtbx_Project.Text);
-            lbl_Info.Text = string.Join(", ", this.Projecten.ToArray());
+            Global.Toevoegen(txtbx_Project.Text);
+            foreach (string project in Global.Projecten)
+            {
+                //Table
+                TableRow tRow2 = new TableRow();
+                Tbl_Projecten.Rows.Add(tRow2);
+                TableCell tCell2 = new TableCell();
+                tCell2.Text = project;
+                tRow2.Cells.Add(tCell2);
+            }
+
+            ////Gridview
+            //GridView1.DataSource = Global.Projecten;
+            //GridView1.DataBind();
         }
         else
         {
             lbl_Info.Text = "Vul eerst een projectnaam in.";
         }
-
-
-        //// Total number of rows.
-        //int rowCnt;
-        //// Current row count.
-        //int rowCtr;
-        //// Total number of cells per row (columns).
-        //int cellCtr;
-        //// Current cell counter
-        //int cellCnt;
-
-        //rowCnt = int.Parse(TextBox1.Text);
-        //cellCnt = int.Parse(TextBox2.Text);
-
-        //for (rowCtr = 1; rowCtr <= rowCnt; rowCtr++)
-        //{
-        //    // Create new row and add it to the table.
-        //    TableRow tRow = new TableRow();
-        //    Table1.Rows.Add(tRow);
-        //    for (cellCtr = 1; cellCtr <= cellCnt; cellCtr++)
-        //    {
-        //        // Create a new cell and add it to the row.
-        //        TableCell tCell = new TableCell();
-        //        tCell.Text = txtbx_Project.Text;
-        //        tRow.Cells.Add(tCell);
-        //    }
-        //}
-    }
-
-    protected void GridView1_Load(object sender, EventArgs e)
-    {
-        int counter = 1;
     }
 }

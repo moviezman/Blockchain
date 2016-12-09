@@ -6,11 +6,31 @@ using System.Web;
 /// <summary>
 /// Summary description for Global
 /// </summary>
-public class Global
+public static class Global
 {
-    Stemming Winnovation = new Stemming("Winnovation", 2);
-    public Global()
+    public static List<string> Projecten;
+
+    static Global()
     {
-        
+        Projecten = new List<string>();
+    }
+
+    public static void Toevoegen(string value)
+    {
+        if (!Projecten.Contains(value))
+        {
+            Projecten.Add(value);
+        }
+    }
+
+    public static string Return()
+    {
+        string results = string.Join(", ", Projecten.ToArray());
+        return results;
+    }
+
+    public static void Clear()
+    {
+        Projecten.Clear();
     }
 }
