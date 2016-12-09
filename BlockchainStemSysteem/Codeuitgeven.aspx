@@ -26,27 +26,26 @@
             <asp:Label ID="Label2" runat="server" Text="Voer hier u telefoonnummer in:"></asp:Label>
             <br />
             <asp:TextBox ID="TextBox2" runat="server" Enabled="False" Width="22px">06</asp:TextBox>
-            <asp:TextBox ID="TextBox1" runat="server" MaxLength="8" Enabled="False"></asp:TextBox>
-            <asp:Button ID="Button1" runat="server" Text="Verstuur" OnClick="Button1_Click" />
+            <asp:TextBox ID="TextBox1" runat="server" MaxLength="8" Enabled="False" Width="266px"></asp:TextBox>
             <br />
             <asp:Label ID="Label4" runat="server" Visible="False"></asp:Label>
             <br />
             <br />
-            <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="fonts/nummers/1.jpg" OnClick="Buttonnr1_Click" />
-            <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="fonts/nummers/2.jpg" OnClick="Buttonnr2_Click" />
-            <asp:ImageButton ID="ImageButton3" runat="server" ImageUrl="fonts/nummers/3.jpg" OnClick="Buttonnr3_Click" />
+            <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="fonts/nummers/1.jpg" OnClick="Buttonnr1_Click" Height="50px" />
+            <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="fonts/nummers/2.jpg" OnClick="Buttonnr2_Click" Height="50px" />
+            <asp:ImageButton ID="ImageButton3" runat="server" ImageUrl="fonts/nummers/3.jpg" OnClick="Buttonnr3_Click" Height="50px" />
             <br />
-            <asp:ImageButton ID="ImageButton4" runat="server" ImageUrl="fonts/nummers/4.jpg" OnClick="Buttonnr4_Click" />
-            <asp:ImageButton ID="ImageButton5" runat="server" ImageUrl="fonts/nummers/5.jpg" OnClick="Buttonnr5_Click" />
-            <asp:ImageButton ID="ImageButton6" runat="server" ImageUrl="fonts/nummers/6.jpg" OnClick="Buttonnr6_Click" />
+            <asp:ImageButton ID="ImageButton4" runat="server" ImageUrl="fonts/nummers/4.jpg" OnClick="Buttonnr4_Click" Height="50px" />
+            <asp:ImageButton ID="ImageButton5" runat="server" ImageUrl="fonts/nummers/5.jpg" OnClick="Buttonnr5_Click" Height="50px" />
+            <asp:ImageButton ID="ImageButton6" runat="server" ImageUrl="fonts/nummers/6.jpg" OnClick="Buttonnr6_Click" Height="50px" />
             <br />
-            <asp:ImageButton ID="ImageButton7" runat="server" ImageUrl="fonts/nummers/7.jpg" OnClick="Buttonnr7_Click" />
-            <asp:ImageButton ID="ImageButton8" runat="server" ImageUrl="fonts/nummers/8.jpg" OnClick="Buttonnr8_Click" />
-            <asp:ImageButton ID="ImageButton9" runat="server" ImageUrl="fonts/nummers/9.jpg" OnClick="Buttonnr9_Click" />
+            <asp:ImageButton ID="ImageButton7" runat="server" ImageUrl="fonts/nummers/7.jpg" OnClick="Buttonnr7_Click" Height="50px" />
+            <asp:ImageButton ID="ImageButton8" runat="server" ImageUrl="fonts/nummers/8.jpg" OnClick="Buttonnr8_Click" Height="50px" />
+            <asp:ImageButton ID="ImageButton9" runat="server" ImageUrl="fonts/nummers/9.jpg" OnClick="Buttonnr9_Click" Height="50px" />
             <br />
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:ImageButton ID="ImageButton0" runat="server" ImageUrl="fonts/nummers/0.jpg" OnClick="Buttonnr0_Click" />
-            <asp:ImageButton ID="ImageButtonB" runat="server" ImageUrl="fonts/nummers/previous.jpg" OnClick="ButtonnrB_Click" />
+            <asp:ImageButton ID="ImageButton10" runat="server" ImageUrl="fonts/nummers/checked.jpg" OnClick="Button1_Click" Height="50px" />
+            <asp:ImageButton ID="ImageButton0" runat="server" ImageUrl="fonts/nummers/0.jpg" OnClick="Buttonnr0_Click" Height="50px" />
+            <asp:ImageButton ID="ImageButtonB" runat="server" ImageUrl="fonts/nummers/previous.jpg" OnClick="ButtonnrB_Click" Height="50px" />
         </div>
     </form>
     </body>
