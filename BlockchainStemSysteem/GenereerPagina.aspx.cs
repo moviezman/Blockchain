@@ -100,6 +100,7 @@ public partial class _Default : System.Web.UI.Page
         {
             if (hoeveelheidCodes <= 1000)
             {
+                SqlCommand NieuweStemming = new SqlCommand("INSERT INTO Stemming (StemmingsNaam, Actief) VALUES ('" + Txtbx_StemmingsNaam.Text + "', 'true');", sqlConnection);
                 for (int i = 1; i <= hoeveelheidCodes; i++)
                 {
                     SqlCommand CheckUniekeCode = new SqlCommand("INSERT INTO UC (UniekeCode, StemmingsNaam) VALUES ('" + GenerateIdentifier(10).ToString() + "', '" + Txtbx_StemmingsNaam.Text + "');", sqlConnection);
@@ -108,7 +109,7 @@ public partial class _Default : System.Web.UI.Page
 
                 foreach (string project in Projecten)
                 {
-                    SqlCommand MaakProjecten = new SqlCommand("INSERT INTO ");
+                    SqlCommand MaakProjecten = new SqlCommand("INSERT INTO Project (Naam, StemmingsNaam) VALUES ('" + project + "', '" + Txtbx_StemmingsNaam.Text + "');", sqlConnection);
                     MaakProjecten.ExecuteNonQuery();
                 }
 
