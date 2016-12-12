@@ -5,6 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <link rel="stylesheet" type="text/css" href="fonts/style.css">
 </head>
 <body>
     <form id="form1" runat="server">
@@ -12,8 +13,6 @@
             <h1>Komt dat zien, komt dat zien. Genereer hier uw unieke code!</h1>
             <asp:TextBox ID="Txtbx_StemmingsNaam" runat="server" Width="300px"></asp:TextBox>
             <asp:TextBox ID="txtbx_Nummer" runat="server" MaxLength="4" TextMode="Number" Width="50px"></asp:TextBox>
-            <asp:Button ID="btn_Genereer" runat="server" OnClick="btn_Genereer_Click" Text="Genereer" />
-            <asp:Label ID="lbl_Info" runat="server"></asp:Label>
             <br />
             
         </div>
@@ -25,12 +24,13 @@
             <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
                 <ContentTemplate>
                     <asp:Table ID="Tbl_Projecten" runat="server" BorderWidth="1px"></asp:Table>
-                    <asp:Label ID="lbl_Projecten" runat="server"></asp:Label>
+                    <asp:Label ID="lbl_Info" runat="server"></asp:Label>
                 </ContentTemplate>
                 <Triggers>
                     <asp:AsyncPostBackTrigger ControlID="btn_ProjectToevoegen" EventName="Click" />
                 </Triggers>
             </asp:UpdatePanel>
+            <asp:Button ID="btn_Genereer" runat="server" OnClick="btn_Genereer_Click" Text="Genereer" />
             <br />
         </div>    
     </form>

@@ -16,22 +16,11 @@ public partial class _Default : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        //Tabel
         TableHeaderRow header = new TableHeaderRow();
         Tbl_Projecten.Rows.Add(header);
         TableHeaderCell headerTableCell1 = new TableHeaderCell();
         headerTableCell1.Text = "Projecten:";
         header.Cells.Add(headerTableCell1);
-
-        ////gridview
-        //GridView1.DataSource = Global.Projecten;
-        //GridView1.DataBind();
-
-        if (!IsPostBack)
-        {
-            
-        }
-
     }
 
     protected void Page_Init(object sender, EventArgs e)
@@ -75,12 +64,14 @@ public partial class _Default : System.Web.UI.Page
         if (txtbx_Nummer.Text == "")
         {
             lbl_Info.Text = "Vul een hoeveelheid codes in";
+            vulTabel();
             return;
         }
 
         if (Txtbx_StemmingsNaam.Text == "")
         {
             lbl_Info.Text = "Vul een stemmingsnaam in";
+            vulTabel();
             return;
         }
 
@@ -95,30 +86,51 @@ public partial class _Default : System.Web.UI.Page
         if (StemmingBestaat > 0)
         {
             lbl_Info.Text = "Deze Stemming bestaat al";
+            vulTabel();
         }
         else
         {
-            if (hoeveelheidCodes <= 1000)
+            if(hoeveelheidCodes >= 1)
             {
-                SqlCommand NieuweStemming = new SqlCommand("INSERT INTO Stemming (StemmingsNaam, Actief) VALUES ('" + Txtbx_StemmingsNaam.Text + "', 'true');", sqlConnection);
-                for (int i = 1; i <= hoeveelheidCodes; i++)
+                if (hoeveelheidCodes <= 1000)
                 {
-                    SqlCommand CheckUniekeCode = new SqlCommand("INSERT INTO UC (UniekeCode, StemmingsNaam) VALUES ('" + GenerateIdentifier(10).ToString() + "', '" + Txtbx_StemmingsNaam.Text + "');", sqlConnection);
-                    CheckUniekeCode.ExecuteNonQuery();
-                }
+                    if (Global.Projecten.Any())
+                    {
+                        SqlCommand NieuweStemming = new SqlCommand("INSERT INTO Stemming (StemmingsNaam, Actief) VALUES ('" + Txtbx_StemmingsNaam.Text + "', 'true');", sqlConnection);
+                        for (int i = 1; i <= hoeveelheidCodes; i++)
+                        {
+                            SqlCommand CheckUniekeCode = new SqlCommand("INSERT INTO UC (UniekeCode, StemmingsNaam) VALUES ('" + GenerateIdentifier(10).ToString() + "', '" + Txtbx_StemmingsNaam.Text + "');", sqlConnection);
+                            CheckUniekeCode.ExecuteNonQuery();
+                        }
 
-                foreach (string project in Projecten)
+                        foreach (string project in Global.Projecten)
+                        {
+                            SqlCommand MaakProjecten = new SqlCommand("INSERT INTO Project (Naam, StemmingsNaam, AantalStemmen) VALUES ('" + project + "', '" + Txtbx_StemmingsNaam.Text + "', '0');", sqlConnection);
+                            MaakProjecten.ExecuteNonQuery();
+                        }
+
+                        lbl_Info.Text = "Stemming met de naam " + Txtbx_StemmingsNaam.Text + " aangemaakt.";
+                        Global.Projecten.Clear();
+                    }
+                    else
+                    {
+                        lbl_Info.Text = "Een stemming moet projecten hebben";
+                        vulTabel();
+                    }
+
+                }
+                else
                 {
-                    SqlCommand MaakProjecten = new SqlCommand("INSERT INTO Project (Naam, StemmingsNaam) VALUES ('" + project + "', '" + Txtbx_StemmingsNaam.Text + "');", sqlConnection);
-                    MaakProjecten.ExecuteNonQuery();
+                    lbl_Info.Text = "Kies 1000 stemcodes of minder";
+                    vulTabel();
                 }
-
-                lbl_Info.Text = "Stemming met de naam " + Txtbx_StemmingsNaam.Text + " aangemaakt.";
             }
             else
             {
-                lbl_Info.Text = "Kies 1000 stemcodes of minder.";
+                lbl_Info.Text = "Kies 1 of meer stemcodes";
+                vulTabel();
             }
+            
         }
         sqlConnection.Close();
     }
@@ -132,23 +144,24 @@ public partial class _Default : System.Web.UI.Page
         if (txtbx_Project.Text != "")
         {
             Global.Toevoegen(txtbx_Project.Text);
-            foreach (string project in Global.Projecten)
-            {
-                //Table
-                TableRow tRow2 = new TableRow();
-                Tbl_Projecten.Rows.Add(tRow2);
-                TableCell tCell2 = new TableCell();
-                tCell2.Text = project;
-                tRow2.Cells.Add(tCell2);
-            }
-
-            ////Gridview
-            //GridView1.DataSource = Global.Projecten;
-            //GridView1.DataBind();
+            vulTabel();
         }
         else
         {
             lbl_Info.Text = "Vul eerst een projectnaam in.";
+            vulTabel();
+        }
+    }
+
+    protected void vulTabel()
+    {
+        foreach (string project in Global.Projecten)
+        {
+            TableRow tRow2 = new TableRow();
+            Tbl_Projecten.Rows.Add(tRow2);
+            TableCell tCell2 = new TableCell();
+            tCell2.Text = project;
+            tRow2.Cells.Add(tCell2);
         }
     }
 }
