@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -9,7 +10,7 @@ public partial class ResultatenPagina : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-<<<<<<< HEAD
+
         if (!IsPostBack)
         {
 
@@ -45,9 +46,6 @@ public partial class ResultatenPagina : System.Web.UI.Page
             CodeDeactiveren.ExecuteNonQuery();
 
             sqlConnection.Close();
-
-            lbl_GestemdOp.Text = "Dank voor u stem";
-            Label1.Text = Team;
         }
 
     }
@@ -57,9 +55,7 @@ public partial class ResultatenPagina : System.Web.UI.Page
     protected void Button1_Click(object sender, EventArgs e)
     {
         Response.Redirect("Projectenoverzicht.aspx");
-=======
         lbl_StemmingsNaam.Text = Request.QueryString["Stemming"];
->>>>>>> 52d32ca6451c13d2a1c169ee30b22a6d1518650e
     }
     public ProjectenResultaten Resultaten = new ProjectenResultaten(Convert.ToString(HttpContext.Current.Request.QueryString["Stemming"]));
 }
