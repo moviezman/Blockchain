@@ -98,6 +98,7 @@ public partial class _Default : System.Web.UI.Page
                     if (Global.Projecten.Any())
                     {
                         SqlCommand NieuweStemming = new SqlCommand("INSERT INTO Stemming (StemmingsNaam, Actief) VALUES ('" + Txtbx_StemmingsNaam.Text + "', 'true');", sqlConnection);
+                        NieuweStemming.ExecuteNonQuery();
                         for (int i = 1; i <= hoeveelheidCodes; i++)
                         {
                             SqlCommand CheckUniekeCode = new SqlCommand("INSERT INTO UC (UniekeCode, StemmingsNaam) VALUES ('" + GenerateIdentifier(10).ToString() + "', '" + Txtbx_StemmingsNaam.Text + "');", sqlConnection);
@@ -142,14 +143,24 @@ public partial class _Default : System.Web.UI.Page
 
     protected void btn_ProjectToevoegen_Click(object sender, EventArgs e)
     {
-        if (txtbx_Project.Text != "")
+        string project = txtbx_Project.Text;
+        if (project != "")
         {
+            foreach (string projectNaam in Global.Projecten)
+            {
+                if (projectNaam.Contains(project))
+                {
+                    lbl_Info.Text = "Dit project is al toegevoegd";
+                    vulTabel();
+                    return;
+                }
+            }
             Global.Toevoegen(txtbx_Project.Text);
             vulTabel();
         }
         else
         {
-            lbl_Info.Text = "Vul eerst een projectnaam in.";
+            lbl_Info.Text = "Vul eerst een projectnaam in";
             vulTabel();
         }
     }
