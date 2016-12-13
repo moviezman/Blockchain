@@ -16,6 +16,8 @@ public partial class ResultatenPagina : System.Web.UI.Page
             string Team = Request.QueryString["GestemdOp"];
             string StemCode = Request.QueryString["StemCode"];
             string Standaardpagina = "Inlogpagina";
+            string StemToevoegen = "UPDATE Project SET AantalStemmen = AantalStemmen + 1 WHERE Naam = '" + Team + "';";
+            string DeactiveerCode = "UPDATE UC SET ingezet = 1 WHERE UniekeCode = '" + StemCode + "';";
 
             //Vangt veranderen van de URL op
             if (string.IsNullOrEmpty(Convert.ToString(StemCode)))
@@ -26,8 +28,7 @@ public partial class ResultatenPagina : System.Web.UI.Page
             DatabaseConnectie dbconnect = new DatabaseConnectie();
             SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
 
-            string StemToevoegen = "UPDATE Project SET AantalStemmen = AantalStemmen + 1 WHERE Naam = '" + Team + "';";
-            string DeactiveerCode = "UPDATE UC SET ingezet = 1 WHERE UniekeCode = '" + StemCode + "';";
+
 
             //Deactiveer een gebruikte code
             SqlCommand CodeDeactiveren = new SqlCommand(DeactiveerCode, sqlConnection);
