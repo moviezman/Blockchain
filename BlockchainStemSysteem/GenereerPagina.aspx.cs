@@ -65,6 +65,7 @@ public partial class _Default : System.Web.UI.Page
         {
             lbl_Info.Text = "Vul een hoeveelheid codes in";
             vulTabel();
+            Txtbx_StemmingsNaam.Text = "";
             return;
         }
 

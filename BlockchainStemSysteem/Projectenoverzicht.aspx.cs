@@ -14,7 +14,6 @@ public partial class Projectenoverzicht : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
         //Ingevulde Stemcode ophalen en opslaan in string StemCode
         string StemCode = Request.QueryString["Stemmer"];
         //Vangt veranderen van de URL op
@@ -28,7 +27,7 @@ public partial class Projectenoverzicht : System.Web.UI.Page
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
 
         //Hier staan de SQL quiries 
-        //Controleren of een StemCode al is gebruikt quiry
+        //Controleren of een StemCode al is gebruikt query
         SqlCommand GetStatusCode = new SqlCommand("SELECT ingezet FROM UC WHERE UniekeCode = '" + StemCode + "';", sqlConnection);
         //Controleer of een code een unike code is
         SqlCommand CheckUniekeCode = new SqlCommand("SELECT COUNT(*) From UC WHERE ([UniekeCode] = '" + StemCode + "' COLLATE SQL_Latin1_General_CP1_CS_AS)", sqlConnection);

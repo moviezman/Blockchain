@@ -11,13 +11,26 @@ using System.Web;
 public class Buttons
 {
     public string TeamButtons;
-
+    string StemmingsNaam;
 
     public Buttons(string StemCode)
     {
+        
         DatabaseConnectie dbconnect = new DatabaseConnectie();
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
-        SqlDataAdapter asd = new SqlDataAdapter("Select Naam From Project", sqlConnection);
+        SqlCommand CheckStemmingsNaam = new SqlCommand("SELECT StemmingsNaam FROM UC WHERE UniekeCode = '" + StemCode + "'", sqlConnection);
+        sqlConnection.Open();
+        //Haal string uit CheckStemmingsNaam
+        SqlDataReader dr = CheckStemmingsNaam.ExecuteReader();
+
+        while (dr.Read())
+        {
+            this.StemmingsNaam = dr[0].ToString();
+        }
+        dr.Close();
+
+
+        SqlDataAdapter asd = new SqlDataAdapter("Select Naam From Project WHERE StemmingsNaam = '" + StemmingsNaam + "'", sqlConnection);
         DataTable dt = new DataTable();
         asd.Fill(dt);
         foreach (DataRow row in dt.Rows)
