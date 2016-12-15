@@ -35,11 +35,10 @@ public class Buttons
         asd.Fill(dt);
         foreach (DataRow row in dt.Rows)
         {
-            this.TeamButtons += "<button formaction='ResultatenPagina.aspx?GestemdOp=" + row["Naam"] 
-                + "&StemCode=" + StemCode + "' style='width:200px'>" + row["Naam"] + "</button><br />";
+            this.TeamButtons += "<button formaction='ResultatenPagina.aspx?GestemdOp=" + row["Naam"];
+
+          
 
         }
     }
-
-
 }
