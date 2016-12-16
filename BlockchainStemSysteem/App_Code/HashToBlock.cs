@@ -35,7 +35,7 @@ public class HashToBlock
         DatabaseConnectie dbconnect = new DatabaseConnectie();
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
 
-        string hashToevoegen = "INSERT INTO " + naamDataTable + " VALUES (" + hashString + ");";
+        string hashToevoegen = "INSERT INTO " + naamDataTable + " VALUES ('" + hashString + "');";
         SqlCommand insertHash = new SqlCommand(hashToevoegen, sqlConnection);
 
         sqlConnection.Open();
@@ -77,7 +77,7 @@ public class HashToBlock
 
     public void MineHash(string hashVanTel)
     {
-        for (int i = 0600000000; i < 0689999999; i++)
+        for (int i = 0610000000; i < 0689999999; i++)
         {
             SHA256 sha256 = SHA256Managed.Create();
             byte[] bytes = Encoding.UTF8.GetBytes(Convert.ToString(i));
