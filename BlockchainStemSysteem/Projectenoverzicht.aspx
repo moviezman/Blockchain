@@ -11,9 +11,7 @@
     <form id='form1' runat='server'>
     <div>
         <h2>Kies hier op wie u wilt stemmen:</h2>
-        <%
-            Response.Write(Team.TeamButtons);
-        %>
+        <% Response.Write(Team.TeamButtons); %>
         <div>Ingelogd als:</div>
         <asp:Label ID="lbl_IngelogdAls" runat="server" Text=" "></asp:Label>
     </div>
