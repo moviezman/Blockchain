@@ -26,5 +26,4 @@ public class ProjectenResultaten
         }
         sqlConnection.Close();
     }
-
 }
