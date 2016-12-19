@@ -15,7 +15,7 @@ public static class Uitslagen
         string Uitslag = "De winnaar van " + Stemming + " is geworden: ";
         DatabaseConnectie dbconnect = new DatabaseConnectie();
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
-        SqlCommand winnaar = new SqlCommand("SELECT Naam FROM Project WHERE AantalStemmen = (SELECT Max(AantalStemmen) FROM Project WHERE StemmingsNaam = '" + Stemming + "')", sqlConnection);
+        SqlCommand winnaar = new SqlCommand("SELECT Top(1) Naam FROM Project WHERE stemmingsNaam = '" + Stemming + "' ORDER BY AantalStemmen DESC;", sqlConnection);
         sqlConnection.Open();
         Uitslag += winnaar.ExecuteScalar();
         sqlConnection.Close();
@@ -27,7 +27,7 @@ public static class Uitslagen
         string Uitslag = "<h1>De winnaar van " + Stemming + " is geworden: ";
         DatabaseConnectie dbconnect = new DatabaseConnectie();
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
-        SqlCommand winnaar = new SqlCommand("SELECT Naam FROM Project WHERE AantalStemmen = (SELECT Max(AantalStemmen) FROM Project WHERE StemmingsNaam = '" + Stemming + "')", sqlConnection);
+        SqlCommand winnaar = new SqlCommand("SELECT Top(1) Naam FROM Project WHERE stemmingsNaam = '" + Stemming + "' ORDER BY AantalStemmen DESC;", sqlConnection);
         SqlDataAdapter asd = new SqlDataAdapter("Select Naam, AantalStemmen From Project WHERE StemmingsNaam = '" + Stemming + "'", sqlConnection);
         sqlConnection.Open();
         Uitslag += winnaar.ExecuteScalar() + "</h1><br />";
