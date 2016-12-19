@@ -158,6 +158,7 @@ public partial class _Default : System.Web.UI.Page
             }
             Global.Toevoegen(txtbx_Project.Text);
             vulTabel();
+            
         }
         else
         {

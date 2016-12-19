@@ -12,9 +12,12 @@ public static class Uitslagen
 {
     public static string UitslagStemming(string Stemming)
     {
-        string Uitslag = "De winnaar van " + Stemming + " is geworden: ";
         DatabaseConnectie dbconnect = new DatabaseConnectie();
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
+        SqlCommand StemmingActief = new SqlCommand("SELECT Actief FROM Stemming WHERE Stemmingsnaam = '" + Stemming + "';", sqlConnection);
+        bool Actief = Convert.ToBoolean(StemmingActief.ExecuteScalar());
+        
+        string Uitslag = "De winnaar van " + Stemming + " is geworden: ";
         SqlCommand winnaar = new SqlCommand("SELECT Top(1) Naam FROM Project WHERE stemmingsNaam = '" + Stemming + "' ORDER BY AantalStemmen DESC;", sqlConnection);
         sqlConnection.Open();
         Uitslag += winnaar.ExecuteScalar();
@@ -24,9 +27,11 @@ public static class Uitslagen
 
     public static string UitslagStemmingBeheerder(string Stemming)
     {
-        string Uitslag = "<h1>De winnaar van " + Stemming + " is geworden: ";
         DatabaseConnectie dbconnect = new DatabaseConnectie();
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
+
+        string Uitslag = "<h1>De winnaar van " + Stemming + " is geworden: ";
+        
         SqlCommand winnaar = new SqlCommand("SELECT Top(1) Naam FROM Project WHERE stemmingsNaam = '" + Stemming + "' ORDER BY AantalStemmen DESC;", sqlConnection);
         SqlDataAdapter asd = new SqlDataAdapter("Select Naam, AantalStemmen From Project WHERE StemmingsNaam = '" + Stemming + "'", sqlConnection);
         sqlConnection.Open();
