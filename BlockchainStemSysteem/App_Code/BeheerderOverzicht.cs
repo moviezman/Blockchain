@@ -21,13 +21,27 @@ public class BeheerderOverzicht
     {
         DatabaseConnectie dbconnect = new DatabaseConnectie();
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
-        SqlDataAdapter LopendeStemmingen = new SqlDataAdapter("SELECT StemmingsNaam FROM Stemming WHERE Actief = 'false'", sqlConnection);
+        SqlDataAdapter SQLLopendeStemmingen = new SqlDataAdapter("SELECT StemmingsNaam FROM Stemming WHERE Actief = 'true'", sqlConnection);
         DataTable dt = new DataTable();
-        LopendeStemmingen.Fill(dt);
+        SQLLopendeStemmingen.Fill(dt);
         foreach (DataRow row in dt.Rows)
         {
             this.LopendeStemmingen += "<p>" + row["StemmingsNaam"] + "<button formaction='TussenPagina.aspx?Stemming=" + row["StemmingsNaam"] + "'>Stop</button></p><br />";
         }
-            return this.LopendeStemmingen;
+        return this.LopendeStemmingen;
+    }
+
+    public string AfgelopenStemmingenOphalen()
+    {
+        DatabaseConnectie dbconnect = new DatabaseConnectie();
+        SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
+        SqlDataAdapter SQLAfgelopenStemmingen = new SqlDataAdapter("SELECT StemmingsNaam FROM Stemming WHERE Actief = 'false'", sqlConnection);
+        DataTable dt = new DataTable();
+        SQLAfgelopenStemmingen.Fill(dt);
+        foreach (DataRow row in dt.Rows)
+        {
+            this.AfgelopenStemmingen += "<button formaction='ResultatenPaginaBeheerder.aspx?Stemming=" + row["StemmingsNaam"] + "'>" + row["StemmingsNaam"] + "</button></p><br />";
+        }
+        return this.AfgelopenStemmingen;
     }
 }

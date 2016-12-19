@@ -15,7 +15,7 @@
         <br />
         <asp:Button ID="btn_GenereerPagina" runat="server" OnClick="btn_GenereerPagina_Click" Text="Nieuwe Stemming" />
         <h1>Afgelopen stemmingen:</h1>
-        <% Response.Write("Test"); %>
+        <% Response.Write(Overzicht.AfgelopenStemmingenOphalen()); %>
     </div>
     </form>
 </body>
