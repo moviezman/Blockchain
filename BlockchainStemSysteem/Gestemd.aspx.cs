@@ -18,16 +18,16 @@ public partial class Gestemd : System.Web.UI.Page
             string Standaardpagina = "Inlogpagina";
 
             //Vangt veranderen van de URL op
-            if (string.IsNullOrEmpty(Convert.ToString(StemCode)))
-            {
-                Response.Redirect(Standaardpagina);
-            }
+            //if (string.IsNullOrEmpty(Convert.ToString(StemCode)))
+            //{
+            //    Response.Redirect(Standaardpagina);
+            //}
 
             DatabaseConnectie dbconnect = new DatabaseConnectie();
             SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
 
             string StemToevoegen = "UPDATE Project SET AantalStemmen = AantalStemmen + 1 WHERE Naam = '" + Team + "';";
-            string DeactiveerCode = "UPDATE UC SET Ingezet = 1 WHERE UniekeCode = '" + StemCode + "';";
+            string DeactiveerCode = "UPDATE UC SET Ingezet = 'True' WHERE UniekeCode = '" + StemCode + "';";
 
             //Deactiveer een gebruikte code
             SqlCommand CodeDeactiveren = new SqlCommand(DeactiveerCode, sqlConnection);
