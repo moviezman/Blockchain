@@ -26,7 +26,11 @@ public class BeheerderOverzicht
         SQLLopendeStemmingen.Fill(dt);
         foreach (DataRow row in dt.Rows)
         {
-            this.LopendeStemmingen += "<p>" + row["StemmingsNaam"] + "<button formaction='TussenPagina.aspx?Stemming=" + row["StemmingsNaam"] + "'>Stop</button></p><br />";
+            sqlConnection.Open();
+            SqlCommand WwChecken = new SqlCommand("SELECT Hash FROM Wachtwoord WHERE Id = '1'", sqlConnection);
+            string Wachtwoord = WwChecken.ExecuteScalar().ToString();
+            this.LopendeStemmingen += "<p>" + row["StemmingsNaam"] + "<button formaction='TussenPagina.aspx?Stemming=" + row["StemmingsNaam"] + "&Login=" + Wachtwoord + "'>Stop</button></p><br />";
+            sqlConnection.Close();
         }
         return this.LopendeStemmingen;
     }

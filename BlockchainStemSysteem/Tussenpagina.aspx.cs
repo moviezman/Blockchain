@@ -10,13 +10,29 @@ public partial class Tussenpagina : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        string StemmingsNaam = Request.QueryString["Stemming"];
+        //Checkt of URL aangepast is
         DatabaseConnectie dbconnect = new DatabaseConnectie();
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
-        SqlCommand StopStemming = new SqlCommand("UPDATE Stemming SET Actief = 'false' WHERE StemmingsNaam = '" + StemmingsNaam + "'", sqlConnection);
         sqlConnection.Open();
-        StopStemming.ExecuteScalar();
+        SqlCommand WwChecken = new SqlCommand("SELECT Hash FROM Wachtwoord WHERE Id = '1'", sqlConnection);
+        string code = Request.QueryString["Login"];
+        string Wachtwoord = WwChecken.ExecuteScalar().ToString().Replace(" ", string.Empty);
+        Wachtwoord = Wachtwoord.Replace("+", " ");
         sqlConnection.Close();
-        Response.Redirect("OverzichtBeheerder");
+        if (code != Wachtwoord)
+        {
+            Response.Redirect("Inlogpagina");
+        }
+        else
+        {
+            string StemmingsNaam = Request.QueryString["Stemming"];
+            SqlCommand StopStemming = new SqlCommand("UPDATE Stemming SET Actief = 'false' WHERE StemmingsNaam = '" + StemmingsNaam + "'", sqlConnection);
+            sqlConnection.Open();
+            StopStemming.ExecuteScalar();
+            sqlConnection.Close();
+            Response.Redirect("OverzichtBeheerder?Login=" + Wachtwoord);
+        }
+        sqlConnection.Close();
+        
     }
 }

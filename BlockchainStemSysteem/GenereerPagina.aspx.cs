@@ -16,6 +16,21 @@ public partial class _Default : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        //Checkt of URL aangepast is
+        DatabaseConnectie dbconnect = new DatabaseConnectie();
+        SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
+        sqlConnection.Open();
+        SqlCommand WwChecken = new SqlCommand("SELECT Hash FROM Wachtwoord WHERE Id = '1'", sqlConnection);
+        string code = Request.QueryString["Login"];
+        string Wachtwoord = WwChecken.ExecuteScalar().ToString().Replace(" ", string.Empty);
+        Wachtwoord = Wachtwoord.Replace("+", " ");
+        if (code != Wachtwoord)
+        {
+            Response.Redirect("Inlogpagina");
+        }
+        sqlConnection.Close();
+
+
         TableHeaderRow header = new TableHeaderRow();
         Tbl_Projecten.Rows.Add(header);
         TableHeaderCell headerTableCell1 = new TableHeaderCell();
@@ -111,9 +126,15 @@ public partial class _Default : System.Web.UI.Page
                             MaakProjecten.ExecuteNonQuery();
                         }
 
-                        lbl_Info.Text = "Stemming met de naam " + Txtbx_StemmingsNaam.Text + " aangemaakt.";
+                        string Wachtwoord;
+
+                        //Verander de Id naar de id van het wachtwoord dat je wilt als je hem verandert
+                        SqlCommand WwChecken = new SqlCommand("SELECT Hash FROM Wachtwoord WHERE Id = '1'", sqlConnection);
+                        Wachtwoord = WwChecken.ExecuteScalar().ToString();
+                        sqlConnection.Close();
+
                         Global.Projecten.Clear();
-                        Response.Redirect("OverzichtBeheerder");
+                        Response.Redirect("OverzichtBeheerder?Login=" + Wachtwoord);
                     }
                     else
                     {
