@@ -15,13 +15,14 @@ public partial class BevestigStem : System.Web.UI.Page
 
     protected void ButtonJa_Click(object sender, EventArgs e)
     {
+        string StemCode = Request.QueryString["StemCode"];
         string Team = Request.QueryString["GestemdOp"];
-        Response.Redirect("Gestemd.aspx?GestemdOp=" + Team );
+        Response.Redirect("Gestemd.aspx?GestemdOp=" + Team + "&StemCode=" + StemCode);
     }
     protected void ButtonNee_Click(object sender, EventArgs e)
     {
         string StemCode = Request.QueryString["StemCode"];
-        Response.Redirect("Projectenoverzicht.aspx?StemCode=" + StemCode);
+        Response.Redirect("Projectenoverzicht.aspx?Stemmer=" + StemCode);
 
     }
 }
