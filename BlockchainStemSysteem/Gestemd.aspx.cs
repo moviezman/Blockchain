@@ -18,16 +18,19 @@ public partial class Gestemd : System.Web.UI.Page
             string Standaardpagina = "Inlogpagina";
 
             //Vangt veranderen van de URL op
-            if (string.IsNullOrEmpty(Convert.ToString(StemCode)))
-            {
-                Response.Redirect(Standaardpagina);
-            }
+            //if (string.IsNullOrEmpty(Convert.ToString(StemCode)))
+            //{
+            //    Response.Redirect(Standaardpagina);
+            //}
 
             DatabaseConnectie dbconnect = new DatabaseConnectie();
             SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
 
             string StemToevoegen = "UPDATE Project SET AantalStemmen = AantalStemmen + 1 WHERE Naam = '" + Team + "';";
-            string DeactiveerCode = "UPDATE UC SET Ingezet = 1 WHERE UniekeCode = '" + StemCode + "';";
+            string DeactiveerCode = "UPDATE UC SET Ingezet = 'True' WHERE UniekeCode = '" + StemCode + "';";
+
+            //Checkt of de stemming nog actief is (om het veranderen van de URL op te vangen)
+            SqlCommand CheckActief = new SqlCommand("SELECT Actief FROM Stemming WHERE Stemmingsnaam IN (SELECT StemmingsNaam FROM UC WHERE UniekeCode = '" + StemCode + "');", sqlConnection);
 
             //Deactiveer een gebruikte code
             SqlCommand CodeDeactiveren = new SqlCommand(DeactiveerCode, sqlConnection);
@@ -38,10 +41,20 @@ public partial class Gestemd : System.Web.UI.Page
             //Verbinding maken met database
             sqlConnection.Open();
 
-            //update het aantal stemmen van een team
-            UpdateTeam.ExecuteNonQuery();
-            //Ingevulde StemCode deactiveren 
-            CodeDeactiveren.ExecuteNonQuery();
+            bool StemmingActief = Convert.ToBoolean(CheckActief.ExecuteScalar());
+            if(StemmingActief == false)
+            {
+                //Redirect naar de inlogpagina als de stemming al afgelopen is
+                Response.Redirect("Inlogpagina");
+            }
+            else
+            {
+                //update het aantal stemmen van een team
+                UpdateTeam.ExecuteNonQuery();
+                //Ingevulde StemCode deactiveren 
+                CodeDeactiveren.ExecuteNonQuery();
+            }
+
 
             sqlConnection.Close();
 

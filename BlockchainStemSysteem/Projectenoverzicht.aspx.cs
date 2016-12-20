@@ -58,7 +58,8 @@ public partial class Projectenoverzicht : System.Web.UI.Page
 
             while (dr.Read())
             {
-                Response.Redirect(Resultatenpagina + ".aspx?Stemming=" + dr[0].ToString());
+                //Response.Redirect(Resultatenpagina + ".aspx?Stemming=" + dr[0].ToString());
+                Response.Redirect("ResultatenPagina.aspx?Stemming=" + dr[0].ToString());
             }
             dr.Close();
             sqlConnection.Close();

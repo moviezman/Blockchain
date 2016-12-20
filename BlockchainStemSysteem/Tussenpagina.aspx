@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ResultatenPagina.aspx.cs" Inherits="ResultatenPagina" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Tussenpagina.aspx.cs" Inherits="Tussenpagina" %>
 
 <!DOCTYPE html>
 
@@ -10,7 +10,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <h1><% Response.Write(Uitslagen.UitslagStemming(Request.QueryString["Stemming"])); %></h1>
+    
     </div>
     </form>
 </body>

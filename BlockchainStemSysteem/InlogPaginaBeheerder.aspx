@@ -12,7 +12,7 @@
     <div>
     <h1>Inlogpagina Beheerder:</h1>
     </div>
-        <asp:TextBox ID="txtbx_Login" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtbx_Login" type="password" runat="server"></asp:TextBox>
             <asp:Button ID="btn_Login" runat="server" OnClick="Button_Login_Click" Text="Inloggen" />
         <p>
             <asp:Label ID="lbl_Hash" runat="server"></asp:Label>

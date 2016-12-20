@@ -33,21 +33,21 @@
             <asp:Label ID="Label4" runat="server" Visible="False"></asp:Label>
             <br />
             <br />
-            <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="fonts/nummers/1.jpg" OnClick="Buttonnr1_Click" CssClass="button" />
-            <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="fonts/nummers/2.jpg" OnClick="Buttonnr2_Click" CssClass="button" />
-            <asp:ImageButton ID="ImageButton3" runat="server" ImageUrl="fonts/nummers/3.jpg" OnClick="Buttonnr3_Click" CssClass="button" />
+            <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="fonts/nummers/1.png" OnClick="Buttonnr1_Click" CssClass="button" />
+            <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="fonts/nummers/2.png" OnClick="Buttonnr2_Click" CssClass="button" />
+            <asp:ImageButton ID="ImageButton3" runat="server" ImageUrl="fonts/nummers/3.png" OnClick="Buttonnr3_Click" CssClass="button" />
             <br />
-            <asp:ImageButton ID="ImageButton4" runat="server" ImageUrl="fonts/nummers/4.jpg" OnClick="Buttonnr4_Click" CssClass="button" />
-            <asp:ImageButton ID="ImageButton5" runat="server" ImageUrl="fonts/nummers/5.jpg" OnClick="Buttonnr5_Click" CssClass="button" />
-            <asp:ImageButton ID="ImageButton6" runat="server" ImageUrl="fonts/nummers/6.jpg" OnClick="Buttonnr6_Click" CssClass="button" />
+            <asp:ImageButton ID="ImageButton4" runat="server" ImageUrl="fonts/nummers/4.png" OnClick="Buttonnr4_Click" CssClass="button" />
+            <asp:ImageButton ID="ImageButton5" runat="server" ImageUrl="fonts/nummers/5.png" OnClick="Buttonnr5_Click" CssClass="button" />
+            <asp:ImageButton ID="ImageButton6" runat="server" ImageUrl="fonts/nummers/6.png" OnClick="Buttonnr6_Click" CssClass="button" />
             <br />
-            <asp:ImageButton ID="ImageButton7" runat="server" ImageUrl="fonts/nummers/7.jpg" OnClick="Buttonnr7_Click" CssClass="button" />
-            <asp:ImageButton ID="ImageButton8" runat="server" ImageUrl="fonts/nummers/8.jpg" OnClick="Buttonnr8_Click" CssClass="button" />
-            <asp:ImageButton ID="ImageButton9" runat="server" ImageUrl="fonts/nummers/9.jpg" OnClick="Buttonnr9_Click" CssClass="button" />
+            <asp:ImageButton ID="ImageButton7" runat="server" ImageUrl="fonts/nummers/7.png" OnClick="Buttonnr7_Click" CssClass="button" />
+            <asp:ImageButton ID="ImageButton8" runat="server" ImageUrl="fonts/nummers/8.png" OnClick="Buttonnr8_Click" CssClass="button" />
+            <asp:ImageButton ID="ImageButton9" runat="server" ImageUrl="fonts/nummers/9.png" OnClick="Buttonnr9_Click" CssClass="button" />
             <br />
-            <asp:ImageButton ID="ImageButton10" runat="server" ImageUrl="fonts/nummers/checked.jpg" OnClick="Button1_Click" CssClass="button" />
-            <asp:ImageButton ID="ImageButton0" runat="server" ImageUrl="fonts/nummers/0.jpg" OnClick="Buttonnr0_Click" CssClass="button" />
-            <asp:ImageButton ID="ImageButtonB" runat="server" ImageUrl="fonts/nummers/previous.jpg" OnClick="ButtonnrB_Click" CssClass="button" />
+            <asp:ImageButton ID="ImageButton10" runat="server" ImageUrl="fonts/nummers/checked.png" OnClick="Button1_Click" CssClass="button" />
+            <asp:ImageButton ID="ImageButton0" runat="server" ImageUrl="fonts/nummers/0.png" OnClick="Buttonnr0_Click" CssClass="button" />
+            <asp:ImageButton ID="ImageButtonB" runat="server" ImageUrl="fonts/nummers/previous.png" OnClick="ButtonnrB_Click" CssClass="button" />
         </div>
     </form>
         </div>

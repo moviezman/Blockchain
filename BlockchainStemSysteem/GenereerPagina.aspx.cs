@@ -113,6 +113,7 @@ public partial class _Default : System.Web.UI.Page
 
                         lbl_Info.Text = "Stemming met de naam " + Txtbx_StemmingsNaam.Text + " aangemaakt.";
                         Global.Projecten.Clear();
+                        Response.Redirect("OverzichtBeheerder");
                     }
                     else
                     {
@@ -157,6 +158,7 @@ public partial class _Default : System.Web.UI.Page
             }
             Global.Toevoegen(txtbx_Project.Text);
             vulTabel();
+            
         }
         else
         {

@@ -17,5 +17,6 @@ public partial class OverzichtBeheerder : System.Web.UI.Page
         Response.Redirect("GenereerPagina.aspx");
     }
 
+    public BeheerderOverzicht Overzicht = new BeheerderOverzicht();
     //public Buttons Team = new Buttons(Convert.ToString(HttpContext.Current.Request.QueryString["Stemmer"]));
 }

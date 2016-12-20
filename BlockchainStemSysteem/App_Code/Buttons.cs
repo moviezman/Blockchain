@@ -15,7 +15,7 @@ public class Buttons
 
     public Buttons(string StemCode)
     {
-        
+        TeamButtons = "";
         DatabaseConnectie dbconnect = new DatabaseConnectie();
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
         SqlCommand CheckStemmingsNaam = new SqlCommand("SELECT StemmingsNaam FROM UC WHERE UniekeCode = '" + StemCode + "'", sqlConnection);
@@ -35,10 +35,7 @@ public class Buttons
         asd.Fill(dt);
         foreach (DataRow row in dt.Rows)
         {
-            this.TeamButtons += "<button formaction='ResultatenPagina.aspx?GestemdOp=" + row["Naam"];
-
-          
-
+            this.TeamButtons += "<button formaction='Gestemd.aspx?GestemdOp=" + row["Naam"] + "'>" + row["Naam"] + "</button><br />";
         }
     }
 }
