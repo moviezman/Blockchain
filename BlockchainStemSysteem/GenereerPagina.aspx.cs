@@ -198,4 +198,10 @@ public partial class _Default : System.Web.UI.Page
             tRow2.Cells.Add(tCell2);
         }
     }
+
+    protected void btn_Overzicht_Click(object sender, EventArgs e)
+    {
+        Global.Projecten.Clear();
+        Response.Redirect("OverzichtBeheerder");
+    }
 }

@@ -40,7 +40,6 @@ public partial class Projectenoverzicht : System.Web.UI.Page
 
         //Database verbinding openen
         sqlConnection.Open();
-
         bool ActieveCode = Convert.ToBoolean(GetStatusCode.ExecuteScalar());
         int CodeBestaat = (int)CheckUniekeCode.ExecuteScalar();
         bool StemmingActief = Convert.ToBoolean(CheckActief.ExecuteScalar());
@@ -71,6 +70,10 @@ public partial class Projectenoverzicht : System.Web.UI.Page
             if (ActieveCode == true || CodeBestaat != 1)
             {
                 Response.Redirect(Standaardpagina);
+            }
+            else
+            {
+                Session["Stemcode"] = StemCode;
             }
         }
 
