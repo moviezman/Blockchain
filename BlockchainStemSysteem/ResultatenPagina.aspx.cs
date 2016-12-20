@@ -15,9 +15,11 @@ public partial class ResultatenPagina : System.Web.UI.Page
         DatabaseConnectie dbconnect = new DatabaseConnectie();
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
         SqlCommand StemmingActief = new SqlCommand("SELECT Actief FROM Stemming WHERE Stemmingsnaam = '" + Stemming + "';", sqlConnection);
+        SqlCommand StemmingBestaat = new SqlCommand("SELECT COUNT(*) From Stemming WHERE Stemmingsnaam = '" + Stemming + "'", sqlConnection);
         sqlConnection.Open();
+        bool Bestaat = Convert.ToBoolean(StemmingBestaat.ExecuteScalar());
         bool Actief = Convert.ToBoolean(StemmingActief.ExecuteScalar());
-        if (Actief)
+        if (Actief || !Bestaat)
         {
             Response.Redirect("Inlogpagina");
         }
