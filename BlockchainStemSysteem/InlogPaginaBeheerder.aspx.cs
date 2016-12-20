@@ -48,12 +48,6 @@ public partial class InlogPaginaBeheerder : System.Web.UI.Page
         if(HashGenereren.checkHash(txtbx_Login.Text, Wachtwoord))
         {
             Session["Login"] = Wachtwoord;
-
-
-
-
-
-
             Response.Redirect("OverzichtBeheerder.aspx");
         }
         else

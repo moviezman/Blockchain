@@ -17,19 +17,19 @@ public partial class ResultatenPagina : System.Web.UI.Page
         bool Actief = Convert.ToBoolean(StemmingActief.ExecuteScalar());
         if (!Actief)
         {
-            Response.Redirect("InlogpaginaBeheerder");
+            Response.Redirect("Inlogpagina");
         }
-        if (!IsPostBack)
-        {
-            string StemCode = Request.QueryString["StemCode"];
-            string Standaardpagina = "Inlogpagina";
 
-            //Vangt veranderen van de URL op
-            //if (string.IsNullOrEmpty(Convert.ToString(StemCode)))
-            //{
-            //    Response.Redirect(Standaardpagina);
-            //}
+        //Checkt of de gebruiker ingelogd is als beheerder
+        sqlConnection.Open();
+        SqlCommand WwChecken = new SqlCommand("SELECT Hash FROM Wachtwoord WHERE Id = '1'", sqlConnection);
+        string code = (string)(Session["Login"]);
+        string Wachtwoord = WwChecken.ExecuteScalar().ToString();
+        if (code != Wachtwoord)
+        {
+            Response.Redirect("Inlogpagina");
         }
+        sqlConnection.Close();
 
 
     }
