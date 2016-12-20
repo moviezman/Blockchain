@@ -10,6 +10,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
+        <asp:Button ID="btn_Uitloggen" runat="server" Text="Uitloggen" OnClick="btn_Uitloggen_Click" />
         <h1>Lopende stemmingen:</h1>
         <% Response.Write(Overzicht.LopendeStemmingenOphalen()); %>
         <br />

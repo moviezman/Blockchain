@@ -10,7 +10,8 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <h1>Komt dat zien, komt dat zien. Genereer hier uw unieke code!</h1>
+            <h1>Vul een stemmingsnaam en het aantal stemmen in</h1>
+            <h1>Voeg daarna projecten toe aan deze stemming</h1>
             <asp:TextBox ID="Txtbx_StemmingsNaam" runat="server" Width="300px"></asp:TextBox>
             <asp:TextBox ID="txtbx_Nummer" runat="server" MaxLength="4" TextMode="Number" Width="50px"></asp:TextBox>
             <br />
