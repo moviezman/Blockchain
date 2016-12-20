@@ -15,11 +15,11 @@ public static class Uitslagen
         DatabaseConnectie dbconnect = new DatabaseConnectie();
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
         SqlCommand StemmingActief = new SqlCommand("SELECT Actief FROM Stemming WHERE Stemmingsnaam = '" + Stemming + "';", sqlConnection);
+        sqlConnection.Open();
         bool Actief = Convert.ToBoolean(StemmingActief.ExecuteScalar());
         
         string Uitslag = "De winnaar van " + Stemming + " is geworden: ";
         SqlCommand winnaar = new SqlCommand("SELECT Top(1) Naam FROM Project WHERE stemmingsNaam = '" + Stemming + "' ORDER BY AantalStemmen DESC;", sqlConnection);
-        sqlConnection.Open();
         Uitslag += winnaar.ExecuteScalar();
         sqlConnection.Close();
         return Uitslag;
