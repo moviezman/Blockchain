@@ -12,6 +12,7 @@
     <div>
         <asp:Button ID="btn_Uitloggen" runat="server" Text="Uitloggen" OnClick="btn_Uitloggen_Click" />
         <h1>Lopende stemmingen:</h1>
+        <% Response.Write(Overzicht.LopendeStemmingenOphalen()); %>
         <br />
         <asp:Button ID="btn_GenereerPagina" runat="server" OnClick="btn_GenereerPagina_Click" Text="Nieuwe Stemming" />
         <h1>Afgelopen stemmingen:</h1>

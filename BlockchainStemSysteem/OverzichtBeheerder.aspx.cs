@@ -10,7 +10,7 @@ public partial class OverzichtBeheerder : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        //Checkt of URL aangepast is
+        //Checkt of de gebruiker ingelogd is als beheerder
         DatabaseConnectie dbconnect = new DatabaseConnectie();
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
         sqlConnection.Open();
@@ -36,7 +36,7 @@ public partial class OverzichtBeheerder : System.Web.UI.Page
         Wachtwoord = WwChecken.ExecuteScalar().ToString();
         sqlConnection.Close();
 
-        Response.Redirect("GenereerPagina.aspx?Login=" + Wachtwoord);
+        Response.Redirect("GenereerPagina.aspx");
     }
 
     public BeheerderOverzicht Overzicht = new BeheerderOverzicht();
@@ -44,6 +44,7 @@ public partial class OverzichtBeheerder : System.Web.UI.Page
 
     protected void btn_Uitloggen_Click(object sender, EventArgs e)
     {
+        Session["Login"] = "";
         Response.Redirect("inlogpaginaBeheerder");
     }
 }

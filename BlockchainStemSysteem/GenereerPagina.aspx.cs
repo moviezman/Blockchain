@@ -16,14 +16,13 @@ public partial class _Default : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        //Checkt of URL aangepast is
+        //Checkt of de gebruiker ingelogd is als beheerder
         DatabaseConnectie dbconnect = new DatabaseConnectie();
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
         sqlConnection.Open();
         SqlCommand WwChecken = new SqlCommand("SELECT Hash FROM Wachtwoord WHERE Id = '1'", sqlConnection);
-        string code = Request.QueryString["Login"];
-        string Wachtwoord = WwChecken.ExecuteScalar().ToString().Replace(" ", string.Empty);
-        Wachtwoord = Wachtwoord.Replace("+", " ");
+        string code = (string)(Session["Login"]);
+        string Wachtwoord = WwChecken.ExecuteScalar().ToString();
         if (code != Wachtwoord)
         {
             Response.Redirect("Inlogpagina");
@@ -134,7 +133,7 @@ public partial class _Default : System.Web.UI.Page
                         sqlConnection.Close();
 
                         Global.Projecten.Clear();
-                        Response.Redirect("OverzichtBeheerder?Login=" + Wachtwoord);
+                        Response.Redirect("OverzichtBeheerder");
                     }
                     else
                     {
