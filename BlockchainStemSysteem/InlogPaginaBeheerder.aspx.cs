@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -44,7 +47,14 @@ public partial class InlogPaginaBeheerder : System.Web.UI.Page
 
         if(HashGenereren.checkHash(txtbx_Login.Text, Wachtwoord))
         {
-            Response.Redirect("OverzichtBeheerder.aspx?Login=" + Wachtwoord);
+            Session["Login"] = Wachtwoord;
+
+
+
+
+
+
+            Response.Redirect("OverzichtBeheerder.aspx");
         }
         else
         {

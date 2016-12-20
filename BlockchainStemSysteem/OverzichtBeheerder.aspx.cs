@@ -15,9 +15,8 @@ public partial class OverzichtBeheerder : System.Web.UI.Page
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
         sqlConnection.Open();
         SqlCommand WwChecken = new SqlCommand("SELECT Hash FROM Wachtwoord WHERE Id = '1'", sqlConnection);
-        string code = Request.QueryString["Login"];
-        string Wachtwoord = WwChecken.ExecuteScalar().ToString().Replace(" ", string.Empty);
-        Wachtwoord = Wachtwoord.Replace("+", " ");
+        string code = (string)(Session["Login"]);
+        string Wachtwoord = WwChecken.ExecuteScalar().ToString();
         if (code != Wachtwoord)
         {
             Response.Redirect("Inlogpagina");
