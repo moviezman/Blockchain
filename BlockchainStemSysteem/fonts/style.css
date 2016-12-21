@@ -1,9 +1,10 @@
 body {
-    background-color: lightblue;
+    background-image: url("/fonts/Nummers/footer_lodyas.png");
+    background-repeat: round;
+    /*background-color: lightblue;*/
     text-align:center;
-}
-
-input {
+    color:white;
+    font:Lucida Grande;
 }
 
 
@@ -43,6 +44,20 @@ button:hover {
     position: center;
 }
 
+.foutmelding{
+    color:red;
+    font-size:22px;
+}
+.box{
+    border-radius: 10px;
+    text-align:center;
+}
+
+.invoer{
+    font-size:20px;
+    font-weight:bold;
+}
+
 /*#globaal{
     text-align:center;
 }*/
@@ -50,9 +65,24 @@ button:hover {
 h1 {
     color:red;
     font-weight:bold;
-    font-family:Calibri;
+    font-family:Lucida Grande;
+}
+
+h2{
+    
+    font-weight:bold;
+    font-family:Lucida Grande;
 }
 
 p1{
-    font-family:Calibri;
+    font-family:Lucida Grande;
 }
+
+.uil-spin {
+            width: 31px;
+        }
+
+.auto-style1 {
+            width: 600px;
+            height: 248px;
+        }

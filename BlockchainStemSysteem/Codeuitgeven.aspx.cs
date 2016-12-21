@@ -95,7 +95,7 @@ public partial class Codeuitgeven : System.Web.UI.Page
         else
         {
             Label4.Visible = true;
-            Label4.Text = "Het nummer is ongeldig";
+            Label4.Text = "Dit nummer is ongeldig";
             TextBox1.Text = "";
         }
 

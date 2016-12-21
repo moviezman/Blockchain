@@ -6,15 +6,6 @@
 <head runat="server">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title></title>
-    <style type="text/css">
-        .uil-spin {
-            width: 31px;
-        }
-        .auto-style1 {
-            width: 600px;
-            height: 248px;
-        }
-    </style>
     <link rel="stylesheet" type="text/css" href="fonts/style.css"/>
 </head>
 <body>
@@ -25,15 +16,17 @@
             <%--<asp:Label ID="Label1" runat="server" Text="Welkom bij de Winnovation" Font-Bold="True" Font-Size="Large" CssClass="klasselabels"></asp:Label>
             <br />--%>
             <img alt="Logo Winnovation" class="auto-style1" src="/fonts/Nummers/logoplaceholder.png"/><br />
-            <asp:Label ID="Label3" runat="server" Text="Op uw telefoon ontvangt u een SMS met een link. Klik op deze link om u stem uit te brengen"></asp:Label>
+<%--            <asp:Label ID="Label3" runat="server" Text="Op uw telefoon ontvangt u een SMS met een link. Klik op deze link om u stem uit te brengen"></asp:Label>--%>
+            <br />
+            <%--<br />--%>
+            <asp:Label ID="Label2" runat="server" Text="Voer uw telefoonnummer in" CssClass="invoer"></asp:Label>
             <br />
             <br />
-            <asp:Label ID="Label2" runat="server" Text="Voer hier u telefoonnummer in:"></asp:Label>
+            <asp:TextBox ID="TextBox2" runat="server" Enabled="False" CssClass="box" Width="22px">06</asp:TextBox>
+            <asp:TextBox ID="TextBox1" runat="server" MaxLength="8" Enabled="False" Width="200px" CssClass="box"></asp:TextBox>
             <br />
-            <asp:TextBox ID="TextBox2" runat="server" Enabled="False" Width="22px">06</asp:TextBox>
-            <asp:TextBox ID="TextBox1" runat="server" MaxLength="8" Enabled="False" Width="266px"></asp:TextBox>
             <br />
-            <asp:Label ID="Label4" runat="server" Visible="False"></asp:Label>
+            <asp:Label ID="Label4" runat="server" Visible="False" CssClass="foutmelding"></asp:Label>
             <br />
             <br />
             <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="fonts/nummers/1.png" OnClick="Buttonnr1_Click" CssClass="button" />
