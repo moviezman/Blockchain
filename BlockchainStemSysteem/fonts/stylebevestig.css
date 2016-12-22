@@ -31,3 +31,17 @@
     font-weight:bold;
     font-family:'Lucida Sans';
 }
+.homeknop{
+    border-radius: 10px;
+    text-align:center;
+}
+
+.homeknop:hover {
+        background-image: linear-gradient(to bottom, #40e6f1, #3ea7cf);
+        text-decoration: none;
+    }
+
+.check{
+    width:200px;
+    height:200px;
+}
