@@ -22,7 +22,7 @@
             <asp:Label ID="Label2" runat="server" Text="Voer uw telefoonnummer in" CssClass="invoer"></asp:Label>
             <br />
             <br />
-            <asp:TextBox ID="TextBox2" runat="server" Enabled="False" CssClass="box" Width="22px">06</asp:TextBox>
+            <asp:TextBox ID="TextBox2" runat="server" Enabled="False" Width="22px" CssClass="box">06</asp:TextBox>
             <asp:TextBox ID="TextBox1" runat="server" MaxLength="8" Enabled="False" Width="200px" CssClass="box"></asp:TextBox>
             <br />
             <br />

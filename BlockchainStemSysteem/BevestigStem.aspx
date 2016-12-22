@@ -5,17 +5,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-    <link rel="stylesheet" type="text/css" href="fonts/style.css">
+    <link rel="stylesheet" type="text/css" href="fonts/style.css"/>
+    <link rel="stylesheet" type="text/css" href="fonts/stylebevestig.css"/>
 </head>
 <body>
     <form id="form1" runat="server">
     <div>
     
-        Weet u zeker dat u wil stemmen voor
-        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+        <h2>Weet u zeker dat u wilt stemmen voor</h2>
+        <asp:Label ID="Label1" runat="server" Text="Label" CssClass="projectext"></asp:Label>
         <br />
-        <asp:Button ID="Button1" runat="server" OnClick="ButtonJa_Click" Text="Ja" />
-        <asp:Button ID="Button2" runat="server" OnClick="ButtonNee_Click" Text="Nee" />
+        <br />
+        <asp:Button ID="Button1" runat="server" OnClick="ButtonJa_Click" Text="Ja" CssClass="knopJa"/>
+        <asp:Button ID="Button2" runat="server" OnClick="ButtonNee_Click" Text="Nee" CssClass="knopNee" />
     
     </div>
     </form>

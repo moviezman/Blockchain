@@ -4,7 +4,7 @@ body {
     /*background-color: lightblue;*/
     text-align:center;
     color:white;
-    font:Lucida Grande;
+    font-family:'Lucida Sans';
 }
 
 
@@ -65,17 +65,17 @@ button:hover {
 h1 {
     color:red;
     font-weight:bold;
-    font-family:Lucida Grande;
+    font-family:'Lucida Sans';
 }
 
 h2{
     
     font-weight:bold;
-    font-family:Lucida Grande;
+    font-family:'Lucida Sans';
 }
 
 p1{
-    font-family:Lucida Grande;
+    font-family:'Lucida Sans';
 }
 
 .uil-spin {
