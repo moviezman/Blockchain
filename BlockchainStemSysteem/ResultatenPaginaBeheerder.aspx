@@ -12,6 +12,7 @@
     <div>
         <% Response.Write(Uitslagen.UitslagStemmingBeheerder(Request.QueryString["Stemming"])); %>
     </div>
+        <asp:Button ID="btn_Terug" runat="server" OnClick="btn_Terug_Click" Text="Terug" />
     </form>
 </body>
 </html>
