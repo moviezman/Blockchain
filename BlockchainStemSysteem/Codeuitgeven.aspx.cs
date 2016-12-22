@@ -23,7 +23,9 @@ public partial class Codeuitgeven : System.Web.UI.Page
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
 
         // query ophalen laatste code
-        SqlCommand NieuweCodeQuery = new SqlCommand("SELECT Top 1 UniekeCode FROM UC WHERE Ingezet = 'false'", sqlConnection);
+        string Stemming = Request.QueryString["Stemming"];
+
+        SqlCommand NieuweCodeQuery = new SqlCommand("SELECT Top 1 UniekeCode FROM UC WHERE GestemdOp IS NULL AND StemmingsNaam ='"+Stemming+"';", sqlConnection);
         // nummer toevoegen aan database
         SqlCommand UpdateNummer = new SqlCommand("INSERT INTO Stemmer VALUES(" + TextBox1.Text + ", 'true');", sqlConnection);
         // Kijkt of telefoonnnummer al is ingevoerd
