@@ -25,4 +25,9 @@ public partial class ResultatenPagina : System.Web.UI.Page
         }
         sqlConnection.Close();
     }
+
+    protected void btn_Terug_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("OverzichtBeheerder");
+    }
 }
