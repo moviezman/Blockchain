@@ -27,19 +27,16 @@ public partial class Gestemd : System.Web.UI.Page
             DatabaseConnectie dbconnect = new DatabaseConnectie();
             SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
 
-            string StemToevoegen = "UPDATE Project SET AantalStemmen = AantalStemmen + 1 WHERE Naam = '" + Team + "';";
-            string DeactiveerCode = "UPDATE UC SET GestemdOp='" + Team + "' WHERE UniekeCode = '" + StemCode + "';";
+            //string StemToevoegen = "UPDATE Project SET AantalStemmen = AantalStemmen + 1 WHERE Naam = '" + Team + "';";
+            string StemToevoegen = "UPDATE UC SET GestemdOp='" + Team + "' WHERE UniekeCode = '" + StemCode + "';";
             Session["Stemcode"] = string.Empty;
             Session["Team"] = string.Empty;
 
             //Checkt of de stemming nog actief is (om het veranderen van de URL op te vangen)
             SqlCommand CheckActief = new SqlCommand("SELECT Actief FROM Stemming WHERE Stemmingsnaam IN (SELECT StemmingsNaam FROM UC WHERE UniekeCode = '" + StemCode + "');", sqlConnection);
 
-            //Deactiveer een gebruikte code
-            SqlCommand CodeDeactiveren = new SqlCommand(DeactiveerCode, sqlConnection);
-
-            //Stem toevoegen 
-            SqlCommand UpdateTeam = new SqlCommand(StemToevoegen, sqlConnection);
+            //Stem toevoegen
+            SqlCommand CodeDeactiveren = new SqlCommand(StemToevoegen, sqlConnection);
 
             //Verbinding maken met database
             sqlConnection.Open();
@@ -53,7 +50,7 @@ public partial class Gestemd : System.Web.UI.Page
             else
             {
                 //update het aantal stemmen van een team
-                UpdateTeam.ExecuteNonQuery();
+                //UpdateTeam.ExecuteNonQuery();
                 //Ingevulde StemCode deactiveren 
                 CodeDeactiveren.ExecuteNonQuery();
             }
