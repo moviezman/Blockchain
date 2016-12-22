@@ -6,7 +6,7 @@
     border-radius: 10px;
     margin-bottom: 6px;
     font-weight:bold;
-    font-family:Lucida Grande;
+    font-family:Calibri;
 }
 .knopNee{
     height:40px;
@@ -16,7 +16,7 @@
     border-radius: 10px;
     margin-bottom: 6px;
     font-weight:bold;
-    font-family:Lucida Grande;
+    font-family:Calibri;
 }
 .knopJa:hover {
   background-image: linear-gradient(to bottom, #53e443, #51d942);

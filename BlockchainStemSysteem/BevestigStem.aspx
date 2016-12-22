@@ -16,8 +16,8 @@
         <asp:Label ID="Label1" runat="server" Text="Label" CssClass="projectext"></asp:Label>
         <br />
         <br />
-        <asp:Button ID="Button1" runat="server" OnClick="ButtonJa_Click" Text="Ja" CssClass="knopJa"/>
-        <asp:Button ID="Button2" runat="server" OnClick="ButtonNee_Click" Text="Nee" CssClass="knopNee" />
+        <asp:Button ID="Ja" runat="server" OnClick="ButtonJa_Click" Text="JA" CssClass="knopJa"/>
+        <asp:Button ID="Nee" runat="server" OnClick="ButtonNee_Click" Text="NEE" CssClass="knopNee" />
     
     </div>
     </form>
