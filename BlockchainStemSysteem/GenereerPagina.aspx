@@ -34,6 +34,9 @@
             <asp:Button ID="btn_Genereer" runat="server" OnClick="btn_Genereer_Click" Text="Genereer" />
             <br />
         </div>    
+        <p>
+            <asp:Button ID="btn_Overzicht" runat="server" OnClick="btn_Overzicht_Click" Text="Overzicht" />
+        </p>
     </form>
 </body>
 </html>

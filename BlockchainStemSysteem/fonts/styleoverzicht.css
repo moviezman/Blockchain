@@ -1,0 +1,11 @@
+﻿button
+{
+    height:40px;
+    border: 2px ridge grey;
+    background: #3cb0fd;
+    width: 300px;
+    border-radius: 10px;
+    margin-bottom: 6px;
+    font-weight:bold;
+    font-family:Lucida Grande;
+}

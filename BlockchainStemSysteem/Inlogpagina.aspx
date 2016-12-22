@@ -5,7 +5,9 @@
 <script runat="server">
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        //Maakt de sessie leeg voor de zekerheid
+        Session["Team"] = string.Empty;
+        Session["Stemcode"] = string.Empty;
     }
 
     protected void Button1_Click(object sender, EventArgs e)
@@ -19,6 +21,7 @@
 
         if(CodeBestaat > 0)
         {
+            Session["Stemcode"] = TextBox1.Text;
             Response.Redirect("Projectenoverzicht.aspx?Stemmer=" + TextBox1.Text);
         }
         else

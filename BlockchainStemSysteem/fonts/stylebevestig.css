@@ -1,0 +1,47 @@
+﻿.knopJa{
+    height:40px;
+    border: 2px ridge grey;
+    background: #4cff00;
+    width: 300px;
+    border-radius: 10px;
+    margin-bottom: 6px;
+    font-weight:bold;
+    font-family:Calibri;
+}
+.knopNee{
+    height:40px;
+    border: 2px ridge grey;
+    background: #f33030;
+    width: 300px;
+    border-radius: 10px;
+    margin-bottom: 6px;
+    font-weight:bold;
+    font-family:Calibri;
+}
+.knopJa:hover {
+  background-image: linear-gradient(to bottom, #53e443, #51d942);
+  text-decoration: none;
+}
+.knopNee:hover {
+  background-image: linear-gradient(to bottom, #ba3636, #ef4646);
+  text-decoration: none;
+}
+.projectext{
+    font-size:40px;
+    font-weight:bold;
+    font-family:'Lucida Sans';
+}
+.homeknop{
+    border-radius: 10px;
+    text-align:center;
+}
+
+.homeknop:hover {
+        background-image: linear-gradient(to bottom, #40e6f1, #3ea7cf);
+        text-decoration: none;
+    }
+
+.check{
+    width:200px;
+    height:200px;
+}

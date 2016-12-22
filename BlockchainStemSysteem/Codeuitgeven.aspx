@@ -6,11 +6,6 @@
 <head runat="server">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title></title>
-    <style type="text/css">
-        .uil-spin {
-            width: 31px;
-        }
-    </style>
     <link rel="stylesheet" type="text/css" href="fonts/style.css"/>
 </head>
 <body>
@@ -18,19 +13,20 @@
     <form id="form1" runat="server">
         <div>
 
-            <asp:Label ID="Label1" runat="server" Text="Welkom bij de Winnovation" Font-Bold="True" Font-Size="Large" CssClass="klasselabels"></asp:Label>
-
+            <%--<asp:Label ID="Label1" runat="server" Text="Welkom bij de Winnovation" Font-Bold="True" Font-Size="Large" CssClass="klasselabels"></asp:Label>
+            <br />--%>
+            <img alt="Logo Winnovation" class="auto-style1" src="/fonts/Nummers/logoplaceholder.png"/><br />
+<%--            <asp:Label ID="Label3" runat="server" Text="Op uw telefoon ontvangt u een SMS met een link. Klik op deze link om u stem uit te brengen"></asp:Label>--%>
+            <br />
+            <%--<br />--%>
+            <asp:Label ID="Label2" runat="server" Text="Voer uw telefoonnummer in" CssClass="invoer"></asp:Label>
             <br />
             <br />
-            <asp:Label ID="Label3" runat="server" Text="Op uw telefoon ontvangt u een SMS met een link. Klik op deze link om u stem uit te brengen"></asp:Label>
+            <asp:TextBox ID="TextBox2" runat="server" Enabled="False" Width="22px" CssClass="box">06</asp:TextBox>
+            <asp:TextBox ID="TextBox1" runat="server" MaxLength="8" Enabled="False" Width="200px" CssClass="box"></asp:TextBox>
             <br />
             <br />
-            <asp:Label ID="Label2" runat="server" Text="Voer hier u telefoonnummer in:"></asp:Label>
-            <br />
-            <asp:TextBox ID="TextBox2" runat="server" Enabled="False" Width="22px">06</asp:TextBox>
-            <asp:TextBox ID="TextBox1" runat="server" MaxLength="8" Enabled="False" Width="266px"></asp:TextBox>
-            <br />
-            <asp:Label ID="Label4" runat="server" Visible="False"></asp:Label>
+            <asp:Label ID="Label4" runat="server" Visible="False" CssClass="foutmelding"></asp:Label>
             <br />
             <br />
             <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="fonts/nummers/1.png" OnClick="Buttonnr1_Click" CssClass="button" />
@@ -48,6 +44,13 @@
             <asp:ImageButton ID="ImageButton10" runat="server" ImageUrl="fonts/nummers/checked.png" OnClick="Button1_Click" CssClass="button" />
             <asp:ImageButton ID="ImageButton0" runat="server" ImageUrl="fonts/nummers/0.png" OnClick="Buttonnr0_Click" CssClass="button" />
             <asp:ImageButton ID="ImageButtonB" runat="server" ImageUrl="fonts/nummers/previous.png" OnClick="ButtonnrB_Click" CssClass="button" />
+            <br />
+            <h1>Disclaimer Winnovation stemdienst</h1>
+                <p>
+                Het gebruik van deze stemdienst is volledig vrijblijvend en gratis. Het in te voeren telefoonnummer wordt enkel en alleen gebruikt om een sms met stemcode naar te versturen alsmede te verifiëren of er reeds mee gestemd is. 
+                Het nummer zal bij het stopzetten van de stemmig/ bekendmaking van de uitslag van Winnovation automatisch verwijderd worden.
+Windesheim is niet aansprakelijk voor enige vorm van schade welke is of kan ontstaan door gebruik van deze stemdienst, gebruik van de stemdienst vindt plaats op eigen risico.
+            </p>
         </div>
     </form>
         </div>
