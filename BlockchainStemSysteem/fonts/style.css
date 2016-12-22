@@ -74,6 +74,10 @@ h2{
     font-family:'Lucida Sans';
 }
 
+h3{
+    font-size:12px;
+}
+
 p1{
     font-family:'Lucida Sans';
 }
@@ -86,3 +90,11 @@ p1{
             width: 600px;
             height: 248px;
         }
+
+.windesheimlogo{
+    width: 275px;
+    height: 150px;
+    position: absolute;
+    right: 0px;
+    padding: 10px;
+}

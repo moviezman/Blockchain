@@ -15,7 +15,7 @@ public static class Uitslagen
         DatabaseConnectie dbconnect = new DatabaseConnectie();
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);        
         string Uitslag = "De winnaar van " + Stemming + " is geworden: ";
-        SqlCommand winnaar = new SqlCommand("SELECT Top(1) Naam FROM Project WHERE stemmingsNaam = '" + Stemming + "' ORDER BY AantalStemmen DESC;", sqlConnection);
+        SqlCommand winnaar = new SqlCommand("SELECT GestemdOp, Count(GestemdOp)AS 'AantalGestemd' FROM UC WHERE stemmingsNaam = '" + Stemming + "' GROUP BY GestemdOp ORDER BY AantalGestemd DESC;", sqlConnection);
         sqlConnection.Open();
         Uitslag += winnaar.ExecuteScalar();
         sqlConnection.Close();
@@ -28,16 +28,16 @@ public static class Uitslagen
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
 
         string Uitslag = "<h1>De winnaar van " + Stemming + " is geworden: ";
-        
-        SqlCommand winnaar = new SqlCommand("SELECT Top(1) Naam FROM Project WHERE stemmingsNaam = '" + Stemming + "' ORDER BY AantalStemmen DESC;", sqlConnection);
-        SqlDataAdapter asd = new SqlDataAdapter("Select Naam, AantalStemmen From Project WHERE StemmingsNaam = '" + Stemming + "'", sqlConnection);
+
+        SqlCommand winnaar = new SqlCommand("SELECT GestemdOp, Count(GestemdOp)AS 'AantalGestemd' FROM UC WHERE stemmingsNaam = '" + Stemming + "' GROUP BY GestemdOp ORDER BY AantalGestemd DESC;", sqlConnection);
+        SqlDataAdapter asd = new SqlDataAdapter("Select Naam From Project WHERE StemmingsNaam = '" + Stemming + "'", sqlConnection);
         sqlConnection.Open();
         Uitslag += winnaar.ExecuteScalar() + "</h1><br />";
         DataTable dt = new DataTable();
         asd.Fill(dt);
         foreach (DataRow row in dt.Rows)
         {
-            Uitslag += row["Naam"] + " " + row["AantalStemmen"] + "<br />";
+            Uitslag += row["Naam"]/* + " " + row["AantalStemmen"]*/ + "<br />";
         }
         sqlConnection.Close();
         return Uitslag;
