@@ -15,7 +15,7 @@ public static class Uitslagen
         DatabaseConnectie dbconnect = new DatabaseConnectie();
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);        
         string Uitslag = "De winnaar is </br>";
-        SqlCommand winnaar = new SqlCommand("SELECT GestemdOp, Count(GestemdOp)AS 'AantalGestemd' FROM UC WHERE stemmingsNaam = '" + Stemming + "' GROUP BY GestemdOp ORDER BY AantalGestemd DESC;", sqlConnection);
+        SqlCommand winnaar = new SqlCommand("SELECT GestemdOp, Count(GestemdOp)AS 'AantalGestemd' FROM UC WHERE StemmingsNaam = '" + Stemming + "' GROUP BY GestemdOp ORDER BY AantalGestemd DESC;", sqlConnection);
         sqlConnection.Open();
         Uitslag += winnaar.ExecuteScalar();
         sqlConnection.Close();
@@ -29,8 +29,10 @@ public static class Uitslagen
 
         string Uitslag = "<h1>Uitslagen van " + Stemming + "</h1></br> ";
 
-        SqlCommand winnaar = new SqlCommand("SELECT GestemdOp, Count(GestemdOp)AS 'AantalGestemd' FROM UC WHERE stemmingsNaam = '" + Stemming + "' GROUP BY GestemdOp ORDER BY AantalGestemd DESC;", sqlConnection);
-        SqlDataAdapter asd = new SqlDataAdapter("SELECT Project.Naam, Count(UC.GestemdOp) as aantal_stemmen FROM(Project LEFT JOIN UC on Project.Naam = UC.GestemdOp) WHERE Project.StemmingsNaam = '" + Stemming + "' GROUP BY Project.Naam", sqlConnection);
+        SqlCommand winnaar = new SqlCommand("SELECT GestemdOp, Count(GestemdOp)AS 'AantalGestemd' FROM UC WHERE StemmingsNaam = '" + Stemming + "' GROUP BY GestemdOp ORDER BY AantalGestemd DESC;", sqlConnection);
+        
+        SqlDataAdapter asd = new SqlDataAdapter("SELECT project.naam, Count(UC.GestemdOp) as aantal_stemmen FROM project LEFT JOIN(SELECT gestemdOp FROM UC WHERE UC.stemmingsnaam = '" + Stemming + "') as UC ON project.naam = UC.gestemdOp WHERE project.stemmingsnaam = '" + Stemming + "' GROUP BY project.naam", sqlConnection);
+        //SqlDataAdapter asd = new SqlDataAdapter("SELECT Project.Naam, Count(UC.GestemdOp) as aantal_stemmen FROM(Project LEFT JOIN UC on Project.Naam = UC.GestemdOp) WHERE Project.StemmingsNaam = '" + Stemming + "' AND (UC.StemmingsNaam = '" + Stemming + "' OR UC.stemmingsnaam IS NULL) GROUP BY Project.Naam", sqlConnection);
         sqlConnection.Open();
         Uitslag += "<h1>De winnaar is: " + winnaar.ExecuteScalar() + "</h1><br />";
         DataTable dt = new DataTable();

@@ -27,7 +27,8 @@ public partial class Gestemd : System.Web.UI.Page
             DatabaseConnectie dbconnect = new DatabaseConnectie();
             SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
 
-            //string StemToevoegen = "UPDATE Project SET AantalStemmen = AantalStemmen + 1 WHERE Naam = '" + Team + "';";
+            //string hashTeam = HashGenereren.Genereer(Team);
+            //string StemToevoegen = "UPDATE UC SET GestemdOp='" + hashTeam + "' WHERE UniekeCode = '" + StemCode + "';";
             string StemToevoegen = "UPDATE UC SET GestemdOp='" + Team + "' WHERE UniekeCode = '" + StemCode + "';";
             Session["Stemcode"] = string.Empty;
             Session["Team"] = string.Empty;

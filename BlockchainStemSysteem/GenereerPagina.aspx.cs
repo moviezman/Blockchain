@@ -121,7 +121,7 @@ public partial class _Default : System.Web.UI.Page
 
                         foreach (string project in Global.Projecten)
                         {
-                            SqlCommand MaakProjecten = new SqlCommand("INSERT INTO Project (Naam, StemmingsNaam, AantalStemmen) VALUES ('" + project + "', '" + Txtbx_StemmingsNaam.Text + "', '0');", sqlConnection);
+                            SqlCommand MaakProjecten = new SqlCommand("INSERT INTO Project (Naam, StemmingsNaam) VALUES ('" + project + "', '" + Txtbx_StemmingsNaam.Text + "');", sqlConnection);
                             MaakProjecten.ExecuteNonQuery();
                         }
 
