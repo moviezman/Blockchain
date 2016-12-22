@@ -26,8 +26,7 @@ public partial class BevestigStem : System.Web.UI.Page
     }
     protected void ButtonNee_Click(object sender, EventArgs e)
     {
-        string StemCode = Request.QueryString["StemCode"];
-        Response.Redirect("Projectenoverzicht.aspx?Stemmer=" + StemCode);
-
+        //string StemCode = Request.QueryString["StemCode"];
+        Response.Redirect("Projectenoverzicht.aspx?Stemmer=" + Session["StemCode"]);
     }
 }

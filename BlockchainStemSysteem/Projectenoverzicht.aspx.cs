@@ -33,14 +33,22 @@ public partial class Projectenoverzicht : System.Web.UI.Page
         //Controleren of de stemming actief is
         SqlCommand CheckActief = new SqlCommand("SELECT Actief FROM Stemming WHERE Stemmingsnaam IN (SELECT StemmingsNaam FROM UC WHERE UniekeCode = '" + StemCode + "');", sqlConnection);
         //Controleren of een StemCode al is gebruikt query
-        SqlCommand GetStatusCode = new SqlCommand("SELECT ingezet FROM UC WHERE UniekeCode = '" + StemCode + "';", sqlConnection);
+        SqlCommand GetStatusCode = new SqlCommand("SELECT GestemdOp FROM UC WHERE UniekeCode = '" + StemCode + "';", sqlConnection);
         //Controleer of een code een unieke code is
         SqlCommand CheckUniekeCode = new SqlCommand("SELECT COUNT(*) From UC WHERE ([UniekeCode] = '" + StemCode + "' COLLATE SQL_Latin1_General_CP1_CS_AS)", sqlConnection);
 
 
         //Database verbinding openen
         sqlConnection.Open();
-        bool ActieveCode = Convert.ToBoolean(GetStatusCode.ExecuteScalar());
+        bool ActieveCode;
+        if(GetStatusCode.ExecuteScalar() is DBNull)
+        {
+            ActieveCode = false;
+        } else
+        {
+            ActieveCode = true;
+        }
+        //ActieveCode = Convert.ToBoolean(GetStatusCode.ExecuteScalar());
         int CodeBestaat = (int)CheckUniekeCode.ExecuteScalar();
         bool StemmingActief = Convert.ToBoolean(CheckActief.ExecuteScalar());
 

@@ -28,7 +28,7 @@ public partial class Gestemd : System.Web.UI.Page
             SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
 
             string StemToevoegen = "UPDATE Project SET AantalStemmen = AantalStemmen + 1 WHERE Naam = '" + Team + "';";
-            string DeactiveerCode = "UPDATE UC SET Ingezet = 'True' WHERE UniekeCode = '" + StemCode + "';";
+            string DeactiveerCode = "UPDATE UC SET GestemdOp='" + Team + "' WHERE UniekeCode = '" + StemCode + "';";
             Session["Stemcode"] = string.Empty;
             Session["Team"] = string.Empty;
 
