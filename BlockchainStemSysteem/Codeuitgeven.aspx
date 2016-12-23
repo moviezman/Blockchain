@@ -52,5 +52,10 @@ Windesheim is niet aansprakelijk voor de content op deze website alsmede enige v
             </div>
     </form>
         <img alt="Logo Windesheim" class="windesheimlogo" src="/fonts/Nummers/windesheimlogodis.png" />
+    <div style="position: relative; width: 600px; height: 150px;">    
+    <div style="position: absolute; bottom: 5px;">
+    Icons made by Pixel Buddha from www.flaticon.com
+    </div>
+</div>
         </body>
 </html>
