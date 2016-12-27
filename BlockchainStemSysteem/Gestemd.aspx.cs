@@ -22,8 +22,7 @@ public partial class Gestemd : System.Web.UI.Page
                 Response.Redirect(Standaardpagina);
             }
 
-            //Opvangen nog een keer stemmen met al gebruikte code
-
+            //Databaseconnectie maken
             DatabaseConnectie dbconnect = new DatabaseConnectie();
             SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
 
@@ -50,10 +49,16 @@ public partial class Gestemd : System.Web.UI.Page
             }
             else
             {
-                //update het aantal stemmen van een team
-                //UpdateTeam.ExecuteNonQuery();
                 //Ingevulde StemCode deactiveren 
                 CodeDeactiveren.ExecuteNonQuery();
+
+                //Als het aantal stemmen dat niet in een block staat groter dan 4 is, maak dan een nieuw blok aan.
+                SqlCommand AantalNietInBlock = new SqlCommand("SELECT COUNT(*) FROM UC WHERE InBlock = 'False' AND GestemdOp IS NOT NULL AND  Stemmingsnaam IN (SELECT StemmingsNaam FROM UC WHERE UniekeCode = '" + StemCode + "')", sqlConnection);
+                SqlCommand Stemming = new SqlCommand("SELECT StemmingsNaam FROM UC WHERE UniekeCode = '" + StemCode + "'", sqlConnection);
+                if ((int)AantalNietInBlock.ExecuteScalar() > 4)
+                {
+                    Blocks.MaakBlock((string)Stemming.ExecuteScalar());
+                }
             }
 
 
