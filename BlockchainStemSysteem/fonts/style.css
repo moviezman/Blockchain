@@ -51,6 +51,8 @@ button:hover {
 .box{
     border-radius: 10px;
     text-align:center;
+    height:25px;
+    font-size:15px;
 }
 
 .invoer{
@@ -78,7 +80,7 @@ h3{
     font-size:12px;
 }
 
-p1{
+p{
     font-family:'Lucida Sans';
 }
 
@@ -92,7 +94,7 @@ p1{
         }
 
 .windesheimlogo{
-    width: 275px;
+    width: 370px;
     height: 150px;
     position: absolute;
     right: 0px;
