@@ -35,7 +35,7 @@ public partial class InlogPaginaBeheerder : System.Web.UI.Page
 
     protected void Button_Login_Click(object sender, EventArgs e)
     {
-        Blocks.MaakBlock("Stemming1");
+        Blocks.Decodeer("Stemming0");
         //string Wachtwoord;
 
         //DatabaseConnectie dbconnect = new DatabaseConnectie();
@@ -46,7 +46,7 @@ public partial class InlogPaginaBeheerder : System.Web.UI.Page
         //Wachtwoord = WwChecken.ExecuteScalar().ToString();
         //sqlConnection.Close();
 
-        //if(HashGenereren.checkHash(txtbx_Login.Text, Wachtwoord))
+        //if (HashGenereren.checkHash(txtbx_Login.Text, Wachtwoord))
         //{
         //    Session["Login"] = Wachtwoord;
         //    Response.Redirect("OverzichtBeheerder.aspx");
