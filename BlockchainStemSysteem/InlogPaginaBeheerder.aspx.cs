@@ -35,25 +35,26 @@ public partial class InlogPaginaBeheerder : System.Web.UI.Page
 
     protected void Button_Login_Click(object sender, EventArgs e)
     {
-        Blocks.Decodeer("Stemming0");
-        //string Wachtwoord;
+        //Voor testen:
+        //Blocks.Decodeer("Stemming0");
+        string Wachtwoord;
 
-        //DatabaseConnectie dbconnect = new DatabaseConnectie();
-        //SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
-        //sqlConnection.Open();
-        ////Verander de Id naar de id van het wachtwoord dat je wilt als je hem verandert
-        //SqlCommand WwChecken = new SqlCommand("SELECT Hash FROM Wachtwoord WHERE Id = '1'", sqlConnection);
-        //Wachtwoord = WwChecken.ExecuteScalar().ToString();
-        //sqlConnection.Close();
+        DatabaseConnectie dbconnect = new DatabaseConnectie();
+        SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
+        sqlConnection.Open();
+        //Verander de Id naar de id van het wachtwoord dat je wilt als je hem verandert
+        SqlCommand WwChecken = new SqlCommand("SELECT Hash FROM Wachtwoord WHERE Id = '1'", sqlConnection);
+        Wachtwoord = WwChecken.ExecuteScalar().ToString();
+        sqlConnection.Close();
 
-        //if (HashGenereren.checkHash(txtbx_Login.Text, Wachtwoord))
-        //{
-        //    Session["Login"] = Wachtwoord;
-        //    Response.Redirect("OverzichtBeheerder.aspx");
-        //}
-        //else
-        //{
-        //    lbl_Hash.Text = "Foutieve Inlogcode";
-        //}
+        if (HashGenereren.checkHash(txtbx_Login.Text, Wachtwoord))
+        {
+            Session["Login"] = Wachtwoord;
+            Response.Redirect("OverzichtBeheerder.aspx");
+        }
+        else
+        {
+            lbl_Hash.Text = "Foutieve Inlogcode";
+        }
     }
 }
