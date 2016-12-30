@@ -31,7 +31,8 @@ public partial class Tussenpagina : System.Web.UI.Page
             SqlCommand StopStemming = new SqlCommand("UPDATE Stemming SET Actief = 'false' WHERE StemmingsNaam = '" + StemmingsNaam + "'", sqlConnection);
             SqlCommand Verwijdertelnr = new SqlCommand("UPDATE UC SET HashTelNr = NULL WHERE StemmingsNaam = '" + StemmingsNaam + "'");
             StopStemming.ExecuteScalar();
-            Verwijdertelnr.ExecuteScalar();
+            //Fix verwijderen telnrs
+            //Verwijdertelnr.ExecuteScalar();
             Response.Redirect("OverzichtBeheerder");
         }
         sqlConnection.Close();

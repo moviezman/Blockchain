@@ -11,8 +11,14 @@ using System.Web.UI;
 /// </summary>
 public static class Blocks
 {
-    //Een List met 3 variabelen voor het decoderen
-    public static List<Tuple<string, string, string>> block;
+    public static List<string> HashGebruikteCodes;
+    public static List<string> GestemdOp;
+
+    static Blocks()
+    {
+        GestemdOp = new List<string>();
+        HashGebruikteCodes = new List<string>();
+    }
 
     public static void MaakBlock(string Stemming)
     {
@@ -53,10 +59,14 @@ public static class Blocks
 
     public static void Decodeer(string Stemming)
     {
+        //Maak de lists leeg
+        HashGebruikteCodes.Clear();
+        GestemdOp.Clear();
         string Block = "";
         string Stem = "";
         string HashUniekeCode = "";
         string HashGestemdOp = "";
+        bool HashUniekeCodeUniek = true;
         DatabaseConnectie dbconnect = new DatabaseConnectie();
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
         sqlConnection.Open();
@@ -94,13 +104,62 @@ public static class Blocks
                             HashUniekeCode = Stem.Substring(0, Stem.IndexOf("#"));
                             HashGestemdOp = Stem.Substring(Stem.IndexOf("#") + 1);
                             
-                            //UniekeCode checken of die uniek is
+                            foreach(string code in HashGebruikteCodes)
+                            {
+                                if(HashUniekeCode == code)
+                                {
+                                    HashUniekeCodeUniek = false;
+                                }
+                            }
+
+                            //Checkt of de unieke code uniek is
+                            if (HashUniekeCodeUniek)
+                            {
+                                //Voegt de hash van de unieke code toe aan een lijst. Hierdoor kan hij niet nog een keer gebruikt worden.
+                                HashGebruikteCodes.Add(HashUniekeCode);
+                                SqlDataAdapter ucs = new SqlDataAdapter("SELECT UniekeCode FROM UC WHERE StemmingsNaam = '" + Stemming + "'", sqlConnection);
+                                DataTable dtucs = new DataTable();
+                                ucs.Fill(dtucs);
+
+                                //Checkt of de UniekeCode bestaat
+                                if (dtucs.Rows.Count > 0)
+                                {
+                                    foreach (DataRow ucsrow in dtucs.Rows)
+                                    {
+                                        if (HashGenereren.checkHash((string)ucsrow["UniekeCode"], HashUniekeCode))
+                                        {
+                                            SqlDataAdapter Projecten = new SqlDataAdapter("SELECT Naam FROM Project WHERE StemmingsNaam = '" + Stemming + "'", sqlConnection);
+                                            DataTable dtprojecten = new DataTable();
+                                            Projecten.Fill(dtprojecten);
+
+                                            //Checkt of het project bestaat
+                                            if (dtprojecten.Rows.Count > 0)
+                                            {
+                                                foreach (DataRow projectrow in dtprojecten.Rows)
+                                                {
+                                                    if (HashGenereren.checkHash((string)projectrow["Naam"], HashGestemdOp))
+                                                    {
+                                                        GestemdOp.Add((string)projectrow["Naam"]);
+                                                        //Lijst meenemen naar Stemming
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            
+                            //Checken of de UniekeCode bestaat
                             //Checken of het project waarop gestemd is bestaat
                             //Stem toevoegen aan list
                         }
                     }
                 }
+                //Maakt de lijst leeg zodat bij een volgende stemming er geen problemen met duplicate hashes zijn.
+                HashGebruikteCodes.Clear();
             }
         }
+        int count = GestemdOp.Count(s => GestemdOp.Contains(s));
+        sqlConnection.Close();
     }
 }

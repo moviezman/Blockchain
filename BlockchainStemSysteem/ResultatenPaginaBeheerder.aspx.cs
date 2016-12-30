@@ -35,4 +35,5 @@ public partial class ResultatenPagina : System.Web.UI.Page
     }
 
     public ProjectenResultaten Resultaten = new ProjectenResultaten(Convert.ToString(HttpContext.Current.Request.QueryString["Stemming"]));
+    
 }
