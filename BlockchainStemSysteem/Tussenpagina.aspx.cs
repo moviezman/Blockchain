@@ -24,8 +24,15 @@ public partial class Tussenpagina : System.Web.UI.Page
         else
         {
             string StemmingsNaam = Request.QueryString["Stemming"];
+            //Stopt de stemming en verwijdert alle opgeslagen telefoonnrhashes uit de database.
+
+            
+            Blocks.MaakBlock(StemmingsNaam);
             SqlCommand StopStemming = new SqlCommand("UPDATE Stemming SET Actief = 'false' WHERE StemmingsNaam = '" + StemmingsNaam + "'", sqlConnection);
+            SqlCommand Verwijdertelnr = new SqlCommand("UPDATE UC SET HashTelNr = NULL WHERE StemmingsNaam = '" + StemmingsNaam + "'");
             StopStemming.ExecuteScalar();
+            //Fix verwijderen telnrs
+            //Verwijdertelnr.ExecuteScalar();
             Response.Redirect("OverzichtBeheerder");
         }
         sqlConnection.Close();

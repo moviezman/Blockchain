@@ -14,6 +14,7 @@ public class ProjectenResultaten
 
     public ProjectenResultaten(string Stemming)
     {
+        Blocks.Decodeer(Stemming);
         DatabaseConnectie dbconnect = new DatabaseConnectie();
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
         sqlConnection.Open();
@@ -23,6 +24,7 @@ public class ProjectenResultaten
         foreach (DataRow row in dt.Rows)
         {
             this.resultaten += row["Naam"] + " " + row["AantalStemmen"] + "<br />";
+            
         }
         sqlConnection.Close();
     }
