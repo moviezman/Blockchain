@@ -15,7 +15,7 @@ public static class Uitslagen
         Blocks.Decodeer(Stemming);
         DatabaseConnectie dbconnect = new DatabaseConnectie();
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);        
-        string Uitslag = "De winnaar is </br>";
+        string Uitslag = "<h2> De winnaar is:</h2>"; 
         SqlCommand winnaar = new SqlCommand("SELECT GestemdOp, Count(GestemdOp)AS 'AantalGestemd' FROM UC WHERE StemmingsNaam = '" + Stemming + "' GROUP BY GestemdOp ORDER BY AantalGestemd DESC;", sqlConnection);
         sqlConnection.Open();
         //string Winnaar = (from x in Blocks.GestemdOp select x).Count().Max();
@@ -34,7 +34,7 @@ public static class Uitslagen
         DatabaseConnectie dbconnect = new DatabaseConnectie();
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
 
-        string Uitslag = "<h1>Uitslagen van " + Stemming + "</h1></br> ";
+        string Uitslag = "<h2>Uitslag van stemming " + Stemming + "</h2></br> ";
 
         SqlCommand winnaar = new SqlCommand("SELECT GestemdOp, Count(GestemdOp)AS 'AantalGestemd' FROM UC WHERE StemmingsNaam = '" + Stemming + "' GROUP BY GestemdOp ORDER BY AantalGestemd DESC;", sqlConnection);
         var maxValue = Blocks.GestemdOp.Max(x => x);
@@ -44,7 +44,7 @@ public static class Uitslagen
         Uitslag += Winnaar;
         SqlDataAdapter asd = new SqlDataAdapter("SELECT project.naam, Count(UC.GestemdOp) as aantal_stemmen FROM project LEFT JOIN(SELECT gestemdOp FROM UC WHERE UC.stemmingsnaam = '" + Stemming + "') as UC ON project.naam = UC.gestemdOp WHERE project.stemmingsnaam = '" + Stemming + "' GROUP BY project.naam", sqlConnection);
         sqlConnection.Open();
-        Uitslag += "<h1>De winnaar is: " + Winnaar + "</h1><br />";
+        Uitslag += "<h1>De winnaar is:" + "<br />" + Winnaar + "</h1><br />";
         DataTable dt = new DataTable();
         asd.Fill(dt);
         foreach (DataRow row in dt.Rows)

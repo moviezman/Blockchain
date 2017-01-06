@@ -46,3 +46,70 @@
   background-image: linear-gradient(to bottom, #53e443, #51d942);
   text-decoration: none;
 }
+
+.TerugKnop{
+     height:40px;
+    border: 2px ridge grey;
+    background: #f33030;
+    width: 150px;
+    border-radius: 10px;
+    margin-bottom: 6px;
+    font-weight:bold;
+    font-family:Calibri;
+    text-align:center;
+    position:absolute;
+    font-size:16px;
+    top:10px;
+    left: 10px;
+}
+
+.TerugKnop:hover {
+  background-image: linear-gradient(to bottom, #ba3636, #ef4646);
+  text-decoration: none;
+    }
+
+.StartStemming{
+    height:40px;
+    border: 2px ridge grey;
+    background: #4cff00;
+    width: 150px;
+    border-radius: 10px;
+    margin-bottom: 6px;
+    font-weight:bold;
+    font-family:Calibri;
+    text-align:center;
+    position:absolute;
+    font-size:16px;
+    top:10px;
+    right: 10px;
+}
+
+.StartStemming:hover {
+  background-image: linear-gradient(to bottom, #53e443, #51d942);
+  text-decoration: none;
+}
+
+.InvulBox{
+    border-radius: 10px;
+    text-align:center;
+    height:20px;
+    font-size:18px;
+}
+
+.StemBox{
+    border-radius: 10px;
+    text-align:center;
+    height:20px;
+    font-size:18px;
+}
+
+.ToevoegKnop{
+    border-radius: 10px;
+    text-align:center;
+    height:20px;
+}
+
+.ToevoegKnop:hover {
+        background-image: linear-gradient(to bottom, #40e6f1, #3ea7cf);
+        text-decoration: none;
+    }
