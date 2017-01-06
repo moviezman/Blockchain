@@ -33,7 +33,7 @@ public partial class _Default : System.Web.UI.Page
         TableHeaderRow header = new TableHeaderRow();
         Tbl_Projecten.Rows.Add(header);
         TableHeaderCell headerTableCell1 = new TableHeaderCell();
-        headerTableCell1.Text = "Projecten:";
+        headerTableCell1.Text = "Teams:";
         header.Cells.Add(headerTableCell1);
     }
 
@@ -112,7 +112,7 @@ public partial class _Default : System.Web.UI.Page
                     }
                     else
                     {
-                        lbl_Info.Text = "Een stemming moet projecten hebben";
+                        lbl_Info.Text = "Een stemming moet teams hebben";
                         vulTabel();
                     }
 
@@ -146,7 +146,7 @@ public partial class _Default : System.Web.UI.Page
             {
                 if (projectNaam.Contains(project))
                 {
-                    lbl_Info.Text = "Dit project is al toegevoegd";
+                    lbl_Info.Text = "Dit team is al toegevoegd";
                     vulTabel();
                     return;
                 }
@@ -157,7 +157,7 @@ public partial class _Default : System.Web.UI.Page
         }
         else
         {
-            lbl_Info.Text = "Vul eerst een projectnaam in";
+            lbl_Info.Text = "Vul eerst een teamnaam in";
             vulTabel();
         }
     }

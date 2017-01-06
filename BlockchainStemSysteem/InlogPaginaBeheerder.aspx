@@ -5,15 +5,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-    <link rel="stylesheet" type="text/css" href="fonts/style.css">
+    <link rel="stylesheet" type="text/css" href="fonts/style.css"/>
 </head>
 <body>
     <form id="form1" runat="server">
     <div>
-    <h1>Inlogpagina Beheerder:</h1>
+    <h2>Beheerderspagina Winnovation Expo</h2>
+     <h3>Maak gebruik van uw beheerderswachtwoord om verder te gaan</h3>
     </div>
-        <asp:TextBox ID="txtbx_Login" type="password" runat="server"></asp:TextBox>
-            <asp:Button ID="btn_Login" runat="server" OnClick="Button_Login_Click" Text="Inloggen" />
+        <asp:TextBox ID="txtbx_Login" type="password" runat="server" CssClass="InlogBox"> </asp:TextBox>
+            <asp:Button ID="btn_Login" runat="server" OnClick="Button_Login_Click" Text="Inloggen" CssClass="inloggen" />
         <p>
             <asp:Label ID="lbl_Hash" runat="server"></asp:Label>
         </p>
