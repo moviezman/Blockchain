@@ -2,13 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 
-/// <summary>
-/// Summary description for Blocks
-/// </summary>
+// Het genereren van blocks voor de blockchain gebeurt op deze manier
 public static class Blocks
 {
     public static List<string> HashGebruikteCodes;
@@ -16,6 +11,7 @@ public static class Blocks
 
     static Blocks()
     {
+        //Initiliseer de lijsten zodat deze later gebruikt kunnen worden
         GestemdOp = new List<string>();
         HashGebruikteCodes = new List<string>();
     }
@@ -33,33 +29,39 @@ public static class Blocks
         //Voeg de gehashte uniekecodes en gestemdop toe aan de blockstring
         DataTable dt = new DataTable();
         StemData.Fill(dt);
+        //Checkt of er nog stemmen zijn die niet in een block staan
         if (dt.Rows.Count > 0)
         {
+            //Voor elke stem die nog niet in een block staat
             foreach (DataRow row in dt.Rows)
             {
+                //Hash de UniekeCode en op wie gestemd is en voeg dit toe aan de blockstring
+                //Voeg '#' tussen de gehaste 'UniekeCode' en gehashte 'GestemdOp' toe en '&' na 'GestemdOp'
                 blockstring += HashGenereren.Genereer((string)row["UniekeCode"]) + "#" + HashGenereren.Genereer((string)row["GestemdOp"]) + "&";
             }
 
-            //Selecteer de string blockdata van het nieuwste blok
+            //Selecteer de string blockdata van het nieuwste blok met de juiste stemming erbij
             SqlCommand NieuwsteBlock = new SqlCommand("SELECT Blockdata FROM Block WHERE StemmingsNaam = '"+ Stemming + "' ORDER BY Id DESC", sqlConnection);
 
             //Voeg de eerste 16 karakters van het vorige blok toe aan het nieuwe blok
             string VorigeBlock = (string)NieuwsteBlock.ExecuteScalar();
             blockstring += VorigeBlock.Substring(0, 16);
 
-            //Zet Inblock op 'true' zodat deze stemmen niet nog een keer worden meegenomen in een block
+            //Zet Inblock op 'true' voor de stemmen die in de block worden gezet
+            //zodat deze stemmen niet nog een keer kunnen worden meegenomen in een block
             SqlCommand UpdateGestemdOp = new SqlCommand("UPDATE Top(5) UC SET InBlock='True' WHERE GestemdOp IS NOT NULL AND InBlock = 'False' AND StemmingsNaam = '"+ Stemming + "'", sqlConnection);
             UpdateGestemdOp.ExecuteScalar();
+            //Voeg de blockstring toe aan de database
             SqlCommand BlockToevoegen = new SqlCommand("INSERT INTO Block (Blockdata, StemmingsNaam) VALUES ('" + blockstring + "', '" + Stemming + "')", sqlConnection);
             BlockToevoegen.ExecuteScalar();
         }
-
+        //Sluit de connectie
         sqlConnection.Close();
     }
 
     public static void Decodeer(string Stemming)
     {
-        //Maak de lists leeg
+        //Maak de lijsten leeg
         HashGebruikteCodes.Clear();
         GestemdOp.Clear();
         string Block = "";
@@ -87,10 +89,17 @@ public static class Blocks
                 {
                     //Haal de blokdata op uit de database
                     Block = (string)row["BlockData"];
-                    //Check of het genesisblok is (lengte 50), zo nee, ga door
+                    //Check of het genesisblock is (lengte 50)
+                    //Als het block een genesisblok is (dus geen stemdata)
+                    //Sla het block dan over
                     if (Block.Length != 50)
                     {
                         //Check of de laatste paar karakters overeenkomen met het begin van de vorige string
+                        
+
+
+
+
 
                         //Verwijder de laatste 16 karakters (eerste 16 karakters van vorige block)
                         Block = Block.Remove(Block.Length - 16);
@@ -99,11 +108,16 @@ public static class Blocks
                         //Zolang er nog stemmen in het blok staan
                         while (Block.Length > 0)
                         {
+                            //Haal de eerste stem op uit de blockstring
                             Stem = Block.Substring(0, Block.IndexOf("&"));
+                            //Verwijder de eerste stemstring uit de blockstring
                             Block = Block.Substring(Stem.Length + 1, Block.Length - Stem.Length - 1);
+                            //Haal de hash van de unieke code uit de stemstring
                             HashUniekeCode = Stem.Substring(0, Stem.IndexOf("#"));
+                            //Haal de hash van het project waarop gestemd is op
                             HashGestemdOp = Stem.Substring(Stem.IndexOf("#") + 1);
                             
+                            //Check of de UniekeCode al gebruikt is
                             foreach(string code in HashGebruikteCodes)
                             {
                                 if(HashUniekeCode == code)
@@ -112,7 +126,7 @@ public static class Blocks
                                 }
                             }
 
-                            //Checkt of de unieke code uniek is
+                            //Als de UniekeCode nog niet gebruikt is
                             if (HashUniekeCodeUniek)
                             {
                                 //Voegt de hash van de unieke code toe aan een lijst. Hierdoor kan hij niet nog een keer gebruikt worden.
@@ -121,11 +135,13 @@ public static class Blocks
                                 DataTable dtucs = new DataTable();
                                 ucs.Fill(dtucs);
 
-                                //Checkt of de UniekeCode bestaat
+                                //Check of er unieke codes bij de stemming zijn
                                 if (dtucs.Rows.Count > 0)
                                 {
+                                    //Voor elke UniekeCode
                                     foreach (DataRow ucsrow in dtucs.Rows)
                                     {
+                                        //Als de hash overeenkomt met de UniekeCode uit de database
                                         if (HashGenereren.checkHash((string)ucsrow["UniekeCode"], HashUniekeCode))
                                         {
                                             SqlDataAdapter Projecten = new SqlDataAdapter("SELECT Naam FROM Project WHERE StemmingsNaam = '" + Stemming + "'", sqlConnection);
@@ -135,12 +151,14 @@ public static class Blocks
                                             //Checkt of het project bestaat
                                             if (dtprojecten.Rows.Count > 0)
                                             {
+                                                //Voor elk project
                                                 foreach (DataRow projectrow in dtprojecten.Rows)
                                                 {
+                                                    //Check of de hash overeenkomt met 1 van de projecten uit de database van die stemming
                                                     if (HashGenereren.checkHash((string)projectrow["Naam"], HashGestemdOp))
                                                     {
+                                                        //Voeg de projectnaam toe aan de GestemdOp lijst
                                                         GestemdOp.Add((string)projectrow["Naam"]);
-                                                        //Lijst meenemen naar Stemming
                                                     }
                                                 }
                                             }
@@ -148,10 +166,6 @@ public static class Blocks
                                     }
                                 }
                             }
-                            
-                            //Checken of de UniekeCode bestaat
-                            //Checken of het project waarop gestemd is bestaat
-                            //Stem toevoegen aan list
                         }
                     }
                 }
@@ -159,7 +173,7 @@ public static class Blocks
                 HashGebruikteCodes.Clear();
             }
         }
-        int count = GestemdOp.Count(s => GestemdOp.Contains(s));
+        //Sluit de connectie
         sqlConnection.Close();
     }
 }

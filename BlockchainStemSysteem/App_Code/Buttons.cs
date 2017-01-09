@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 
-/// <summary>
-/// Buttons maak knoppen aan voor elke groep. Daar kan op geklikt worden om aan te geven dat je voor een team stemt. 
-/// </summary>
+//Buttons maak knoppen aan voor elke groep. Daar kan op geklikt worden om op een project te stemmen 
 public class Buttons
 {
     public string TeamButtons;
@@ -20,7 +14,7 @@ public class Buttons
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
         SqlCommand CheckStemmingsNaam = new SqlCommand("SELECT StemmingsNaam FROM UC WHERE UniekeCode = '" + StemCode + "'", sqlConnection);
         sqlConnection.Open();
-        //Haal string uit CheckStemmingsNaam
+        //Haal de naam van de stemming op die hoort bij de stemcode
         SqlDataReader dr = CheckStemmingsNaam.ExecuteReader();
 
         while (dr.Read())
@@ -33,8 +27,10 @@ public class Buttons
         SqlDataAdapter asd = new SqlDataAdapter("Select Naam From Project WHERE StemmingsNaam = '" + StemmingsNaam + "'", sqlConnection);
         DataTable dt = new DataTable();
         asd.Fill(dt);
+        //Voor elk project uit de stemming
         foreach (DataRow row in dt.Rows)
         {
+            //Maak een knop aan met de projectnaam erop die linkt naar de BevestigStem pagina
             this.TeamButtons += "<button formaction='BevestigStem.aspx?GestemdOp=" + row["Naam"] + "'>" + row["Naam"] + "</button><br />";
         }
     }

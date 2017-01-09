@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 
-/// <summary>
-/// Summary description for Global
-/// </summary>
+//Hier worden projecten toegevoegd tijdens het aanmaken van een stemming in de genereerpagina
 public static class Global
 {
     public static List<string> Projecten;
