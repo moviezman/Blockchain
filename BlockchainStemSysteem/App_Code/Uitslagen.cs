@@ -54,6 +54,10 @@ public static class Uitslagen
         //Console.WriteLine(Winnaar);
         //Uitslag += Winnaar;
 
+        
+        //Gesorteerd op hoeveelheid stemmen
+        //SqlDataAdapter asd = new SqlDataAdapter("SELECT project.naam, Count(UC.GestemdOp) as aantal_stemmen FROM project LEFT JOIN(SELECT gestemdOp FROM UC WHERE UC.stemmingsnaam = '" + Stemming + "') as UC ON project.naam = UC.gestemdOp WHERE project.stemmingsnaam = '" + Stemming + "' GROUP BY project.naam ORDER BY aantal_stemmen DESC", sqlConnection);
+
         SqlDataAdapter asd = new SqlDataAdapter("SELECT project.naam, Count(UC.GestemdOp) as aantal_stemmen FROM project LEFT JOIN(SELECT gestemdOp FROM UC WHERE UC.stemmingsnaam = '" + Stemming + "') as UC ON project.naam = UC.gestemdOp WHERE project.stemmingsnaam = '" + Stemming + "' GROUP BY project.naam", sqlConnection);
         sqlConnection.Open();
 
@@ -66,6 +70,7 @@ public static class Uitslagen
 
         DataTable dt = new DataTable();
         asd.Fill(dt);
+        Uitslag += "<table>";
         foreach (DataRow row in dt.Rows)
         {
             ////Met blockchain:
@@ -75,8 +80,9 @@ public static class Uitslagen
             //Uitslag += row["Naam"] + " " + AantalStemmen + "<br />";
 
             //Zonder blockchain:
-            Uitslag += row["Naam"] + " " + row["aantal_stemmen"] + "<br />";
+            Uitslag += "<tr><td>" + row["Naam"] + "</td><td>" + row["aantal_stemmen"] + "</td></tr>";
         }
+        Uitslag += "</table>";
         sqlConnection.Close();
         //Returnt een string met daarin de winnaar en daaronder per project het aantal stemmen
         return Uitslag;
