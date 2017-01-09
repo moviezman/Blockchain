@@ -11,6 +11,8 @@
     <form id="form1" runat="server">
     <div>
         <asp:Button ID="btn_Uitloggen" runat="server" Text="Uitloggen" OnClick="btn_Uitloggen_Click" />
+        <br />
+        <h1>Voorbereide stemmingen:</h1><br />
         <h1>Lopende stemmingen:</h1>
         <% Response.Write(Overzicht.LopendeStemmingenOphalen()); %>
         <br />

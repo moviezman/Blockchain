@@ -63,6 +63,8 @@ public partial class _Default : System.Web.UI.Page
         }
 
         int hoeveelheidCodes = Convert.ToInt32(txtbx_Nummer.Text);
+
+        //verbinden met Database
         DatabaseConnectie dbconnect = new DatabaseConnectie();
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
         sqlConnection.Open();
@@ -77,6 +79,7 @@ public partial class _Default : System.Web.UI.Page
         }
         else
         {
+            //maximaal 1000 codes mogelijk
             if(hoeveelheidCodes >= 1)
             {
                 if (hoeveelheidCodes <= 1000)
@@ -136,7 +139,7 @@ public partial class _Default : System.Web.UI.Page
 
     
     
-
+    //project toevoegen
     protected void btn_ProjectToevoegen_Click(object sender, EventArgs e)
     {
         string project = txtbx_Project.Text;
@@ -160,8 +163,11 @@ public partial class _Default : System.Web.UI.Page
             lbl_Info.Text = "Vul eerst een projectnaam in";
             vulTabel();
         }
+        txtbx_Project.Text = string.Empty;
+        
     }
 
+    //tabel vullen
     protected void vulTabel()
     {
         foreach (string project in Global.Projecten)
