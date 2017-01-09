@@ -79,7 +79,8 @@ public partial class Codeuitgeven : System.Web.UI.Page
                     SmtpServer.Send(mail);
 
                     Label4.Visible = true;
-                    Label4.Text += "Hier is uw code voor de Winnovation: localhost:50512/projectenoverzicht?Stemmer=" + NieuweCode;
+                    Label4.Text = "Uw code is verzonden per SMS";
+                    //Label4.Text = "Hier is uw code voor de Winnovation: localhost:50512/projectenoverzicht?Stemmer=" + NieuweCode;
                     TextBox1.Text = "";
                 }
             }
@@ -100,46 +101,46 @@ public partial class Codeuitgeven : System.Web.UI.Page
 
     protected void Buttonnr1_Click(object sender, EventArgs e)
 {
-    if (TextBox1.Text.Length < 8) { TextBox1.Text = TextBox1.Text += "1"; }
+    if (TextBox1.Text.Length < 8) { TextBox1.Text = TextBox1.Text += "1"; Label4.Visible = false; }
 }
 protected void Buttonnr2_Click(object sender, EventArgs e)
 {
-    if (TextBox1.Text.Length < 8) { TextBox1.Text = TextBox1.Text += "2"; }
+    if (TextBox1.Text.Length < 8) { TextBox1.Text = TextBox1.Text += "2"; Label4.Visible = false; }
 }
 protected void Buttonnr3_Click(object sender, EventArgs e)
 {
-    if (TextBox1.Text.Length < 8) { TextBox1.Text = TextBox1.Text += "3"; }
+    if (TextBox1.Text.Length < 8) { TextBox1.Text = TextBox1.Text += "3"; Label4.Visible = false; }
 }
 protected void Buttonnr4_Click(object sender, EventArgs e)
 {
-    if (TextBox1.Text.Length < 8) { TextBox1.Text = TextBox1.Text += "4"; }
+    if (TextBox1.Text.Length < 8) { TextBox1.Text = TextBox1.Text += "4"; Label4.Visible = false; }
 }
 protected void Buttonnr5_Click(object sender, EventArgs e)
 {
-    if (TextBox1.Text.Length < 8) { TextBox1.Text = TextBox1.Text += "5"; }
+    if (TextBox1.Text.Length < 8) { TextBox1.Text = TextBox1.Text += "5"; Label4.Visible = false; }
 }
 protected void Buttonnr6_Click(object sender, EventArgs e)
 {
-    if (TextBox1.Text.Length < 8) { TextBox1.Text = TextBox1.Text += "6"; }
+    if (TextBox1.Text.Length < 8) { TextBox1.Text = TextBox1.Text += "6"; Label4.Visible = false; }
 }
 protected void Buttonnr7_Click(object sender, EventArgs e)
 {
-    if (TextBox1.Text.Length < 8) { TextBox1.Text = TextBox1.Text += "7"; }
+    if (TextBox1.Text.Length < 8) { TextBox1.Text = TextBox1.Text += "7"; Label4.Visible = false; }
 }
 protected void Buttonnr8_Click(object sender, EventArgs e)
 {
-    if (TextBox1.Text.Length < 8) { TextBox1.Text = TextBox1.Text += "8"; }
+    if (TextBox1.Text.Length < 8) { TextBox1.Text = TextBox1.Text += "8"; Label4.Visible = false; }
 }
 protected void Buttonnr9_Click(object sender, EventArgs e)
 {
-    if (TextBox1.Text.Length < 8) { TextBox1.Text = TextBox1.Text += "9"; }
+    if (TextBox1.Text.Length < 8) { TextBox1.Text = TextBox1.Text += "9"; Label4.Visible = false; }
 }
 protected void Buttonnr0_Click(object sender, EventArgs e)
 {
-    if (TextBox1.Text.Length < 8) { TextBox1.Text = TextBox1.Text += "0"; }
+    if (TextBox1.Text.Length < 8) { TextBox1.Text = TextBox1.Text += "0"; Label4.Visible = false; }
 }
 protected void ButtonnrB_Click(object sender, EventArgs e)
 {
-    if (TextBox1.Text.Length > 0) { TextBox1.Text = TextBox1.Text.Remove(TextBox1.Text.Length - 1); }
+    if (TextBox1.Text.Length > 0) { TextBox1.Text = TextBox1.Text.Remove(TextBox1.Text.Length - 1); Label4.Visible = false; }
 }
 }
