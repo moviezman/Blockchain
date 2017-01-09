@@ -29,7 +29,7 @@ public class BeheerderOverzicht
             sqlConnection.Open();
             SqlCommand WwChecken = new SqlCommand("SELECT Hash FROM Wachtwoord WHERE Id = '1'", sqlConnection);
             string Wachtwoord = WwChecken.ExecuteScalar().ToString();
-            this.LopendeStemmingen += "<p>" + row["StemmingsNaam"] + "<button formaction='TussenPagina.aspx?Stemming=" + row["StemmingsNaam"] + "&Login=" + Wachtwoord + "'>Stop</button></p><br />";
+            this.LopendeStemmingen += "<h1>" + row["StemmingsNaam"] + "<br><button ID=knopStop formaction='TussenPagina.aspx?Stemming=" + row["StemmingsNaam"] + "&Login=" + Wachtwoord + "'>Stop</button></h1>";
             sqlConnection.Close();
         }
         return this.LopendeStemmingen;
@@ -44,7 +44,7 @@ public class BeheerderOverzicht
         SQLAfgelopenStemmingen.Fill(dt);
         foreach (DataRow row in dt.Rows)
         {
-            this.AfgelopenStemmingen += "<button formaction='ResultatenPaginaBeheerder.aspx?Stemming=" + row["StemmingsNaam"] + "'>" + row["StemmingsNaam"] + "</button></p><br />";
+            this.AfgelopenStemmingen += "<button formaction='ResultatenPaginaBeheerder.aspx?Stemming=" + row["StemmingsNaam"] + "'>" + row["StemmingsNaam"] + "</button><br />";
         }
         return this.AfgelopenStemmingen;
     }

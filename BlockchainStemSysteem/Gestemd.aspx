@@ -11,7 +11,7 @@
 <body>
     <form id="form1" runat="server">
         <br />
-        <img alt="Logo Winnovation" class="check" src="fonts/nummers/checked.png"/><br />
+        <img alt="Logo gestemd" class="check" src="fonts/nummers/checked.png"/><br />
         <h2>U heeft gestemd op:</h2>
             <asp:Label ID="Label1" runat="server" CssClass="projectext">></asp:Label>
     <div>
@@ -19,7 +19,7 @@
         <asp:Label ID="lbl_GestemdOp" runat="server" Text="Label"></asp:Label>
     </div>
         <br />
-        <asp:Button ID="btn_redirect_naar_home" runat="server" OnClick="Button1_Click" Text="Home" CssClass="homeknop" />
+        <%--<asp:Button ID="btn_redirect_naar_home" runat="server" OnClick="Button1_Click" Text="Home" CssClass="homeknop" />--%>
     </form>
 </body>
 </html>
