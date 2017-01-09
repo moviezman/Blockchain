@@ -4,11 +4,10 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Web;
 
-/// <summary>
-/// Summary description for RandomCodeGenereren
-/// </summary>
+//Genereert een code met een te kiezen lengte
 public static class RandomCodeGenereren
 {
+    //Alle karakters die gekozen kunnen worden
     static readonly char[] AvailableCharacters =
     {
         'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
@@ -18,6 +17,7 @@ public static class RandomCodeGenereren
         '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
     };
 
+    //Genereert de code, karakter voor karakter, met een te kiezen lengte
     public static string GenerateIdentifier(int length)
     {
         char[] identifier = new char[length];

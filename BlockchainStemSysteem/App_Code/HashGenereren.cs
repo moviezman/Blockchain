@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
 using System.Security.Cryptography;
-using System.Web;
 
-/// <summary>
-/// Summary description for HashGenereren
-/// </summary>
+//HashGenereren biedt het genereren van een hash met salt uit een string en het controleren van een string met een hash met salt
 public static class HashGenereren
 {
-
+    //Genereert een hash met salt uit een string
     public static string Genereer(string teHashen)
     {
         byte[] salt;
@@ -24,21 +18,21 @@ public static class HashGenereren
         return savedPasswordHash;
     }
 
+    //Checkt of een string en een hash overeenkomen
     public static bool checkHash(string wachtwoord, string wwhash)
     {
         if (wwhash.Length > 47)
         {
-            /* Fetch the stored value */
             string savedPasswordHash = wwhash;
-            /* Extract the bytes */
+            //Haal de bytes uit de wwhash
             byte[] hashBytes = Convert.FromBase64String(wwhash);
-            /* Get the salt */
+            //Haal de salt op
             byte[] salt = new byte[16];
             Array.Copy(hashBytes, 0, salt, 0, 16);
-            /* Compute the hash on the password the user entered */
+            //Bereken de hash van het wachtwoord dat is meegegeven
             var pbkdf2 = new Rfc2898DeriveBytes(wachtwoord, salt, 10000);
             byte[] hash = pbkdf2.GetBytes(20);
-            /* Compare the results */
+            //Vergelijk de resultaten
             for (int i = 0; i < 20; i++)
             {
                 if (hashBytes[i + 16] == hash[i])

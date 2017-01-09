@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Web;
 
-/// <summary>
-/// Genereerd een hash uit het telnr op het moment dat een stemcode wordt opgevraagd
-/// Er wordt gecontroleerd of hetzelfde stemcode en nummer wordt gebruikt bij het toevoegen van de stem
-/// </summary>
+//HashToBlock genereerd een hash uit het telnr op het moment dat een stemcode wordt opgevraagd
+//Er wordt gecontroleerd of hetzelfde stemcode en nummer wordt gebruikt bij het toevoegen van de stem
 public class HashToBlock
 {
-
     public int TelefoonNummer;
     public string StemCode;
     public string Hash;
