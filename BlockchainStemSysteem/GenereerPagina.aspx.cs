@@ -182,4 +182,15 @@ public partial class _Default : System.Web.UI.Page
         Global.Projecten.Clear();
         Response.Redirect("OverzichtBeheerder");
     }
+
+    protected void btn_Verwijderen_Click(object sender, EventArgs e)
+    {
+        //Als er projecten in de lijst staan
+        if(Global.Projecten.Count > 0)
+        {
+            //Verwijder het nieuwste project
+            Global.Projecten.RemoveRange(Global.Projecten.Count - 1, 1);
+            vulTabel();
+        }
+    }
 }
