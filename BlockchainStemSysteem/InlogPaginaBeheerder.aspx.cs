@@ -12,11 +12,12 @@ using System.Web.UI.WebControls;
 
 public partial class InlogPaginaBeheerder : System.Web.UI.Page
 {
+    string Wachtwoord;
     public object DBContext { get; private set; }
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        Session["Login"] = "";
     }
 
     protected void btn_Genereer_Click(object sender, EventArgs e)
@@ -35,16 +36,13 @@ public partial class InlogPaginaBeheerder : System.Web.UI.Page
 
     protected void Button_Login_Click(object sender, EventArgs e)
     {
-        //Voor testen:
-        //Blocks.Decodeer("Stemming0");
-        string Wachtwoord;
-
         DatabaseConnectie dbconnect = new DatabaseConnectie();
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
+        SqlCommand WwChecken = new SqlCommand("SELECT Hash FROM Wachtwoord ORDER BY Id DESC", sqlConnection);
+
         sqlConnection.Open();
-        //Verander de Id naar de id van het wachtwoord dat je wilt als je hem verandert
-        SqlCommand WwChecken = new SqlCommand("SELECT Hash FROM Wachtwoord WHERE Id = '1'", sqlConnection);
-        Wachtwoord = WwChecken.ExecuteScalar().ToString();
+        //Leest het laatst toegevoegde wachtwoord
+        Wachtwoord = (string)WwChecken.ExecuteScalar();
         sqlConnection.Close();
 
         if (HashGenereren.checkHash(txtbx_Login.Text, Wachtwoord))

@@ -22,7 +22,7 @@ public partial class ResultatenPagina : System.Web.UI.Page
 
         //Checkt of de gebruiker ingelogd is als beheerder
         sqlConnection.Open();
-        SqlCommand WwChecken = new SqlCommand("SELECT Hash FROM Wachtwoord WHERE Id = '1'", sqlConnection);
+        SqlCommand WwChecken = new SqlCommand("SELECT Hash FROM Wachtwoord ORDER BY Id DESC", sqlConnection);
         string code = (string)(Session["Login"]);
         string Wachtwoord = WwChecken.ExecuteScalar().ToString();
         if (code != Wachtwoord)
@@ -30,10 +30,5 @@ public partial class ResultatenPagina : System.Web.UI.Page
             Response.Redirect("Inlogpagina");
         }
         sqlConnection.Close();
-
-
-    }
-
-    public ProjectenResultaten Resultaten = new ProjectenResultaten(Convert.ToString(HttpContext.Current.Request.QueryString["Stemming"]));
-    
+    }    
 }

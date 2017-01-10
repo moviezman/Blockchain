@@ -11,6 +11,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
+        <asp:Button ID="btn_WwWijzigen" runat="server" OnClick="btn_WwWijzigen_Click" Text="Wachtwoord Wijzigen" />
         <br />
         <asp:Button ID="btn_Uitloggen" runat="server" Text="Uitloggen" OnClick="btn_Uitloggen_Click" CssClass="uitloggen" />
         <h2>Lopende stemmingen:</h2>

@@ -14,7 +14,7 @@ public partial class OverzichtBeheerder : System.Web.UI.Page
         DatabaseConnectie dbconnect = new DatabaseConnectie();
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
         sqlConnection.Open();
-        SqlCommand WwChecken = new SqlCommand("SELECT Hash FROM Wachtwoord WHERE Id = '1'", sqlConnection);
+        SqlCommand WwChecken = new SqlCommand("SELECT Hash FROM Wachtwoord ORDER BY Id DESC", sqlConnection);
         string code = (string)(Session["Login"]);
         string Wachtwoord = WwChecken.ExecuteScalar().ToString();
         if (code != Wachtwoord)
@@ -46,5 +46,10 @@ public partial class OverzichtBeheerder : System.Web.UI.Page
     {
         Session["Login"] = "";
         Response.Redirect("inlogpaginaBeheerder");
+    }
+
+    protected void btn_WwWijzigen_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("NieuwWw");
     }
 }
