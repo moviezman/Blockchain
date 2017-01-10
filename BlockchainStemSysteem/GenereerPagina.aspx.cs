@@ -150,6 +150,7 @@ public partial class _Default : System.Web.UI.Page
                 }
             }
             Global.Toevoegen(txtbx_Project.Text);
+            lbl_Info.Text = "";
             vulTabel();
         }
         else
@@ -163,6 +164,7 @@ public partial class _Default : System.Web.UI.Page
     //Vult de tabel met de lijst Projecten uit de Global klasse
     protected void vulTabel()
     {
+        Global.Projecten.Reverse();
         foreach (string project in Global.Projecten)
         {
             TableRow tRow2 = new TableRow();
@@ -171,6 +173,7 @@ public partial class _Default : System.Web.UI.Page
             tCell2.Text = project;
             tRow2.Cells.Add(tCell2);
         }
+        Global.Projecten.Reverse();
     }
 
     //Redirect naar het overzicht van de beheerder zonder iets op te slaan
