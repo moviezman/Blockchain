@@ -1,9 +1,9 @@
 body {
-    background-image: url("/fonts/Nummers/footer_lodyas.png");
+    background-image: url("/fonts/Nummers/Achtergrond1.png");
     background-repeat: round;
     /*background-color: lightblue;*/
     text-align:center;
-    color:white;
+    color:black;
     font-family:'Lucida Sans';
 }
 
@@ -60,12 +60,9 @@ button:hover {
     font-weight:bold;
 }
 
-/*#globaal{
-    text-align:center;
-}*/
 
 h1 {
-    color:red;
+    color:#d5a10c;
     font-weight:bold;
     font-family:'Lucida Sans';
 }
@@ -74,6 +71,7 @@ h2{
     
     font-weight:bold;
     font-family:'Lucida Sans';
+    color:black
 }
 
 h3{
@@ -89,8 +87,8 @@ p{
         }
 
 .auto-style1 {
-            width: 600px;
-            height: 248px;
+            width: 650px;
+            /*height: 150px;*/
         }
 
 .windesheimlogo{

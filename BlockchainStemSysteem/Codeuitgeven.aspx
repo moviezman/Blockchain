@@ -11,7 +11,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <img alt="Logo Winnovation" class="auto-style1" src="/fonts/Nummers/logoplaceholder.png"/><br />
+            <img alt="Logo Winnovation" class="auto-style1" src="/fonts/Nummers/logotransparant.png"/><br />
             <br />
             <asp:Label ID="lbl_VoerTelNrIn" runat="server" Text="Voer uw telefoonnummer in" CssClass="invoer"></asp:Label>
             <br />

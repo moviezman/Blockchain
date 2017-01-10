@@ -24,10 +24,10 @@
             <br />
             <br />
             <asp:Button runat="server" OnClick="btn_ProjectToevoegen_Click" Text="Toevoegen" ID="btn_ProjectToevoegen" CssClass="ToevoegKnop" />
+            <asp:Button ID="btn_Verwijderen" runat="server" OnClick="btn_Verwijderen_Click" Text="Verwijderen" CssClass="VerwijderKnop"/>
             <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
             <br />
             <br />
-            <asp:Button ID="btn_Verwijderen" runat="server" OnClick="btn_Verwijderen_Click" Text="Verwijder" />
             <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
                 <ContentTemplate>
                     <asp:Label ID="lbl_Info" runat="server"></asp:Label>

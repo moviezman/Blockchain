@@ -12,7 +12,7 @@ public static class Uitslagen
 
         DatabaseConnectie dbconnect = new DatabaseConnectie();
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);        
-        string Uitslag = "De winnaar is</br>";
+        string Uitslag = "<h2>" + "De winnaar is</br>" + "</h2>";
         SqlCommand winnaar = new SqlCommand("SELECT GestemdOp, Count(GestemdOp)AS 'AantalGestemd' FROM UC WHERE StemmingsNaam = '" + Stemming + "' GROUP BY GestemdOp ORDER BY AantalGestemd DESC;", sqlConnection);
         sqlConnection.Open();
 

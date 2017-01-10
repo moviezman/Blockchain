@@ -27,8 +27,8 @@ public partial class _Default : System.Web.UI.Page
         TableHeaderRow header = new TableHeaderRow();
         Tbl_Projecten.Rows.Add(header);
         TableHeaderCell headerTableCell1 = new TableHeaderCell();
-        headerTableCell1.Text = "Teams:";
-        header.Cells.Add(headerTableCell1);
+        //headerTableCell1.Text = "Teams:";
+        //header.Cells.Add(headerTableCell1);
     }
 
     protected void Page_Init(object sender, EventArgs e)
