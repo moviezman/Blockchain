@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
+//Pagina voor het veranderen van het wachtwoord van de beheerder
 public partial class NieuwWw : System.Web.UI.Page
 {
     string Wachtwoord;
@@ -25,6 +21,7 @@ public partial class NieuwWw : System.Web.UI.Page
         sqlConnection.Close();
     }
 
+    //Controleert en slaat het nieuwe wachtwoord op in de database
     protected void btn_Opslaan_Click(object sender, EventArgs e)
     {
         DatabaseConnectie dbconnect = new DatabaseConnectie();

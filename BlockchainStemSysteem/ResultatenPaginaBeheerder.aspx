@@ -11,9 +11,10 @@
 <body>
     <form id="form1" runat="server">
     <div>
+        <!-- Haalt de uitslagen van de stemming op uit de 'Uitslagen' klasse en plaatst deze in de pagina -->
         <% Response.Write(Uitslagen.UitslagStemmingBeheerder(Request.QueryString["Stemming"])); %>
     </div>
-                <p>
+        <p>
             <asp:Button ID="btn_Terug" runat="server" OnClick="btn_Terug_Click" Text="Terug" CssClass="TerugKnop" />
         </p>
     </form>

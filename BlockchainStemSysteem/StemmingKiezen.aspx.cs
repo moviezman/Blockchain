@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
+//Hier kan de gebruiker een stemming kiezen
 public partial class StemmingKiezen : System.Web.UI.Page
 {
-
     public string StemButtons;
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -22,6 +17,8 @@ public partial class StemmingKiezen : System.Web.UI.Page
         asd.Fill(dt);
         foreach (DataRow row in dt.Rows)
         {
+            //Voegt een knop toe voor elke lopende stemming
+            //Deze knop linkt naar de 'CodeUitgeven' pagina
             this.StemButtons += "<button formaction='Codeuitgeven.aspx?Stemming=" + row["Stemmingsnaam"] + "'>" + row["Stemmingsnaam"] + "</button><br />";
         }
     }

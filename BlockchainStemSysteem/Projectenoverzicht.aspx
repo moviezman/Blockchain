@@ -14,8 +14,6 @@
     <div>
         <h2>Kies je favoriet!</h2>
         <% Response.Write(Team.TeamButtons); %>
-        <div>Ingelogd als:</div>
-        <asp:Label ID="lbl_IngelogdAls" runat="server" Text=" "></asp:Label>
     </div>
     </form>
 </body>

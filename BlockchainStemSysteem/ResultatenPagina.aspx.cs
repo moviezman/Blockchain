@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
+//Resultatenpagina waar alle gebruikers bijkunnen
+//Hierin staan de stemmingsnaam en welk project er heeft gewonnen
 public partial class ResultatenPagina : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
@@ -25,10 +22,5 @@ public partial class ResultatenPagina : System.Web.UI.Page
             Response.Redirect("Inlogpagina");
         }
         sqlConnection.Close();
-    }
-
-    protected void btn_Terug_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("OverzichtBeheerder");
     }
 }

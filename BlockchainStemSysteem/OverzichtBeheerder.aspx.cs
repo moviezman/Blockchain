@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 public partial class OverzichtBeheerder : System.Web.UI.Page
 {
@@ -24,30 +19,23 @@ public partial class OverzichtBeheerder : System.Web.UI.Page
         sqlConnection.Close();
     }
 
+    //Linkt naar de genereerpagina
     protected void btn_GenereerPagina_Click(object sender, EventArgs e)
     {
-        string Wachtwoord;
-
-        DatabaseConnectie dbconnect = new DatabaseConnectie();
-        SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
-        sqlConnection.Open();
-        //Verander de Id naar de id van het wachtwoord dat je wilt als je hem verandert
-        SqlCommand WwChecken = new SqlCommand("SELECT Hash FROM Wachtwoord WHERE Id = '1'", sqlConnection);
-        Wachtwoord = WwChecken.ExecuteScalar().ToString();
-        sqlConnection.Close();
-
         Response.Redirect("GenereerPagina.aspx");
     }
 
+    //Laadt alle lopende en afgelopen stemmingen met behulp van de klasse 'BeheerderOverzicht'
     public BeheerderOverzicht Overzicht = new BeheerderOverzicht();
-    //public Buttons Team = new Buttons(Convert.ToString(HttpContext.Current.Request.QueryString["Stemmer"]));
 
+    //Maakt de sessievariabele 'Login' leeg en redirect naar de inlogpagina voor de beheerder
     protected void btn_Uitloggen_Click(object sender, EventArgs e)
     {
         Session["Login"] = "";
         Response.Redirect("inlogpaginaBeheerder");
     }
 
+    //Redirect naar de pagina om het wachtwoord van de beheerder aan te passen
     protected void btn_WwWijzigen_Click(object sender, EventArgs e)
     {
         Response.Redirect("NieuwWw");

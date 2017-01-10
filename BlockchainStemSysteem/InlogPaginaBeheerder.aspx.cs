@@ -1,15 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Security.Cryptography;
-using System.Text;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
+//Inlogpagina voor de beheerder
 public partial class InlogPaginaBeheerder : System.Web.UI.Page
 {
     string Wachtwoord;
@@ -20,20 +12,6 @@ public partial class InlogPaginaBeheerder : System.Web.UI.Page
         Session["Login"] = "";
     }
 
-    protected void btn_Genereer_Click(object sender, EventArgs e)
-    {
-        string hash = HashGenereren.Genereer(txtbx_Login.Text);
-
-        DatabaseConnectie dbconnect = new DatabaseConnectie();
-        SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
-        sqlConnection.Open();
-        SqlCommand WwToevoegen = new SqlCommand("INSERT INTO Wachtwoord (Hash) VALUES ('" + hash + "');", sqlConnection);
-        WwToevoegen.ExecuteNonQuery();
-        sqlConnection.Close();
-
-        lbl_Hash.Text = "Gegenereerd";
-    }
-
     protected void Button_Login_Click(object sender, EventArgs e)
     {
         DatabaseConnectie dbconnect = new DatabaseConnectie();
@@ -41,7 +19,7 @@ public partial class InlogPaginaBeheerder : System.Web.UI.Page
         SqlCommand WwChecken = new SqlCommand("SELECT Hash FROM Wachtwoord ORDER BY Id DESC", sqlConnection);
 
         sqlConnection.Open();
-        //Leest het laatst toegevoegde wachtwoord
+        //Checkt of het wachtwoord overeenkomt met de gehashte versie uit de database
         Wachtwoord = (string)WwChecken.ExecuteScalar();
         sqlConnection.Close();
 
@@ -52,7 +30,7 @@ public partial class InlogPaginaBeheerder : System.Web.UI.Page
         }
         else
         {
-            lbl_Hash.Text = "Foutieve Inlogcode";
+            lbl_Info.Text = "Foutieve Inlogcode";
         }
     }
 }

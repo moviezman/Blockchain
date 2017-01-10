@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 public partial class _Default : System.Web.UI.Page
@@ -29,7 +23,7 @@ public partial class _Default : System.Web.UI.Page
         }
         sqlConnection.Close();
 
-
+        //Maakt de tabel aan voor de projecten
         TableHeaderRow header = new TableHeaderRow();
         Tbl_Projecten.Rows.Add(header);
         TableHeaderCell headerTableCell1 = new TableHeaderCell();
@@ -39,6 +33,7 @@ public partial class _Default : System.Web.UI.Page
 
     protected void Page_Init(object sender, EventArgs e)
     {
+        //Maakt de projectenlist leeg als de gebruiker naar deze pagina komt vanuit een andere pagina (ipv het herladen van de pagina)
         if (!IsPostBack)
         {
             Global.Projecten.Clear();
@@ -79,38 +74,38 @@ public partial class _Default : System.Web.UI.Page
         }
         else
         {
-            //maximaal 1000 codes mogelijk
+            //Minimaal 1 code
             if(hoeveelheidCodes >= 1)
             {
+                //Maximaal 1000 codes
                 if (hoeveelheidCodes <= 1000)
                 {
                     if (Global.Projecten.Any())
                     {
+                        //Maak een nieuwe stemming aan
                         SqlCommand NieuweStemming = new SqlCommand("INSERT INTO Stemming (StemmingsNaam, Actief) VALUES ('" + Txtbx_StemmingsNaam.Text + "', 'true');", sqlConnection);
                         NieuweStemming.ExecuteNonQuery();
                         for (int i = 1; i <= hoeveelheidCodes; i++)
                         {
+                            //Genereer unieke codes met een lengte van 10 aan en zet deze in de database
                             SqlCommand CheckUniekeCode = new SqlCommand("INSERT INTO UC (UniekeCode, StemmingsNaam) VALUES ('" + RandomCodeGenereren.GenerateIdentifier(10).ToString() + "', '" + Txtbx_StemmingsNaam.Text + "');", sqlConnection);
                             CheckUniekeCode.ExecuteNonQuery();
                         }
 
                         foreach (string project in Global.Projecten)
                         {
+                            //Zet de projecten in de database
                             SqlCommand MaakProjecten = new SqlCommand("INSERT INTO Project (Naam, StemmingsNaam) VALUES ('" + project + "', '" + Txtbx_StemmingsNaam.Text + "');", sqlConnection);
                             MaakProjecten.ExecuteNonQuery();
                         }
 
+                        //Maak een genesisblock aan
                         SqlCommand BlockMaken = new SqlCommand("INSERT INTO Block (BlockData, StemmingsNaam) VALUES ('" + RandomCodeGenereren.GenerateIdentifier(50) + "', '" + Txtbx_StemmingsNaam.Text + "')", sqlConnection);
                         BlockMaken.ExecuteNonQuery();
 
-                        string Wachtwoord;
-
-                        //Verander de Id naar de id van het wachtwoord dat je wilt als je hem verandert
-                        SqlCommand WwChecken = new SqlCommand("SELECT Hash FROM Wachtwoord WHERE Id = '1'", sqlConnection);
-                        Wachtwoord = WwChecken.ExecuteScalar().ToString();
-                        sqlConnection.Close();
-
+                        //Maak de lijst met projecten leeg en ga naar het overzicht van de beheerder
                         Global.Projecten.Clear();
+                        sqlConnection.Close();
                         Response.Redirect("OverzichtBeheerder");
                     }
                     else
@@ -131,7 +126,6 @@ public partial class _Default : System.Web.UI.Page
                 lbl_Info.Text = "Kies 1 of meer stemcodes";
                 vulTabel();
             }
-            
         }
         sqlConnection.Close();
     }
@@ -139,7 +133,7 @@ public partial class _Default : System.Web.UI.Page
 
     
     
-    //project toevoegen
+    //Voegt een project toe aan de tabel van projecten
     protected void btn_ProjectToevoegen_Click(object sender, EventArgs e)
     {
         string project = txtbx_Project.Text;
@@ -147,6 +141,7 @@ public partial class _Default : System.Web.UI.Page
         {
             foreach (string projectNaam in Global.Projecten)
             {
+                //Checkt of de projectnaam al bestaat
                 if (projectNaam.Contains(project))
                 {
                     lbl_Info.Text = "Dit team is al toegevoegd";
@@ -156,7 +151,6 @@ public partial class _Default : System.Web.UI.Page
             }
             Global.Toevoegen(txtbx_Project.Text);
             vulTabel();
-            
         }
         else
         {
@@ -164,10 +158,9 @@ public partial class _Default : System.Web.UI.Page
             vulTabel();
         }
         txtbx_Project.Text = string.Empty;
-        
     }
 
-    //tabel vullen
+    //Vult de tabel met de lijst Projecten uit de Global klasse
     protected void vulTabel()
     {
         foreach (string project in Global.Projecten)
@@ -180,6 +173,7 @@ public partial class _Default : System.Web.UI.Page
         }
     }
 
+    //Redirect naar het overzicht van de beheerder zonder iets op te slaan
     protected void btn_Overzicht_Click(object sender, EventArgs e)
     {
         Global.Projecten.Clear();

@@ -3,24 +3,29 @@
 <!DOCTYPE html>
 
 <script runat="server">
+    //Op deze pagina kan een gebruiker inloggen na het invullen van zijn/haar unieke code
     protected void Page_Load(object sender, EventArgs e)
     {
-        //Maakt de sessie leeg voor de zekerheid
+        //Maakt de sessie leeg
         Session["Team"] = string.Empty;
         Session["Stemcode"] = string.Empty;
     }
 
-    protected void Button1_Click(object sender, EventArgs e)
+    //Controleert de unieke code en logt de gebruiker in als deze klopt
+    protected void btn_Verstuur_Click(object sender, EventArgs e)
     {
         DatabaseConnectie dbconnect = new DatabaseConnectie();
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
         sqlConnection.Open();
+        //Checkt of de unieke code voorkomt in de database
         SqlCommand CheckUniekeCode = new SqlCommand("Select COUNT(*) From UC WHERE ([UniekeCode] = @UniekeCode)", sqlConnection);
         CheckUniekeCode.Parameters.AddWithValue("@UniekeCode", TextBox1.Text);
         int CodeBestaat = (int)CheckUniekeCode.ExecuteScalar();
 
+        //Als de unieke code een keer voorkomt in de database
         if(CodeBestaat > 0)
         {
+            //Redirect naar het projectenoverzicht
             Session["Stemcode"] = TextBox1.Text;
             Response.Redirect("Projectenoverzicht.aspx?Stemmer=" + TextBox1.Text);
         }
@@ -44,7 +49,7 @@
     <h1>Welkom bij de Winnovation Stempagina</h1>
         <div>Voer uw stemcode in:</div><br />
         <asp:TextBox ID="TextBox1" runat="server" style="margin-bottom: 0px"></asp:TextBox>
-        <asp:Button ID="Button1" runat="server" Text="Verstuur" OnClick="Button1_Click" />
+        <asp:Button ID="btn_Verstuur" runat="server" Text="Verstuur" OnClick="btn_Verstuur_Click" />
         <br />
         <br />
         <asp:Label ID="Label1" runat="server" Text="Label" Visible="False"></asp:Label>

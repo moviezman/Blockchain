@@ -13,14 +13,14 @@
         <div>
             <img alt="Logo Winnovation" class="auto-style1" src="/fonts/Nummers/logoplaceholder.png"/><br />
             <br />
-            <asp:Label ID="Label2" runat="server" Text="Voer uw telefoonnummer in" CssClass="invoer"></asp:Label>
+            <asp:Label ID="lbl_VoerTelNrIn" runat="server" Text="Voer uw telefoonnummer in" CssClass="invoer"></asp:Label>
             <br />
             <br />
-            <asp:TextBox ID="TextBox2" runat="server" Enabled="False" Width="22px" CssClass="box">06</asp:TextBox>
-            <asp:TextBox ID="TextBox1" runat="server" MaxLength="8" Enabled="False" Width="200px" CssClass="box"></asp:TextBox>
+            <asp:TextBox ID="txtbx_06" runat="server" Enabled="False" Width="22px" CssClass="box">06</asp:TextBox>
+            <asp:TextBox ID="txtbx_telnr" runat="server" MaxLength="8" Enabled="False" Width="200px" CssClass="box"></asp:TextBox>
             <br />
             <br />
-            <asp:Label ID="Label4" runat="server" Visible="False" CssClass="foutmelding"></asp:Label>
+            <asp:Label ID="lbl_Info" runat="server" Visible="False" CssClass="foutmelding"></asp:Label>
             <br />
             <br />
             <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="fonts/nummers/1.png" OnClick="Buttonnr1_Click" CssClass="button" />
@@ -35,9 +35,9 @@
             <asp:ImageButton ID="ImageButton8" runat="server" ImageUrl="fonts/nummers/8.png" OnClick="Buttonnr8_Click" CssClass="button" />
             <asp:ImageButton ID="ImageButton9" runat="server" ImageUrl="fonts/nummers/9.png" OnClick="Buttonnr9_Click" CssClass="button" />
             <br />
-            <asp:ImageButton ID="ImageButton11" runat="server" ImageUrl="fonts/nummers/previous.png" OnClick="ButtonnrB_Click" CssClass="button" />
+            <asp:ImageButton ID="ImageButtonBack" runat="server" ImageUrl="fonts/nummers/previous.png" OnClick="ButtonBack_Click" CssClass="button" />
             <asp:ImageButton ID="ImageButton0" runat="server" ImageUrl="fonts/nummers/0.png" OnClick="Buttonnr0_Click" CssClass="button" />
-            <asp:ImageButton ID="ImageButton10" runat="server" ImageUrl="fonts/nummers/checked.png" OnClick="Button1_Click" CssClass="button" />
+            <asp:ImageButton ID="ImageButtonOkee" runat="server" ImageUrl="fonts/nummers/checked.png" OnClick="ImageButtonOkee_Click" CssClass="button" />
             <br />
             <footer>
             <h1>Disclaimer Winnovation stemdienst</h1>

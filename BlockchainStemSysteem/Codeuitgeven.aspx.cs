@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Net.Mail;
-using System.Threading;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 public partial class Codeuitgeven : System.Web.UI.Page
 {
@@ -18,19 +12,19 @@ public partial class Codeuitgeven : System.Web.UI.Page
 
     }
 
-    protected void Button1_Click(object sender, EventArgs e)
+    protected void ImageButtonOkee_Click(object sender, EventArgs e)
     {
         DatabaseConnectie dbconnect = new DatabaseConnectie();
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
 
-        // query ophalen laatste code
+        //Haalt de stemming uit de URL en het telefoonnr uit de textbox
         string Stemming = Request.QueryString["Stemming"];
-        string Telnr = TextBox1.Text;
+        string Telnr = txtbx_telnr.Text;
         bool TelNietNieuw = false;
 
         SqlCommand NieuweCodeQuery = new SqlCommand("SELECT Top 1 UniekeCode FROM UC WHERE HashTelNr IS NULL AND StemmingsNaam ='" + Stemming + "';", sqlConnection);
-        // nummer toevoegen aan database
-        SqlCommand UpdateNummer = new SqlCommand("INSERT INTO Stemmer VALUES(" + TextBox1.Text + ", 'true');", sqlConnection);
+        //Nummer toevoegen aan database
+        SqlCommand UpdateNummer = new SqlCommand("INSERT INTO Stemmer VALUES(" + txtbx_telnr.Text + ", 'true');", sqlConnection);
 
         Nummercontrole check = new Nummercontrole();
         SqlCommand AlleNummers = new SqlCommand("SELECT HashTelNr FROM UC", sqlConnection);
@@ -38,34 +32,40 @@ public partial class Codeuitgeven : System.Web.UI.Page
         SqlDataAdapter da = new SqlDataAdapter(AlleNummers);
         DataTable dt = new DataTable();
         da.Fill(dt);
+        //Voor elke opgeslagen hash van een telnr
         foreach (DataRow dr in dt.Rows)
         {
-            //Checkt per telnr of een hash ervan al voorkomt in de database
+            //Checkt of het telefoonnr voorkomt in de database
             if (HashGenereren.checkHash(Telnr, dr["HashTelNr"].ToString()))
             {
                 TelNietNieuw = true;
             }
         }
-        //Kijken of het ingevulde nummer al gebruikt is
+        //Als het nummer nog niet gehasht in de database staat
         if (TelNietNieuw == false)
         {
             //Checken of een telefoonnummer wel een geldig nummer is
-            if (check.Nummercheck(Convert.ToString("06" + TextBox1.Text)))
+            if (check.Nummercheck(Convert.ToString("06" + txtbx_telnr.Text)))
             {
                 string NieuweCode = Convert.ToString(NieuweCodeQuery.ExecuteScalar());
 
                 if (NieuweCode != null)
                 {
+                    //Hasht het telefoonnummer en verbindt het met een unieke code
                     Telnr = HashGenereren.Genereer(Telnr);
                     SqlCommand NummerToevoegen = new SqlCommand("UPDATE UC SET HashTelNr = '" + Telnr + "' WHERE UniekeCode = '" + NieuweCode + "';", sqlConnection);
                     NummerToevoegen.ExecuteNonQuery();
                     sqlConnection.Close();
 
+                    //Vult gegevens in van het e-mailadres om mailtjes te sturen naar een e-mail adres
+                    //Deze mailtjes worden omgezet naar een SMS'je door het bedrijf van dit e-mailadres
+                    //Deze SMS'jes worden vervolgens verstuurd naar het telefoonnummer van de gebruiker
                     string password = "Blockchain123";
                     MailMessage mail = new MailMessage();
                     SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
 
                     mail.From = new MailAddress("winnovationwindesheim@gmail.com");
+                    //Het telefoonnummer waar naar wordt verstuurd is het telefoonnummer in de tekstbox
                     //mail.To.Add(TextBox1.Text + "@sms.informaxion.nl");
                     mail.To.Add("personalthijsiedema@gmail.com");
                     mail.Subject = "2410, Winnovation";
@@ -78,69 +78,71 @@ public partial class Codeuitgeven : System.Web.UI.Page
 
                     SmtpServer.Send(mail);
 
-                    Label4.Visible = true;
-                    Label4.Text = "Uw code is verzonden per SMS";
+                    lbl_Info.Visible = true;
+                    lbl_Info.Text = "Uw code is verzonden per SMS";
                     //Label4.Text = "Hier is uw code voor de Winnovation: localhost:50512/projectenoverzicht?Stemmer=" + NieuweCode;
-                    TextBox1.Text = "";
+                    txtbx_telnr.Text = "";
                 }
             }
             else
             {
-                Label4.Visible = true;
-                Label4.Text = "Dit nummer is ongeldig";
-                TextBox1.Text = "";
+                lbl_Info.Visible = true;
+                lbl_Info.Text = "Dit nummer is ongeldig";
+                txtbx_telnr.Text = "";
             }
         }
         else
         {
-            Label4.Visible = true;
-            Label4.Text = "Dit nummer is al gebruikt";
+            lbl_Info.Visible = true;
+            lbl_Info.Text = "Dit nummer is al gebruikt";
         }
     }
 
-
+    //Elke button vult een nummer in in de textbox. Als een knop wordt ingedrukt wordt het informatielabel ook onzichtbaar.
     protected void Buttonnr1_Click(object sender, EventArgs e)
-{
-    if (TextBox1.Text.Length < 8) { TextBox1.Text = TextBox1.Text += "1"; Label4.Visible = false; }
-}
-protected void Buttonnr2_Click(object sender, EventArgs e)
-{
-    if (TextBox1.Text.Length < 8) { TextBox1.Text = TextBox1.Text += "2"; Label4.Visible = false; }
-}
-protected void Buttonnr3_Click(object sender, EventArgs e)
-{
-    if (TextBox1.Text.Length < 8) { TextBox1.Text = TextBox1.Text += "3"; Label4.Visible = false; }
-}
-protected void Buttonnr4_Click(object sender, EventArgs e)
-{
-    if (TextBox1.Text.Length < 8) { TextBox1.Text = TextBox1.Text += "4"; Label4.Visible = false; }
-}
-protected void Buttonnr5_Click(object sender, EventArgs e)
-{
-    if (TextBox1.Text.Length < 8) { TextBox1.Text = TextBox1.Text += "5"; Label4.Visible = false; }
-}
-protected void Buttonnr6_Click(object sender, EventArgs e)
-{
-    if (TextBox1.Text.Length < 8) { TextBox1.Text = TextBox1.Text += "6"; Label4.Visible = false; }
-}
-protected void Buttonnr7_Click(object sender, EventArgs e)
-{
-    if (TextBox1.Text.Length < 8) { TextBox1.Text = TextBox1.Text += "7"; Label4.Visible = false; }
-}
-protected void Buttonnr8_Click(object sender, EventArgs e)
-{
-    if (TextBox1.Text.Length < 8) { TextBox1.Text = TextBox1.Text += "8"; Label4.Visible = false; }
-}
-protected void Buttonnr9_Click(object sender, EventArgs e)
-{
-    if (TextBox1.Text.Length < 8) { TextBox1.Text = TextBox1.Text += "9"; Label4.Visible = false; }
-}
-protected void Buttonnr0_Click(object sender, EventArgs e)
-{
-    if (TextBox1.Text.Length < 8) { TextBox1.Text = TextBox1.Text += "0"; Label4.Visible = false; }
-}
-protected void ButtonnrB_Click(object sender, EventArgs e)
-{
-    if (TextBox1.Text.Length > 0) { TextBox1.Text = TextBox1.Text.Remove(TextBox1.Text.Length - 1); Label4.Visible = false; }
-}
+    {
+        if (txtbx_telnr.Text.Length < 8) { txtbx_telnr.Text = txtbx_telnr.Text += "1"; lbl_Info.Visible = false; }
+    }
+    protected void Buttonnr2_Click(object sender, EventArgs e)
+    {
+        if (txtbx_telnr.Text.Length < 8) { txtbx_telnr.Text = txtbx_telnr.Text += "2"; lbl_Info.Visible = false; }
+    }
+    protected void Buttonnr3_Click(object sender, EventArgs e)
+    {
+        if (txtbx_telnr.Text.Length < 8) { txtbx_telnr.Text = txtbx_telnr.Text += "3"; lbl_Info.Visible = false; }
+    }
+    protected void Buttonnr4_Click(object sender, EventArgs e)
+    {
+        if (txtbx_telnr.Text.Length < 8) { txtbx_telnr.Text = txtbx_telnr.Text += "4"; lbl_Info.Visible = false; }
+    }
+    protected void Buttonnr5_Click(object sender, EventArgs e)
+    {
+        if (txtbx_telnr.Text.Length < 8) { txtbx_telnr.Text = txtbx_telnr.Text += "5"; lbl_Info.Visible = false; }
+    }
+    protected void Buttonnr6_Click(object sender, EventArgs e)
+    {
+        if (txtbx_telnr.Text.Length < 8) { txtbx_telnr.Text = txtbx_telnr.Text += "6"; lbl_Info.Visible = false; }
+    }
+    protected void Buttonnr7_Click(object sender, EventArgs e)
+    {
+        if (txtbx_telnr.Text.Length < 8) { txtbx_telnr.Text = txtbx_telnr.Text += "7"; lbl_Info.Visible = false; }
+    }
+    protected void Buttonnr8_Click(object sender, EventArgs e)
+    {
+        if (txtbx_telnr.Text.Length < 8) { txtbx_telnr.Text = txtbx_telnr.Text += "8"; lbl_Info.Visible = false; }
+    }
+    protected void Buttonnr9_Click(object sender, EventArgs e)
+    {
+        if (txtbx_telnr.Text.Length < 8) { txtbx_telnr.Text = txtbx_telnr.Text += "9"; lbl_Info.Visible = false; }
+    }
+    protected void Buttonnr0_Click(object sender, EventArgs e)
+    {
+        if (txtbx_telnr.Text.Length < 8) { txtbx_telnr.Text = txtbx_telnr.Text += "0"; lbl_Info.Visible = false; }
+    }
+
+    //De terugknop verwijdert het laatste nummer uit de tekstbox
+    protected void ButtonBack_Click(object sender, System.Web.UI.ImageClickEventArgs e)
+    {
+        if (txtbx_telnr.Text.Length > 0) { txtbx_telnr.Text = txtbx_telnr.Text.Remove(txtbx_telnr.Text.Length - 1); lbl_Info.Visible = false; }
+    }
 }

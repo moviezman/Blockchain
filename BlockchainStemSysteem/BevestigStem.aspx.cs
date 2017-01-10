@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
+//Pagina voor de gebruiker om de keuze op het gekozen project te verifieren
 public partial class BevestigStem : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        //Checkt of de stemcode bekend is in de sessie (vangt veranderen URL op)
         if (string.IsNullOrEmpty((string)Session["Stemcode"]))
         {
             Response.Redirect("Inlogpagina");
@@ -19,6 +16,7 @@ public partial class BevestigStem : System.Web.UI.Page
 
     protected void ButtonJa_Click(object sender, EventArgs e)
     {
+        //Redirect naar de gestemd pagina, waar de stem op het gekozen project in de database wordt gezet
         Session["Team"] = Request.QueryString["GestemdOp"];
         string StemCode = (string)Session["Stemcode"];
         string Team = Request.QueryString["GestemdOp"];

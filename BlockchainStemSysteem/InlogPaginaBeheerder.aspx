@@ -16,11 +16,10 @@
         <asp:TextBox ID="txtbx_Login" type="password" runat="server" CssClass="InlogBox"> </asp:TextBox>
             <asp:Button ID="btn_Login" runat="server" OnClick="Button_Login_Click" Text="Inloggen" CssClass="inloggen" />
         <p>
-            <asp:Label ID="lbl_Hash" runat="server"></asp:Label>
+            <asp:Label ID="lbl_Info" runat="server"></asp:Label>
         </p>
         <p>
-        <asp:Button ID="btn_Genereer" runat="server" Text="Genereer" OnClick="btn_Genereer_Click" Visible="False" />
-        </p>
+            &nbsp;</p>
     </form>
 </body>
 </html>

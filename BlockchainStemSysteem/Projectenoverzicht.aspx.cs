@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
+//Op deze pagina worden alle projecten uit de stemming waar de gebruiker
+//met de unieke code waarmee hij/zij ingelogd is toegang tot heeft getoond
 public partial class Projectenoverzicht : System.Web.UI.Page
 {
-    //Dit is de pagina waar de gebruiker heen wordt gestuurd als deze de site beinvloed
+    //Dit is de pagina waar de gebruiker heen wordt gestuurd als hij/zij de URL verandert
     string Standaardpagina = "Inlogpagina";
 
     //Dit is waar de gebruiker heen wordt gestuurd als de stemming al is afgelopen
@@ -19,7 +16,7 @@ public partial class Projectenoverzicht : System.Web.UI.Page
     {
         //Ingevulde Stemcode ophalen en opslaan in string StemCode
         string StemCode = Request.QueryString["Stemmer"];
-        //Vangt veranderen van de URL op
+        //Redirect de gebruiker naar de inlogpagina als hij/zij de URL aanpast
         if (string.IsNullOrEmpty(Convert.ToString(StemCode)))
         {
             Response.Redirect(Standaardpagina);
@@ -29,12 +26,11 @@ public partial class Projectenoverzicht : System.Web.UI.Page
         DatabaseConnectie dbconnect = new DatabaseConnectie();
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
 
-        //Hier staan de SQL queries 
         //Controleren of de stemming actief is
         SqlCommand CheckActief = new SqlCommand("SELECT Actief FROM Stemming WHERE Stemmingsnaam IN (SELECT StemmingsNaam FROM UC WHERE UniekeCode = '" + StemCode + "');", sqlConnection);
-        //Controleren of een StemCode al is gebruikt query
+        //Controleren of een StemCode al is gebruikt
         SqlCommand GetStatusCode = new SqlCommand("SELECT GestemdOp FROM UC WHERE UniekeCode = '" + StemCode + "';", sqlConnection);
-        //Controleer of een code een unieke code is
+        //Controleer of de ingevulde unieke code in de database staat
         SqlCommand CheckUniekeCode = new SqlCommand("SELECT COUNT(*) From UC WHERE ([UniekeCode] = '" + StemCode + "' COLLATE SQL_Latin1_General_CP1_CS_AS)", sqlConnection);
 
 
@@ -44,7 +40,8 @@ public partial class Projectenoverzicht : System.Web.UI.Page
         if(GetStatusCode.ExecuteScalar() is DBNull)
         {
             ActieveCode = false;
-        } else
+        }
+        else
         {
             ActieveCode = true;
         }
@@ -65,7 +62,6 @@ public partial class Projectenoverzicht : System.Web.UI.Page
 
             while (dr.Read())
             {
-                //Response.Redirect(Resultatenpagina + ".aspx?Stemming=" + dr[0].ToString());
                 Response.Redirect("ResultatenPagina.aspx?Stemming=" + dr[0].ToString());
             }
             dr.Close();
@@ -73,8 +69,7 @@ public partial class Projectenoverzicht : System.Web.UI.Page
         }
         else
         {
-            //Als de code al is gebruikt dan wordt de gebruiker doorgestuurd naar de inlogpagina 
-            //Als de URL wordt aangepast dan wordt de gebruikers teruggestuurd naar de inlogpagina 
+            //Als de code al is gebruikt of als de URL is aangepast dan wordt de gebruiker geredirect naar de inlogpagina 
             if (ActieveCode == true || CodeBestaat != 1)
             {
                 Response.Redirect(Standaardpagina);
@@ -84,13 +79,6 @@ public partial class Projectenoverzicht : System.Web.UI.Page
                 Session["Stemcode"] = StemCode;
             }
         }
-
-        
-
-        //maak een label met tekst erin
-        this.lbl_IngelogdAls.Text = StemCode;
-
-
     }
     //Bereid de nieuwe knoppen voor voor de teams
     public Buttons Team = new Buttons(Convert.ToString(HttpContext.Current.Request.QueryString["Stemmer"]));
