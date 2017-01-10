@@ -167,6 +167,13 @@
     height:20px;
 }
 
+.tabelh{
+     margin: 0px auto; 
+     border-collapse: unset; border-style: none; 
+     color:#000000;
+     background-color: #b3d3e8;
+     border-radius:10px;
+}
 
 table{
      margin: 0px auto; 
@@ -186,3 +193,4 @@ TD{
 TD:hover {background-color: #f5f5f5}
 
 td:nth-child(odd){background-color: #f2f2f2;}
+

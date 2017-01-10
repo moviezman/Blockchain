@@ -32,7 +32,7 @@
                 <ContentTemplate>
                     <asp:Label ID="lbl_Info" runat="server"></asp:Label>
                     <br />
-                    <asp:Table ID="Tbl_Projecten" runat="server" BorderWidth="1px" HorizontalAlign="Center"></asp:Table>
+                    <asp:Table ID="Tbl_Projecten" runat="server" BorderWidth="1px" HorizontalAlign="Center" CssClass="tabelh"></asp:Table>
                 </ContentTemplate>
                 <Triggers>
                     <asp:AsyncPostBackTrigger ControlID="btn_ProjectToevoegen" EventName="Click" />
