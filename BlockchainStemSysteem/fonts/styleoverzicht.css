@@ -1,8 +1,8 @@
 ﻿button
 {
     height:40px;
-    border: 2px ridge grey;
-    background: #3cb0fd;
+    border: 2px ridge rgba(128, 128, 128, 0.76);
+    background: rgba(60, 176, 253, 0.69);
     width: 200px;
     border-radius: 10px;
     margin-bottom: 8px;

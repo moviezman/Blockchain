@@ -32,6 +32,7 @@
                 <ContentTemplate>
                     <asp:Label ID="lbl_Info" runat="server"></asp:Label>
                     <br />
+                    <br />
                     <asp:Table ID="Tbl_Projecten" runat="server" BorderWidth="1px" HorizontalAlign="Center" CssClass="tabelh"></asp:Table>
                 </ContentTemplate>
                 <Triggers>

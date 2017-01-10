@@ -24,14 +24,10 @@ ImageButton {
 }
 
 button:hover {
-  background: #53dcfe;
-  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  background: #d5a10c;
+  background-image: linear-gradient(to bottom, #edd798, #eac048);
   text-decoration: none;
 }
-
 
 .klasselabels{
     color:red;
@@ -68,14 +64,14 @@ h1 {
 }
 
 h2{
-    
     font-weight:bold;
     font-family:'Lucida Sans';
-    color:black
+    color:#d5a10c;
 }
 
 h3{
-    font-size:12px;
+    font-size:25px;
+    font-weight:bold;
 }
 
 p{

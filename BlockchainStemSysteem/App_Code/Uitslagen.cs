@@ -67,7 +67,7 @@ public static class Uitslagen
 
         //Zonder blockchain:
         //Selecteert het project met de meeste stemmen
-        Uitslag += "<h1>De winnaar is: " + winnaar.ExecuteScalar() + "</h1><br />";
+        Uitslag += "<h4>Winnaar:" +"<br/>"+ winnaar.ExecuteScalar() + "</h4><br />";
 
         DataTable dt = new DataTable();
         asd.Fill(dt);
