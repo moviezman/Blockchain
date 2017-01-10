@@ -12,7 +12,7 @@ public partial class StemmingKiezen : System.Web.UI.Page
         DatabaseConnectie dbconnect = new DatabaseConnectie();
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
 
-        SqlDataAdapter asd = new SqlDataAdapter("Select Stemmingsnaam From Stemming", sqlConnection);
+        SqlDataAdapter asd = new SqlDataAdapter("SELECT StemmingsNaam FROM Stemming WHERE Actief = 'True'", sqlConnection);
         DataTable dt = new DataTable();
         asd.Fill(dt);
         foreach (DataRow row in dt.Rows)

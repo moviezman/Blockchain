@@ -10,7 +10,7 @@
     <form id="form1" runat="server">
     <div>
     
-        Kies de juiste stemming<br />
+        Kies de actieve stemming:<br />
         <% Response.Write(StemButtons); %>
     </div>
     </form>
