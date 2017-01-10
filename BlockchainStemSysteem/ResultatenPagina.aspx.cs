@@ -11,7 +11,8 @@ public partial class ResultatenPagina : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         string Stemming = Request.QueryString["Stemming"];
-        //Vang op of URL aangepast is
+        //Laadt de resultaten van de stemming uit de URL
+        //Deze pagina is ook te laden als je de URL goed intypt, omdat de resultaten publiek zijn
         DatabaseConnectie dbconnect = new DatabaseConnectie();
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
         SqlCommand StemmingActief = new SqlCommand("SELECT Actief FROM Stemming WHERE Stemmingsnaam = '" + Stemming + "';", sqlConnection);
