@@ -15,7 +15,7 @@
             <h2>Naam van stemming</h2>
             <asp:TextBox ID="Txtbx_StemmingsNaam" runat="server" Width="300px" autocomplete="off" CssClass="InvulBox"></asp:TextBox>
             <h2>Max aantal stemcodes</h2>
-            <asp:TextBox ID="txtbx_Nummer" runat="server" MaxLength="4" min="0" TextMode="Number" Width="55px" CssClass="StemBox"></asp:TextBox>
+            <asp:TextBox ID="txtbx_Nummer" runat="server" MaxLength="4" min="0" TextMode="Number" Width="55px" autocomplete="off" CssClass="StemBox"></asp:TextBox>
             <br />
             
         </div>

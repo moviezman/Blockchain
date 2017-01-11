@@ -37,7 +37,7 @@ public class BeheerderOverzicht
             SqlCommand BeschikbareUniekeCodes = new SqlCommand("SELECT COUNT(UniekeCode) FROM UC WHERE StemmingsNaam = '" + row["StemmingsNaam"] + "' AND HashTelNr IS NULL", sqlConnection);
             int BeschikbareCodes = (int)BeschikbareUniekeCodes.ExecuteScalar();
 
-            this.LopendeStemmingen += "<h1>" + row["StemmingsNaam"] + "</h1>Uitgegeven codes: " + UitgegevenCodes + "<br />Beschikbare codes: " + BeschikbareCodes + "<br /><button ID=knopStop formaction='TussenPagina.aspx?Stemming=" + row["StemmingsNaam"] + "&Login=" + Wachtwoord + "'>Stop</button></h1>";
+            this.LopendeStemmingen += "<h1>" + row["StemmingsNaam"] + "</h1>Uitgegeven codes: " + UitgegevenCodes + "<br />Beschikbare codes: " + BeschikbareCodes + "<br />" + "<br /><button ID=knopStop formaction='TussenPagina.aspx?Stemming=" + row["StemmingsNaam"] + "&Login=" + Wachtwoord + "'>Stop</button></h1>";
             sqlConnection.Close();
         }
         //returnt de code van lopende stemmingen
