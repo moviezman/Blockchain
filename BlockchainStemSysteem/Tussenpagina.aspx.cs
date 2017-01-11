@@ -25,7 +25,10 @@ public partial class Tussenpagina : System.Web.UI.Page
             string StemmingsNaam = Request.QueryString["Stemming"];
             Blocks.MaakBlock(StemmingsNaam);
             SqlCommand StopStemming = new SqlCommand("UPDATE Stemming SET Actief = 'false' WHERE StemmingsNaam = '" + StemmingsNaam + "'", sqlConnection);
-            SqlCommand Verwijdertelnr = new SqlCommand("UPDATE UC SET HashTelNr = NULL WHERE StemmingsNaam = '" + StemmingsNaam + "'", sqlConnection);
+            //Verandert alle gehashte telefoonnummers in '1'
+            //De hoeveelheid ingevulde telefoonnummers worden later opgehaald in de resultatenpaginabeheerder
+            //Daarom worden ze niet verandert in 'NULL'
+            SqlCommand Verwijdertelnr = new SqlCommand("UPDATE UC SET HashTelNr = '1' WHERE StemmingsNaam = '" + StemmingsNaam + "' AND HashTelNr IS NOT NULL", sqlConnection);
             sqlConnection.Open();
             //Stopt de stemming
             StopStemming.ExecuteScalar();
