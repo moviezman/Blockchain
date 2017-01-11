@@ -4,10 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
-    <link rel="stylesheet" type="text/css" href="fonts/style.css"/>
-    <style type="text/css">
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" href="fonts/style.css"/>
+   <title></title>
+     <style type="text/css">
+          
 
 .check{
     width:200px;

@@ -4,9 +4,10 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" type="text/css" href="fonts/style.css"/>
     <link rel="stylesheet" type="text/css" href="fonts/stylebevestig.css"/>
+      <title></title>
 </head>
 <body>
     <form id="form1" runat="server">
