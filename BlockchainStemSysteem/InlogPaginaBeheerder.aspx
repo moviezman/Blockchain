@@ -15,7 +15,7 @@
     <h2>Beheerderspagina Winnovation Expo</h2>
      <h3>Maak gebruik van uw beheerderswachtwoord om verder te gaan</h3>
     </div>
-        <asp:TextBox ID="txtbx_Login" type="password" runat="server" CssClass="InlogBox"> </asp:TextBox>
+        <asp:TextBox ID="txtbx_Login" type="password" runat="server" CssClass="InlogBox" MaxLength="20"></asp:TextBox>
             <asp:Button ID="btn_Login" runat="server" OnClick="Button_Login_Click" Text="Inloggen" CssClass="inloggen" />
         <p>
             <asp:Label ID="lbl_Info" runat="server"></asp:Label>
