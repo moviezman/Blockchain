@@ -5,11 +5,34 @@ using System.Net.Mail;
 
 public partial class Codeuitgeven : System.Web.UI.Page
 {
-
-
     protected void Page_Load(object sender, EventArgs e)
     {
+        string Stemming = Request.QueryString["Stemming"];
+        DatabaseConnectie dbconnect = new DatabaseConnectie();
+        SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
+        sqlConnection.Open();
 
+        //Checkt of de stemming bestaat
+        SqlCommand CheckStemmingBestaat = new SqlCommand("SELECT COUNT(*) From Stemming WHERE StemmingsNaam = '" + Stemming + "'", sqlConnection);
+        int StemmingBestaat = (int)CheckStemmingBestaat.ExecuteScalar();
+
+        //Checkt of de stemming actief is
+        SqlCommand CheckActief = new SqlCommand("SELECT Actief FROM Stemming WHERE Stemmingsnaam = '" + Stemming + "'", sqlConnection);
+        bool StemmingActief = Convert.ToBoolean(CheckActief.ExecuteScalar());
+        sqlConnection.Close();
+
+        //Redirect naar de inlogpagina als de stemming niet bestaat
+        if(StemmingBestaat == 0)
+        {
+            Response.Redirect("Inlogpagina");
+            return;
+        }
+        //Redirect naar de resultatenpagina van de stemming als de stemming afgelopen is
+        if (StemmingActief == false)
+        {
+            Response.Redirect("ResultatenPagina.aspx?Stemming=" + Stemming);
+            return;
+        }
     }
 
     protected void ImageButtonOkee_Click(object sender, EventArgs e)
