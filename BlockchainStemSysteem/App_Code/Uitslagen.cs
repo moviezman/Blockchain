@@ -26,7 +26,7 @@ public static class Uitslagen
 
         //Zonder blockchain:
         //Selecteert het project met de meeste stemmen
-        Uitslag += "<h3>" + winnaar.ExecuteScalar() + "</h3>";
+        Uitslag += "<h4>" + winnaar.ExecuteScalar() + "</h4>";
 
         sqlConnection.Close();
         //Returnt een string met daarin de winnaar

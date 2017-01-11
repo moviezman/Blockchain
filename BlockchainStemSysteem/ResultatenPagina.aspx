@@ -21,7 +21,6 @@
     <div>
        <!-- Haalt de Uitslagen op uit de Uitslagen klasse -->
        <% Response.Write(Uitslagen.UitslagStemming(Request.QueryString["Stemming"])); %>
-        <br />
          <img alt="Kroon" class="crown" src="fonts/nummers/crown.png"/><br />
         <h2>Gefeliciteerd!!</h2>
     </div>
