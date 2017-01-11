@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ResultatenPagina.aspx.cs" Inherits="ResultatenPagina" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ResultatenPaginaBeheerder.aspx.cs" Inherits="ResultatenPaginaBeheerder" %>
 
 <!DOCTYPE html>
 
