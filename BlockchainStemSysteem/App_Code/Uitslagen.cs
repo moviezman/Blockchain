@@ -13,6 +13,10 @@ public static class Uitslagen
         DatabaseConnectie dbconnect = new DatabaseConnectie();
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);        
         string Uitslag = "<h2>" + "De winnaar is</br>" + "</h2>";
+        
+        //Checkt hoeveel projecten de meeste stemmen hebben
+        SqlCommand CheckWinnaar = new SqlCommand("SELECT COUNT(*) FROM (SELECT GestemdOp FROM UC WHERE StemmingsNaam = '" + Stemming + "' AND GestemdOp = (SELECT Max(GestemdOp) FROM UC)) x", sqlConnection);
+        //Haalt de winnaar op
         SqlCommand winnaar = new SqlCommand("SELECT GestemdOp, Count(GestemdOp)AS 'AantalGestemd' FROM UC WHERE StemmingsNaam = '" + Stemming + "' GROUP BY GestemdOp ORDER BY AantalGestemd DESC;", sqlConnection);
         sqlConnection.Open();
 
@@ -26,7 +30,15 @@ public static class Uitslagen
 
         //Zonder blockchain:
         //Selecteert het project met de meeste stemmen
-        Uitslag += "<h4>" + winnaar.ExecuteScalar() + "</h4>";
+        if((int)CheckWinnaar.ExecuteScalar() == 1)
+        {
+            Uitslag += "<h4>" + winnaar.ExecuteScalar() + "</h4>";
+        }
+        else
+        {
+            Uitslag = "<h4>Gelijkspel</h4>";
+        }
+        
 
         sqlConnection.Close();
         //Returnt een string met daarin de winnaar
@@ -43,7 +55,10 @@ public static class Uitslagen
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
 
         string Uitslag = "<h1>Uitslagen van " + Stemming + "</h1></br> ";
-
+        
+        //Checkt hoeveel projecten de meeste stemmen hebben
+        SqlCommand CheckWinnaar = new SqlCommand("SELECT COUNT(*) FROM (SELECT GestemdOp FROM UC WHERE StemmingsNaam = '" + Stemming + "' AND GestemdOp = (SELECT Max(GestemdOp) FROM UC)) x", sqlConnection);
+        //Haalt de winnaar op
         SqlCommand winnaar = new SqlCommand("SELECT GestemdOp, Count(GestemdOp)AS 'AantalGestemd' FROM UC WHERE StemmingsNaam = '" + Stemming + "' GROUP BY GestemdOp ORDER BY AantalGestemd DESC;", sqlConnection);
 
         ////Met blockchain:
@@ -67,7 +82,14 @@ public static class Uitslagen
 
         //Zonder blockchain:
         //Selecteert het project met de meeste stemmen
-        Uitslag += "<h4>Winnaar:" +"<br/>"+ winnaar.ExecuteScalar() + "</h4><br />";
+        if ((int)CheckWinnaar.ExecuteScalar() == 1)
+        {
+            Uitslag += "<h4>Winnaar:<br />" + winnaar.ExecuteScalar() + "</h4><br />";
+        }
+        else
+        {
+            Uitslag += "<h4>Gelijkspel</h4><br />";
+        }
 
         DataTable dt = new DataTable();
         asd.Fill(dt);
