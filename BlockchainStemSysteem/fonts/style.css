@@ -1,10 +1,10 @@
 body {
-    background-image: url("/fonts/Nummers/Achtergrond1.png");
-    background-repeat: round;
-    /*background-color: lightblue;*/
+    background-image: url("/fonts/Nummers/Achtergrond.png");
+    background-repeat:  no-repeat;
+    background-color: #cfeaf8;
     text-align:center;
     color:black;
-    font-family:'Lucida Sans';
+    font-family:Lucida Sans;
 }
 
 
@@ -60,12 +60,12 @@ button:hover {
 h1 {
     color:#d5a10c;
     font-weight:bold;
-    font-family:'Lucida Sans';
+    font-family:Lucida Sans;
 }
 
 h2{
     font-weight:bold;
-    font-family:'Lucida Sans';
+    font-family:Lucida Sans;
     color:#d5a10c;
 }
 
@@ -75,7 +75,7 @@ h3{
 }
 
 p{
-    font-family:'Lucida Sans';
+    font-family:Lucida Sans;
 }
 
 .uil-spin {
@@ -84,7 +84,6 @@ p{
 
 .auto-style1 {
             width: 650px;
-            /*height: 150px;*/
         }
 
 .windesheimlogo{

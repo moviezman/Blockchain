@@ -1,10 +1,11 @@
 ﻿body {
-    background-image: url("/fonts/Nummers/footer_lodyas.png");
-    background-repeat: round;
-    /*background-color: rgba(97, 228, 246, 0.71);*/
+    background-image: url("/fonts/Nummers/Achtergrond_beheer1.png");
+    background-repeat:  repeat-x;
+    background-size: 3000px 3000px;
+    background-color: #cfeaf8;
     text-align:center;
     color:black;
-    font-family:'Lucida Sans';
+    font-family:Lucida Sans;
 }
 
 button

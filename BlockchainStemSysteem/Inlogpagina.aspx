@@ -41,15 +41,16 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <link rel="stylesheet" type="text/css" href="fonts/style.css">
+    <link rel="stylesheet" type="text/css" href="fonts/style.css"/>
+    <link rel="stylesheet" type="text/css" href="fonts/StyleOverzichtB.css"/>
     <title></title>
 </head>
 <body>
     <form id="form1" runat="server">
     <h1>Welkom bij de Winnovation Stempagina</h1>
         <div>Voer uw stemcode in:</div><br />
-        <asp:TextBox ID="TextBox1" runat="server" style="margin-bottom: 0px"></asp:TextBox>
-        <asp:Button ID="btn_Verstuur" runat="server" Text="Verstuur" OnClick="btn_Verstuur_Click" />
+        <asp:TextBox ID="TextBox1" runat="server" style="margin-bottom: 0px" CssClass="InlogBox"></asp:TextBox>
+        <asp:Button ID="btn_Verstuur" runat="server" Text="Verstuur" OnClick="btn_Verstuur_Click" CssClass="inloggen" />
         <br />
         <br />
         <asp:Label ID="Label1" runat="server" Text="Label" Visible="False"></asp:Label>
