@@ -93,6 +93,23 @@ public static class Uitslagen
 
         DataTable dt = new DataTable();
         asd.Fill(dt);
+
+        //Haalt op hoeveel unieke codes er bij deze stemming zijn aangemaakt
+        SqlCommand AantalUniekeCodes = new SqlCommand("SELECT COUNT(UniekeCode) FROM UC WHERE StemmingsNaam = '" + Stemming + "'", sqlConnection);
+        int AantalCodes = (int)AantalUniekeCodes.ExecuteScalar();
+
+        //Haalt op hoeveel unieke codes er bij deze stemming met een telefoonnummer gelinkt zijn
+        SqlCommand UitgegevenUniekeCodes = new SqlCommand("SELECT COUNT(UniekeCode) FROM UC WHERE StemmingsNaam = '" + Stemming + "' AND HashTelNr IS NOT NULL", sqlConnection);
+        int UitgegevenCodes = (int)UitgegevenUniekeCodes.ExecuteScalar();
+
+        //Haalt op hoe vaak er gestemd is:
+        SqlCommand AantalKeerGestemd = new SqlCommand("SELECT COUNT(UniekeCode) FROM UC WHERE StemmingsNaam = '" + Stemming + "' AND GestemdOp IS NOT NULL", sqlConnection);
+        int KeerGestemd = (int)AantalKeerGestemd.ExecuteScalar();
+
+        Uitslag += "<h5>Bij deze stemming zijn " + AantalCodes + " unieke codes aangemaakt<br />";
+        Uitslag += "Daarvan zijn er " + UitgegevenCodes + " gelinkt aan een telefoonnummer<br />";
+        Uitslag += "Uiteindelijk zijn er " + KeerGestemd + " gebruikt om mee te stemmen<br /><h5>";
+
         Uitslag += "<table>";
         foreach (DataRow row in dt.Rows)
         {

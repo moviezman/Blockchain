@@ -27,7 +27,17 @@ public class BeheerderOverzicht
             sqlConnection.Open();
             SqlCommand WwChecken = new SqlCommand("SELECT Hash FROM Wachtwoord WHERE Id = '1'", sqlConnection);
             string Wachtwoord = WwChecken.ExecuteScalar().ToString();
-            this.LopendeStemmingen += "<h1>" + row["StemmingsNaam"] + "<br><button ID=knopStop formaction='TussenPagina.aspx?Stemming=" + row["StemmingsNaam"] + "&Login=" + Wachtwoord + "'>Stop</button></h1>";
+
+            //SqlCommand AantalUniekeCodes = new SqlCommand("SELECT COUNT(UniekeCode) FROM UC WHERE StemmingsNaam = '" + row["StemmingsNaam"] + "'", sqlConnection);
+            //int AantalCodes = (int)AantalUniekeCodes.ExecuteScalar();
+
+            //Aantal codes die zijn uitgegeven en aantal codes die nog over zijn
+            SqlCommand UitgegevenUniekeCodes = new SqlCommand("SELECT COUNT(UniekeCode) FROM UC WHERE StemmingsNaam = '" + row["StemmingsNaam"] + "' AND HashTelNr IS NOT NULL", sqlConnection);
+            int UitgegevenCodes = (int)UitgegevenUniekeCodes.ExecuteScalar();
+            SqlCommand BeschikbareUniekeCodes = new SqlCommand("SELECT COUNT(UniekeCode) FROM UC WHERE StemmingsNaam = '" + row["StemmingsNaam"] + "' AND HashTelNr IS NULL", sqlConnection);
+            int BeschikbareCodes = (int)BeschikbareUniekeCodes.ExecuteScalar();
+
+            this.LopendeStemmingen += "<h1>" + row["StemmingsNaam"] + "</h1>Uitgegeven codes: " + UitgegevenCodes + "<br />Beschikbare codes: " + BeschikbareCodes + "<br /><button ID=knopStop formaction='TussenPagina.aspx?Stemming=" + row["StemmingsNaam"] + "&Login=" + Wachtwoord + "'>Stop</button></h1>";
             sqlConnection.Close();
         }
         //returnt de code van lopende stemmingen
