@@ -22,10 +22,6 @@ public partial class Codeuitgeven : System.Web.UI.Page
         string Telnr = txtbx_telnr.Text;
         bool TelNietNieuw = false;
 
-        SqlCommand NieuweCodeQuery = new SqlCommand("SELECT Top 1 UniekeCode FROM UC WHERE HashTelNr IS NULL AND StemmingsNaam ='" + Stemming + "';", sqlConnection);
-        //Nummer toevoegen aan database
-        SqlCommand UpdateNummer = new SqlCommand("INSERT INTO Stemmer VALUES(" + txtbx_telnr.Text + ", 'true');", sqlConnection);
-
         Nummercontrole check = new Nummercontrole();
         SqlCommand AlleNummers = new SqlCommand("SELECT HashTelNr FROM UC", sqlConnection);
         sqlConnection.Open();
@@ -47,9 +43,11 @@ public partial class Codeuitgeven : System.Web.UI.Page
             //Checken of een telefoonnummer wel een geldig nummer is
             if (check.Nummercheck(Convert.ToString("06" + txtbx_telnr.Text)))
             {
+                //Checkt of er nog unieke codes zijn voor de gekozen stemming
+                SqlCommand NieuweCodeQuery = new SqlCommand("SELECT Top 1 UniekeCode FROM UC WHERE HashTelNr IS NULL AND StemmingsNaam ='" + Stemming + "';", sqlConnection);
                 string NieuweCode = Convert.ToString(NieuweCodeQuery.ExecuteScalar());
 
-                if (NieuweCode != null)
+                if (NieuweCode != "")
                 {
                     //Hasht het telefoonnummer en verbindt het met een unieke code
                     Telnr = HashGenereren.Genereer(Telnr);
@@ -82,6 +80,11 @@ public partial class Codeuitgeven : System.Web.UI.Page
                     lbl_Info.Text = "Uw code is verzonden per SMS";
                     //Label4.Text = "Hier is uw code voor de Winnovation: localhost:50512/projectenoverzicht?Stemmer=" + NieuweCode;
                     txtbx_telnr.Text = "";
+                }
+                else
+                {
+                    lbl_Info.Visible = true;
+                    lbl_Info.Text = "Geen stemcodes beschikbaar";
                 }
             }
             else
