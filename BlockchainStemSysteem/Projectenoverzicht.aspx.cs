@@ -6,11 +6,23 @@ using System.Web;
 //met de unieke code waarmee hij/zij ingelogd is toegang tot heeft getoond
 public partial class Projectenoverzicht : System.Web.UI.Page
 {
+    //Bereid de nieuwe knoppen voor voor de teams
+    public Buttons Team = new Buttons(Convert.ToString(HttpContext.Current.Request.QueryString["Stemmer"]), ZoekResultaat);
+
+    //Slaat het zoekresultaat op
+    public static string ZoekResultaat = "";
+
     //Dit is de pagina waar de gebruiker heen wordt gestuurd als hij/zij de URL verandert
     string Standaardpagina = "Inlogpagina";
 
     //Dit is waar de gebruiker heen wordt gestuurd als de stemming al is afgelopen
     string Resultatenpagina = "ResultatenPagina";
+
+    protected void btn_ZoekResultaat_Click(object sender, EventArgs e)
+    {
+        ZoekResultaat = txtbx_ZoekResultaat.Text;
+        Team = new Buttons(Convert.ToString(HttpContext.Current.Request.QueryString["Stemmer"]), ZoekResultaat);
+    }
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -37,7 +49,7 @@ public partial class Projectenoverzicht : System.Web.UI.Page
         //Database verbinding openen
         sqlConnection.Open();
         bool ActieveCode;
-        if(GetStatusCode.ExecuteScalar() is DBNull)
+        if (GetStatusCode.ExecuteScalar() is DBNull)
         {
             ActieveCode = false;
         }
@@ -81,6 +93,5 @@ public partial class Projectenoverzicht : System.Web.UI.Page
             }
         }
     }
-    //Bereid de nieuwe knoppen voor voor de teams
-    public Buttons Team = new Buttons(Convert.ToString(HttpContext.Current.Request.QueryString["Stemmer"]));
+
 }
