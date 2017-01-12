@@ -158,7 +158,7 @@ public partial class _Default : System.Web.UI.Page
             lbl_Info.Text = "Vul eerst een teamnaam in";
             vulTabel();
         }
-        txtbx_Project.Text = string.Empty;
+        txtbx_Project.Text = String.Empty;
     }
 
     //Vult de tabel met de lijst Projecten uit de Global klasse

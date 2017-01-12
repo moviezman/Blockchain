@@ -13,8 +13,11 @@
     <form id='form1' runat='server'>
     <div>
         <h2>Kies je favoriet!</h2>
-        <asp:TextBox ID="txtbx_ZoekResultaat" runat="server" CssClass="ZoekBox"></asp:TextBox>
+        <asp:TextBox ID="txtbx_ZoekResultaat" runat="server" MaxLength="50" autocomplete="off" CssClass="ZoekBox"></asp:TextBox>
+        <br />
+        <br />
         <asp:Button ID="btn_ZoekResultaat" runat="server" OnClick="btn_ZoekResultaat_Click" Text="Zoek" CssClass="ZoekKnop" />
+        <asp:Button ID="btn_ResetResultaat" runat="server" OnClick="btn_ResetResultaat_Click" Text="Overzicht" CssClass="ZoekKnop" />
         <br />
         <br />
         <% Response.Write(Team.TeamButtons); %>

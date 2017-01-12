@@ -142,7 +142,7 @@ p{
 
 .InlogBox{
     border-radius: 11px;
-    text-align:left;
+    text-align:center;
     height:20px;
     font-size:18px;
 }
@@ -152,6 +152,12 @@ p{
     height:200px;
 }
 
+.ZoekBox{
+    border-radius: 11px;
+    text-align:center;
+    height:20px;
+    font-size:18px;
+}
 
 .ZoekKnop{
     border-radius: 10px;
@@ -168,11 +174,4 @@ p{
 .ZoekKnop:active {
     position: relative;
     top: 1px;
-}
-
-.ZoekBox{
-    border-radius: 11px;
-    text-align:center;
-    height:20px;
-    font-size:18px;
 }
