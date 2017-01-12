@@ -15,8 +15,8 @@ button:hover {
 }
 
 button:active {
-    position: relative;
-    top: 1px;
+    vertical-align: top;
+    padding: 8px 13px 6px;
 }
 
 .klasselabels{
@@ -29,6 +29,12 @@ button:active {
     height:100px;
     position: center;
 }
+
+.button:active {
+    position: relative;
+    transform: translateY(2px);
+}
+
 
 .foutmelding{
     color:red;
