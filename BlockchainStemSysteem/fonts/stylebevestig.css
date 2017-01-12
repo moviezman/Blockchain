@@ -8,6 +8,12 @@
     font-weight:bold;
     font-family:Calibri;
 }
+
+.knopJa:active {
+    vertical-align: top;
+    padding: 8px 8px 6px;
+}
+
 .knopNee{
     height:40px;
     border: 2px ridge grey;
@@ -18,6 +24,12 @@
     font-weight:bold;
     font-family:Calibri;
 }
+
+.knopNee:active {
+    vertical-align: top;
+    padding: 8px 8px 6px;
+}
+
 .knopJa:hover {
   background-image: linear-gradient(to bottom, #53e443, #51d942);
   text-decoration: none;

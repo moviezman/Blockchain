@@ -36,6 +36,11 @@ button
   text-decoration: none;
 }
 
+#knopStop:active {
+    vertical-align: top;
+    padding: 8px 13px 6px;
+}
+
 .NieuweStemming{
     height:40px;
     border: 2px ridge grey;
@@ -55,6 +60,11 @@ button
 .NieuweStemming:hover {
   background-image: linear-gradient(to bottom, #53e443, #51d942);
   text-decoration: none;
+}
+
+.NieuweStemming:active {
+    vertical-align: top;
+    padding: 8px 13px 6px;
 }
 
 .TerugKnop{
@@ -78,6 +88,11 @@ button
   text-decoration: none;
     }
 
+.TerugKnop:active {
+    vertical-align: top;
+    padding: 8px 13px 6px;
+}
+
 .StartStemming{
     height:40px;
     border: 2px ridge grey;
@@ -97,6 +112,11 @@ button
 .StartStemming:hover {
   background-image: linear-gradient(to bottom, #53e443, #51d942);
   text-decoration: none;
+}
+
+.StartStemming:active {
+    vertical-align: top;
+    padding: 8px 13px 6px;
 }
 
 .WWW{
@@ -120,6 +140,11 @@ button
   text-decoration: none;
     }
 
+.WWW:active {
+    vertical-align: top;
+    padding: 8px 8px 6px;
+}
+
 .Opslaan{
     height:40px;
     border: 2px ridge grey;
@@ -139,6 +164,11 @@ button
 .Opslaan:hover {
   background-image: linear-gradient(to bottom, #53e443, #51d942);
   text-decoration: none;
+}
+
+.Opslaan:active {
+    vertical-align: top;
+    padding: 8px 13px 6px;
 }
 
 .InvulBox{
@@ -166,6 +196,11 @@ button
         text-decoration: none;
     }
 
+.ToevoegKnop:active {
+    position: relative;
+    top: 1px;
+}
+
 .VerwijderKnop:hover {
         background-image: linear-gradient(to bottom, #ba3636, #ef4646);
         text-decoration: none;
@@ -175,6 +210,11 @@ button
     border-radius: 10px;
     text-align:center;
     height:20px;
+}
+
+.VerwijderKnop:active {
+    position: relative;
+    top: 1px;
 }
 
 .tabelh{

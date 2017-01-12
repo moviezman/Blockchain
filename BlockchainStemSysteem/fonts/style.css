@@ -8,25 +8,15 @@ body {
 }
 
 
-ImageButton {
-  background: #3498db;
-  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
-  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
-  background-image: -o-linear-gradient(top, #3498db, #2980b9);
-  background-image: linear-gradient(to bottom, #3498db, #2980b9);
-  border-radius: 28px;
-  font-family: Arial;
-  color: #ffffff;
-  font-size: 20px;
-  padding: 10px 20px 10px 20px;
-  text-decoration: none;
-  position:center;
-}
-
 button:hover {
   background: #d5a10c;
   background-image: linear-gradient(to bottom, #edd798, #eac048);
   text-decoration: none;
+}
+
+button:active {
+    position: relative;
+    top: 1px;
 }
 
 .klasselabels{
@@ -122,6 +112,11 @@ p{
   text-decoration: none;
     }
 
+.uitloggen:active {
+    vertical-align: top;
+    padding: 8px 8px 6px;
+}
+
 .inloggen{
     border-radius: 10px;
     text-align:center;
@@ -133,6 +128,11 @@ p{
         background-image: linear-gradient(to bottom, #40e6f1, #3ea7cf);
         text-decoration: none;
     }
+
+.inloggen:active {
+    position: relative;
+    top: 1px;
+}
 
 .InlogBox{
     border-radius: 11px;

@@ -51,7 +51,7 @@
     <h1>Welkom bij de Winnovation Stempagina</h1>
         <div>Voer uw stemcode in:</div><br />
         <asp:TextBox ID="TextBox1" runat="server" style="margin-bottom: 0px" autocomplete="off" CssClass="InlogBox" MaxLength="10"></asp:TextBox>
-        <asp:Button ID="btn_Verstuur" runat="server" Text="Verstuur" OnClick="btn_Verstuur_Click" CssClass="inloggen" />
+        <asp:Button ID="btn_Verstuur" runat="server" Text="Verstuur" OnClick="btn_Verstuur_Click" CssClass="Inloggen" />
         <br />
         <br />
         <asp:Label ID="Label1" runat="server" Text="Label" Visible="False"></asp:Label>
