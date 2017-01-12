@@ -50,7 +50,7 @@
     <form id="form1" runat="server">
     <h1>Welkom bij de Winnovation Stempagina</h1>
         <div>Voer uw stemcode in:</div><br />
-        <asp:TextBox ID="TextBox1" runat="server" style="margin-bottom: 0px" autocomplete="off" CssClass="InlogBox" MaxLength="10" OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
+        <asp:TextBox ID="TextBox1" runat="server" style="margin-bottom: 0px" autocomplete="off" CssClass="InlogBox" MaxLength="10"></asp:TextBox>
         <asp:Button ID="btn_Verstuur" runat="server" Text="Verstuur" OnClick="btn_Verstuur_Click" CssClass="inloggen" />
         <br />
         <br />

@@ -85,13 +85,14 @@ public partial class Codeuitgeven : System.Web.UI.Page
                     MailMessage mail = new MailMessage();
                     SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
 
+                    //De e-mail wordt verstuurd vanaf dit g-mail account
                     mail.From = new MailAddress("winnovationwindesheim@gmail.com");
                     //Het telefoonnummer waar naar wordt verstuurd is het telefoonnummer in de tekstbox
-                    //mail.To.Add(TextBox1.Text + "@sms.informaxion.nl");
-                    mail.To.Add("personalthijsiedema@gmail.com");
+                    mail.To.Add("06" + txtbx_telnr.Text + "@sms.informaxion.nl");
+                    //mail.To.Add("personalthijsiedema@gmail.com");
                     mail.Subject = "2410, Winnovation";
-                    //mail.Body = "Hier is uw code voor de Winnovation: http://www.winnovationwindesheim.nl/projectenoverzicht?" + NieuweCode;
-                    mail.Body = "Hier is uw code voor de Winnovation: localhost:50512/projectenoverzicht?Stemmer=" + NieuweCode;
+                    mail.Body = "Hier is uw code voor de Winnovation: http://www.winnovationexpo.nl/projectenoverzicht?Stemmer=" + NieuweCode;
+                    //mail.Body = "Hier is uw code voor de Winnovation: localhost:50512/projectenoverzicht?Stemmer=" + NieuweCode;
 
                     SmtpServer.Port = 587;
                     SmtpServer.Credentials = new System.Net.NetworkCredential("winnovationwindesheim", password);
@@ -101,7 +102,6 @@ public partial class Codeuitgeven : System.Web.UI.Page
 
                     lbl_Info.Visible = true;
                     lbl_Info.Text = "Uw code is verzonden per SMS";
-                    //Label4.Text = "Hier is uw code voor de Winnovation: localhost:50512/projectenoverzicht?Stemmer=" + NieuweCode;
                     txtbx_telnr.Text = "";
                 }
                 else

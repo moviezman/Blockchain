@@ -1,14 +1,15 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 
 //Haalt de resultaten op voor zowel de gebruiker als de beheerder
 public static class Uitslagen
 {
+    static bool GebruikBlockchain = false;
     //Haalt de resultaten op voor de gebruiker (toont alleen de winnaar)
     public static string UitslagStemming(string Stemming)
     {
-        ////Met blockchain:
-        //Blocks.Decodeer(Stemming);
+        if (GebruikBlockchain) { Blocks.Decodeer(Stemming); }
 
         DatabaseConnectie dbconnect = new DatabaseConnectie();
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);        
@@ -20,18 +21,24 @@ public static class Uitslagen
         SqlCommand winnaar = new SqlCommand("SELECT GestemdOp, Count(GestemdOp)AS 'AantalGestemd' FROM UC WHERE StemmingsNaam = '" + Stemming + "' GROUP BY GestemdOp ORDER BY AantalGestemd DESC;", sqlConnection);
         sqlConnection.Open();
 
-        ////Met blockchain:
-        ////string Winnaar = (from x in Blocks.GestemdOp select x).Count().Max();
-        ////Winnaar ophalen met LINQ werkt nog niet goed
-        //var maxValue = Blocks.GestemdOp.Max(x => x);
-        //var Winnaar = Blocks.GestemdOp.Select(x => x == maxValue);
-        ////string Winnaar = ((from x in Blocks.GestemdOp select x.Count())).Max();
-        //Uitslag += Winnaar;
-
-        //Zonder blockchain:
         //Selecteert het project met de meeste stemmen
-        Uitslag += "<h4>" + winnaar.ExecuteScalar() + "</h4>";      
+        if (GebruikBlockchain)
+        {
+            //Winnaar ophalen met blockchain werkt nog niet!
+            //string Winnaar = (from x in Blocks.GestemdOp select x).Count().Max();
+            //Winnaar ophalen met LINQ werkt nog niet goed
+            //var maxValue = Blocks.GestemdOp.Max(x => x);
+            //var Winnaar = Blocks.GestemdOp.Select(x => x == maxValue);
+            //string Winnaar = ((from x in Blocks.GestemdOp select x.Count())).Max();
+            //Uitslag += Winnaar;
 
+            //Haalt de winnaar op zonder blockchain (omdat met blockchain nog niet werkt):
+            Uitslag += "<h4>" + winnaar.ExecuteScalar() + "</h4>";
+        }
+        else
+        {
+            Uitslag += "<h4>" + winnaar.ExecuteScalar() + "</h4>";
+        }
         sqlConnection.Close();
         //Returnt een string met daarin de winnaar
         return Uitslag;
@@ -40,8 +47,7 @@ public static class Uitslagen
     //Haalt de resultaten op voor de beheerder (toont zowel de winnaar als het aantal stemmen per team)
     public static string UitslagStemmingBeheerder(string Stemming)
     {
-        ////Met blockchain:
-        //Blocks.Decodeer(Stemming);
+        if (GebruikBlockchain) { Blocks.Decodeer(Stemming); }
 
         DatabaseConnectie dbconnect = new DatabaseConnectie();
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
@@ -51,31 +57,25 @@ public static class Uitslagen
         //Haalt de winnaar op
         SqlCommand winnaar = new SqlCommand("SELECT GestemdOp, Count(GestemdOp)AS 'AantalGestemd' FROM UC WHERE StemmingsNaam = '" + Stemming + "' GROUP BY GestemdOp ORDER BY AantalGestemd DESC;", sqlConnection);
 
-        ////Met blockchain:
-        ////Winnaar ophalen met LINQ werkt nog niet goed
-        //var maxValue = Blocks.GestemdOp.Max(x => x);
-        //var Winnaar = Blocks.GestemdOp.Select(x => x == maxValue);
-        ////string Winnaar = ((from x in Blocks.GestemdOp select x.Count())).Max();
-        //Console.WriteLine(Winnaar);
-        //Uitslag += Winnaar;
-
-        
-        //Gesorteerd op hoeveelheid stemmen
-        SqlDataAdapter asd = new SqlDataAdapter("SELECT project.naam, Count(UC.GestemdOp) as aantal_stemmen FROM project LEFT JOIN(SELECT gestemdOp FROM UC WHERE UC.stemmingsnaam = '" + Stemming + "') as UC ON project.naam = UC.gestemdOp WHERE project.stemmingsnaam = '" + Stemming + "' GROUP BY project.naam ORDER BY aantal_stemmen DESC", sqlConnection);
-
-        //Gesorteerd op naam
-        //SqlDataAdapter asd = new SqlDataAdapter("SELECT project.naam, Count(UC.GestemdOp) as aantal_stemmen FROM project LEFT JOIN(SELECT gestemdOp FROM UC WHERE UC.stemmingsnaam = '" + Stemming + "') as UC ON project.naam = UC.gestemdOp WHERE project.stemmingsnaam = '" + Stemming + "' GROUP BY project.naam", sqlConnection);
         sqlConnection.Open();
 
-        ////Met blockchain:
-        //Uitslag += "<h1>De winnaar is: " + Winnaar + "</h1><br />";
-
-        //Zonder blockchain:
         //Selecteert het project met de meeste stemmen
-        Uitslag += "<h4>Winnaar:<br />" + winnaar.ExecuteScalar() + "</h4><br />";
+        if (GebruikBlockchain)
+        {
+            ////Winnaar ophalen met LINQ werkt nog niet goed
+            //var maxValue = Blocks.GestemdOp.Max(x => x);
+            //var Winnaar = Blocks.GestemdOp.Select(x => x == maxValue);
+            ////string Winnaar = ((from x in Blocks.GestemdOp select x.Count())).Max();
+            //Console.WriteLine(Winnaar);
+            //Uitslag += "<h4>Winnaar:<br />" + Winnaar + "</h4><br />";
 
-        DataTable dt = new DataTable();
-        asd.Fill(dt);
+            //Haalt de winnaar op zonder blockchain (omdat met blockchain nog niet werkt):
+            Uitslag += "<h4>Winnaar:<br />" + winnaar.ExecuteScalar() + "</h4><br />";
+        }
+        else
+        {
+            Uitslag += "<h4>Winnaar:<br />" + winnaar.ExecuteScalar() + "</h4><br />";
+        }
 
         //Haalt op hoeveel unieke codes er bij deze stemming zijn aangemaakt
         SqlCommand AantalUniekeCodes = new SqlCommand("SELECT COUNT(UniekeCode) FROM UC WHERE StemmingsNaam = '" + Stemming + "'", sqlConnection);
@@ -93,17 +93,28 @@ public static class Uitslagen
         Uitslag += "Daarvan zijn er " + UitgegevenCodes + " gelinkt aan een telefoonnummer<br />";
         Uitslag += "Uiteindelijk zijn er " + KeerGestemd + " gebruikt om mee te stemmen<br /><h5>";
 
+        //Gesorteerd op hoeveelheid stemmen
+        SqlDataAdapter asd = new SqlDataAdapter("SELECT project.naam, Count(UC.GestemdOp) as aantal_stemmen FROM project LEFT JOIN(SELECT gestemdOp FROM UC WHERE UC.stemmingsnaam = '" + Stemming + "') as UC ON project.naam = UC.gestemdOp WHERE project.stemmingsnaam = '" + Stemming + "' GROUP BY project.naam ORDER BY aantal_stemmen DESC", sqlConnection);
+
+        //Gesorteerd op naam
+        //SqlDataAdapter asd = new SqlDataAdapter("SELECT project.naam, Count(UC.GestemdOp) as aantal_stemmen FROM project LEFT JOIN(SELECT gestemdOp FROM UC WHERE UC.stemmingsnaam = '" + Stemming + "') as UC ON project.naam = UC.gestemdOp WHERE project.stemmingsnaam = '" + Stemming + "' GROUP BY project.naam", sqlConnection);
+
+        DataTable dt = new DataTable();
+        asd.Fill(dt);
+
         Uitslag += "<table>";
         foreach (DataRow row in dt.Rows)
         {
-            ////Met blockchain:
-            ////Haalt het aantal keer dat op een project gestemd is op
-            //int AantalStemmen = 0;
-            //AantalStemmen = (from x in Blocks.GestemdOp where x == (string)row["Naam"] select x).Count();
-            //Uitslag += row["Naam"] + " " + AantalStemmen + "<br />";
-
-            //Zonder blockchain:
-            Uitslag += "<tr><td>" + row["Naam"] + "</td><td>" + row["aantal_stemmen"] + "</td></tr>";
+            //Haalt het aantal keer dat op een project gestemd is op
+            if (GebruikBlockchain)
+            {
+                int AantalStemmen = 0;
+                AantalStemmen = (from x in Blocks.GestemdOp where x == (string)row["Naam"] select x).Count();
+                Uitslag += "<tr><td>" + row["Naam"] + "</td><td>" + AantalStemmen + "</td></tr>";
+            } else
+            {
+                Uitslag += "<tr><td>" + row["Naam"] + "</td><td>" + row["aantal_stemmen"] + "</td></tr>";
+            }            
         }
         Uitslag += "</table>";
         sqlConnection.Close();
