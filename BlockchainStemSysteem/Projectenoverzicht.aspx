@@ -13,6 +13,10 @@
     <form id='form1' runat='server'>
     <div>
         <h2>Kies je favoriet!</h2>
+        <asp:TextBox ID="txtbx_ZoekResultaat" runat="server"></asp:TextBox>
+        <asp:Button ID="btn_ZoekResultaat" runat="server" OnClick="btn_ZoekResultaat_Click" Text="Zoek" />
+        <br />
+        <br />
         <% Response.Write(Team.TeamButtons); %>
     </div>
     </form>
