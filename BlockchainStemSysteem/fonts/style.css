@@ -146,7 +146,33 @@ p{
     height:20px;
     font-size:18px;
 }
+
 .crown{
     width:200px;
     height:200px;
+}
+
+
+.ZoekKnop{
+    border-radius: 10px;
+    text-align:center;
+    height:25px;
+    font-size:15px;
+}
+
+.ZoekKnop:hover {
+        background-image: linear-gradient(to bottom, #40e6f1, #3ea7cf);
+        text-decoration: none;
+    }
+
+.ZoekKnop:active {
+    position: relative;
+    top: 1px;
+}
+
+.ZoekBox{
+    border-radius: 11px;
+    text-align:center;
+    height:20px;
+    font-size:18px;
 }
