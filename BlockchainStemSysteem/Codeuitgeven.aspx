@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title></title>
+    <title>Winnovation Expo</title>
     <link rel="stylesheet" type="text/css" href="fonts/style.css"/>
 </head>
 <body>
