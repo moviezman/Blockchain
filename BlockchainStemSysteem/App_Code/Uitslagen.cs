@@ -89,9 +89,9 @@ public static class Uitslagen
         SqlCommand AantalKeerGestemd = new SqlCommand("SELECT COUNT(UniekeCode) FROM UC WHERE StemmingsNaam = '" + Stemming + "' AND GestemdOp IS NOT NULL", sqlConnection);
         int KeerGestemd = (int)AantalKeerGestemd.ExecuteScalar();
 
-        Uitslag += "<h5>Bij deze stemming zijn " + AantalCodes + " unieke codes aangemaakt<br />";
-        Uitslag += "Daarvan zijn er " + UitgegevenCodes + " gelinkt aan een telefoonnummer<br />";
-        Uitslag += "Uiteindelijk zijn er " + KeerGestemd + " gebruikt om mee te stemmen<br /><h5>";
+        Uitslag += "<h5>Voor deze stemming zijn " + AantalCodes + " unieke codes aangemaakt.<br />";
+        Uitslag += "Er zijn " + UitgegevenCodes + " SMS'jes verstuurd.<br />";
+        Uitslag += "Uiteindelijk is er " + KeerGestemd + " keer gestemd.<br /><h5>";
 
         //Gesorteerd op hoeveelheid stemmen
         SqlDataAdapter asd = new SqlDataAdapter("SELECT project.naam, Count(UC.GestemdOp) as aantal_stemmen FROM project LEFT JOIN(SELECT gestemdOp FROM UC WHERE UC.stemmingsnaam = '" + Stemming + "') as UC ON project.naam = UC.gestemdOp WHERE project.stemmingsnaam = '" + Stemming + "' GROUP BY project.naam ORDER BY aantal_stemmen DESC", sqlConnection);

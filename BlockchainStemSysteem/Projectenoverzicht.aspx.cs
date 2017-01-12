@@ -62,6 +62,7 @@ public partial class Projectenoverzicht : System.Web.UI.Page
 
             while (dr.Read())
             {
+                StemCode = Request.QueryString["Stemmer"];
                 Response.Redirect("ResultatenPagina.aspx?Stemming=" + dr[0].ToString());
             }
             dr.Close();

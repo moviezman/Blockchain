@@ -108,6 +108,7 @@ public partial class Codeuitgeven : System.Web.UI.Page
                 {
                     lbl_Info.Visible = true;
                     lbl_Info.Text = "Geen stemcodes beschikbaar";
+                    txtbx_telnr.Text = "";
                 }
             }
             else
@@ -121,6 +122,7 @@ public partial class Codeuitgeven : System.Web.UI.Page
         {
             lbl_Info.Visible = true;
             lbl_Info.Text = "Dit nummer is al gebruikt";
+            txtbx_telnr.Text = "";
         }
     }
 
