@@ -29,8 +29,8 @@ public partial class Projectenoverzicht : System.Web.UI.Page
     protected void btn_ResetResultaat_Click(object sender, EventArgs e)
     {
         txtbx_ZoekResultaat.Text = String.Empty;
-        ZoekResultaat = txtbx_ZoekResultaat.Text;
-        Team = new Buttons(Convert.ToString(HttpContext.Current.Request.QueryString["Stemmer"]), ZoekResultaat);
+        ZoekResultaat = String.Empty;
+        Team = new Buttons(Convert.ToString(HttpContext.Current.Request.QueryString["Stemmer"]), String.Empty);
     }
 
     protected void Page_Load(object sender, EventArgs e)
