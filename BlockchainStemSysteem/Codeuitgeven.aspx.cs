@@ -5,6 +5,7 @@ using System.Net.Mail;
 
 public partial class Codeuitgeven : System.Web.UI.Page
 {
+    bool ImageButtons = false;
     protected void Page_Load(object sender, EventArgs e)
     {
         string Stemming = Request.QueryString["Stemming"];
@@ -32,6 +33,23 @@ public partial class Codeuitgeven : System.Web.UI.Page
         {
             Response.Redirect("ResultatenPagina.aspx?Stemming=" + Stemming);
             return;
+        }
+
+        if (ImageButtons == false)
+        {
+            txtbx_telnr.Enabled = true;
+            ImageButton0.Visible = false;
+            ImageButton1.Visible = false;
+            ImageButton2.Visible = false;
+            ImageButton3.Visible = false;
+            ImageButton4.Visible = false;
+            ImageButton5.Visible = false;
+            ImageButton6.Visible = false;
+            ImageButton7.Visible = false;
+            ImageButton8.Visible = false;
+            ImageButton9.Visible = false;
+            ImageButtonBack.Visible = false;
+            ImageButton0.Visible = false;
         }
     }
 

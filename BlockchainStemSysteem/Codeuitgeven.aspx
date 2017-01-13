@@ -20,7 +20,7 @@
             <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
                 <ContentTemplate>
                     <asp:TextBox ID="txtbx_06" runat="server" Enabled="False" Width="22px" CssClass="box">06</asp:TextBox>
-                    <asp:TextBox ID="txtbx_telnr" runat="server" MaxLength="8" Enabled="False" Width="200px" CssClass="box"></asp:TextBox>
+                    <asp:TextBox ID="txtbx_telnr" InputScope="Number" runat="server" MaxLength="8" Enabled="False" Width="200px" CssClass="box"></asp:TextBox>
                     <br />
                     <br />
                     <asp:Label ID="lbl_Info" runat="server" Visible="False" CssClass="foutmelding"></asp:Label>
