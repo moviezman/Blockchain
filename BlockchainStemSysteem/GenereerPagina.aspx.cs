@@ -167,11 +167,12 @@ public partial class _Default : System.Web.UI.Page
         Global.Projecten.Reverse();
         foreach (string project in Global.Projecten)
         {
+            TableRow tRow = new TableRow();
+            Tbl_Projecten.Rows.Add(tRow);
             TableRow tRow2 = new TableRow();
-            Tbl_Projecten.Rows.Add(tRow2);
-            TableCell tCell2 = new TableCell();
-            tCell2.Text = project;
-            tRow2.Cells.Add(tCell2);
+            TableCell tCell = new TableCell();
+            tCell.Text = project;
+            tRow.Cells.Add(tCell);
         }
         Global.Projecten.Reverse();
     }
