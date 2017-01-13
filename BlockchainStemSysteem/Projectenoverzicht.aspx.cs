@@ -23,6 +23,7 @@ public partial class Projectenoverzicht : System.Web.UI.Page
         ZoekResultaat = txtbx_ZoekResultaat.Text;
         Team = new Buttons(Convert.ToString(HttpContext.Current.Request.QueryString["Stemmer"]), ZoekResultaat);
         txtbx_ZoekResultaat.Text = String.Empty;
+        ZoekResultaat = String.Empty;
     }
 
     protected void btn_ResetResultaat_Click(object sender, EventArgs e)
