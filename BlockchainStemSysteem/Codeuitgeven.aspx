@@ -23,8 +23,9 @@
    </script>
 </head>
 <body>
+    <div class="mobileShow">
     <form id="form1" runat="server">
-        <div>
+        <div >
             <img alt="Logo Winnovation" class="auto-style1" src="/fonts/Nummers/logotransparant.png" /><br />
             <br />
             <asp:Label ID="lbl_VoerTelNrIn" runat="server" Text="Voer uw telefoonnummer in" CssClass="invoer"></asp:Label>
@@ -83,12 +84,13 @@
         </div>
     </form>
     <img alt="Logo Windesheim" class="windesheimlogo" src="/fonts/Nummers/windesheimlogodis.png" />
-    <div style="position: relative; width: 600px; height: 150px;">
+    <div  style="position: relative; width: 600px; height: 150px;">
         <div style="position: absolute; bottom: -91px; left: 3px;">
             Icons made by Pixel Buddha & Freepik 
         <br />
             from www.flaticon.com
         </div>
+    </div>
     </div>
 </body>
 </html>

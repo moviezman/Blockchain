@@ -109,7 +109,7 @@ public partial class Codeuitgeven : System.Web.UI.Page
                     //mail.To.Add("06" + txtbx_telnr.Text + "@sms.informaxion.nl");
                     mail.To.Add("rbwindesheim@gmail.com");
                     mail.Subject = "2410, Winnovation";
-                    mail.Body = "Hier is uw code voor Winnovation: http://bf932a37.ngrok.io/projectenoverzicht?Stemmer=" + NieuweCode;
+                    mail.Body = "Hier is uw code voor Winnovation: http://5e226d69.ngrok.io/projectenoverzicht?Stemmer=" + NieuweCode;
                     //mail.Body = "Hier is uw code voor Winnovation: http://www.winnovationexpo.nl/projectenoverzicht?Stemmer=" + NieuweCode;
                     //mail.Body = "Hier is uw code voor Winnovation: localhost:50512/projectenoverzicht?Stemmer=" + NieuweCode;
 
