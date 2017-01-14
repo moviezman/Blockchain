@@ -106,10 +106,10 @@ public partial class Codeuitgeven : System.Web.UI.Page
                     //De e-mail wordt verstuurd vanaf dit g-mail account
                     mail.From = new MailAddress("winnovationwindesheim@gmail.com");
                     //Het telefoonnummer waar naar wordt verstuurd is het telefoonnummer in de tekstbox
-                    mail.To.Add("06" + txtbx_telnr.Text + "@sms.informaxion.nl");
-                    //mail.To.Add("personalthijsiedema@gmail.com");
+                    //mail.To.Add("06" + txtbx_telnr.Text + "@sms.informaxion.nl");
+                    mail.To.Add("rbwindesheim@gmail.com");
                     mail.Subject = "2410, Winnovation";
-                    mail.Body = "Hier is uw code voor Winnovation: http://15df64e7.ngrok.io/projectenoverzicht?Stemmer=" + NieuweCode;
+                    mail.Body = "Hier is uw code voor Winnovation: http://bf932a37.ngrok.io/projectenoverzicht?Stemmer=" + NieuweCode;
                     //mail.Body = "Hier is uw code voor Winnovation: http://www.winnovationexpo.nl/projectenoverzicht?Stemmer=" + NieuweCode;
                     //mail.Body = "Hier is uw code voor Winnovation: localhost:50512/projectenoverzicht?Stemmer=" + NieuweCode;
 

@@ -62,7 +62,7 @@ public partial class Gestemd : System.Web.UI.Page
             }
             sqlConnection.Close();
 
-            lbl_GestemdOp.Text = "Bedankt voor uw stem";
+            lbl_GestemdOp.Text = "Bedankt voor uw stem!";
             Label1.Text = Team;
         }
     }

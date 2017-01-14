@@ -25,8 +25,8 @@ button:active {
 }
 
 .button{
-    width:100px;
-    height:100px;
+    width:200px;
+    height:200px;
     position: center;
 }
 
@@ -90,7 +90,7 @@ p{
         }
 
 .windesheimlogo{
-    width: 370px;
+    /*width: 370px;*/
     height: 150px;
     position: absolute;
     right: 0px;

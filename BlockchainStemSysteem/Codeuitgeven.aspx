@@ -7,6 +7,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Winnovation Expo</title>
     <link rel="stylesheet" type="text/css" href="fonts/style.css" />
+    <script type="text/javascript">
+ 
+ 
+      function isNumberKey(evt)
+      {
+         var charCode = (evt.which) ? evt.which : event.keyCode
+         if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+             alert("Alleen numerieke invoer!");
+             return false;
+         }
+ 
+         return true;
+      }
+ 
+   </script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -20,12 +35,10 @@
             <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
                 <ContentTemplate>
                     <asp:TextBox ID="txtbx_06" runat="server" Enabled="False" Width="22px" CssClass="box">06</asp:TextBox>
-                    <asp:TextBox ID="txtbx_telnr" input="number" runat="server" MaxLength="8" Enabled="False" Width="200px" CssClass="box"></asp:TextBox>
+                    <asp:TextBox ID="txtbx_telnr" onkeypress="return isNumberKey(event)" input="number" type="tel" min="0" runat="server" MaxLength="8" autocomplete="off" Enabled="False" Width="200px" CssClass="box"></asp:TextBox>
                     <br />
                     <br />
                     <asp:Label ID="lbl_Info" runat="server" Visible="False" CssClass="foutmelding"></asp:Label>
-                    <br />
-                    <br />
                     <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="fonts/nummers/1.png" OnClick="Buttonnr1_Click" CssClass="button" />
                     <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="fonts/nummers/2.png" OnClick="Buttonnr2_Click" CssClass="button" />
                     <asp:ImageButton ID="ImageButton3" runat="server" ImageUrl="fonts/nummers/3.png" OnClick="Buttonnr3_Click" CssClass="button" />
@@ -72,7 +85,7 @@
     </form>
     <img alt="Logo Windesheim" class="windesheimlogo" src="/fonts/Nummers/windesheimlogodis.png" />
     <div style="position: relative; width: 600px; height: 150px;">
-        <div style="position: absolute; bottom: 5px;">
+        <div style="position: absolute; bottom: -91px; left: 3px;">
             Icons made by Pixel Buddha & Freepik 
         <br />
             from www.flaticon.com
