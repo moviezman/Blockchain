@@ -34,22 +34,9 @@ public partial class Codeuitgeven : System.Web.UI.Page
             Response.Redirect("ResultatenPagina.aspx?Stemming=" + Stemming);
             return;
         }
-
         if (ImageButtons == false)
         {
             txtbx_telnr.Enabled = true;
-            ImageButton0.Visible = false;
-            ImageButton1.Visible = false;
-            ImageButton2.Visible = false;
-            ImageButton3.Visible = false;
-            ImageButton4.Visible = false;
-            ImageButton5.Visible = false;
-            ImageButton6.Visible = false;
-            ImageButton7.Visible = false;
-            ImageButton8.Visible = false;
-            ImageButton9.Visible = false;
-            ImageButtonBack.Visible = false;
-            ImageButton0.Visible = false;
         }
     }
 
@@ -143,53 +130,5 @@ public partial class Codeuitgeven : System.Web.UI.Page
             lbl_Info.Text = "Dit nummer is al gebruikt";
             txtbx_telnr.Text = "";
         }
-    }
-
-    //Elke button vult een nummer in in de textbox. Als een knop wordt ingedrukt wordt het informatielabel ook onzichtbaar.
-    protected void Buttonnr1_Click(object sender, EventArgs e)
-    {
-        if (txtbx_telnr.Text.Length < 8) { txtbx_telnr.Text = txtbx_telnr.Text += "1"; lbl_Info.Visible = false; }
-    }
-    protected void Buttonnr2_Click(object sender, EventArgs e)
-    {
-        if (txtbx_telnr.Text.Length < 8) { txtbx_telnr.Text = txtbx_telnr.Text += "2"; lbl_Info.Visible = false; }
-    }
-    protected void Buttonnr3_Click(object sender, EventArgs e)
-    {
-        if (txtbx_telnr.Text.Length < 8) { txtbx_telnr.Text = txtbx_telnr.Text += "3"; lbl_Info.Visible = false; }
-    }
-    protected void Buttonnr4_Click(object sender, EventArgs e)
-    {
-        if (txtbx_telnr.Text.Length < 8) { txtbx_telnr.Text = txtbx_telnr.Text += "4"; lbl_Info.Visible = false; }
-    }
-    protected void Buttonnr5_Click(object sender, EventArgs e)
-    {
-        if (txtbx_telnr.Text.Length < 8) { txtbx_telnr.Text = txtbx_telnr.Text += "5"; lbl_Info.Visible = false; }
-    }
-    protected void Buttonnr6_Click(object sender, EventArgs e)
-    {
-        if (txtbx_telnr.Text.Length < 8) { txtbx_telnr.Text = txtbx_telnr.Text += "6"; lbl_Info.Visible = false; }
-    }
-    protected void Buttonnr7_Click(object sender, EventArgs e)
-    {
-        if (txtbx_telnr.Text.Length < 8) { txtbx_telnr.Text = txtbx_telnr.Text += "7"; lbl_Info.Visible = false; }
-    }
-    protected void Buttonnr8_Click(object sender, EventArgs e)
-    {
-        if (txtbx_telnr.Text.Length < 8) { txtbx_telnr.Text = txtbx_telnr.Text += "8"; lbl_Info.Visible = false; }
-    }
-    protected void Buttonnr9_Click(object sender, EventArgs e)
-    {
-        if (txtbx_telnr.Text.Length < 8) { txtbx_telnr.Text = txtbx_telnr.Text += "9"; lbl_Info.Visible = false; }
-    }
-    protected void Buttonnr0_Click(object sender, EventArgs e)
-    {
-        if (txtbx_telnr.Text.Length < 8) { txtbx_telnr.Text = txtbx_telnr.Text += "0"; lbl_Info.Visible = false; }
-    }
-
-    //De terugknop verwijdert het laatste nummer uit de tekstbox
-    protected void ButtonBack_Click(object sender, System.Web.UI.ImageClickEventArgs e)
-    {
-        if (txtbx_telnr.Text.Length > 0) { txtbx_telnr.Text = txtbx_telnr.Text.Remove(txtbx_telnr.Text.Length - 1); lbl_Info.Visible = false; }
     }
 }
