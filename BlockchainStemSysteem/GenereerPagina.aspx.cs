@@ -6,6 +6,7 @@ using System.Web.UI.WebControls;
 
 public partial class _Default : System.Web.UI.Page
 {
+    int AantalProjecten = 0;
     public List<string> Projecten = new List<string>();
 
     protected void Page_Load(object sender, EventArgs e)
@@ -169,10 +170,15 @@ public partial class _Default : System.Web.UI.Page
         {
             TableRow tRow = new TableRow();
             Tbl_Projecten.Rows.Add(tRow);
-            TableRow tRow2 = new TableRow();
             TableCell tCell = new TableCell();
             tCell.Text = project;
             tRow.Cells.Add(tCell);
+
+            TableCell tCell2 = new TableCell();
+            Button button = new Button();
+            button.Text = "X";
+            tCell2.Controls.Add(button);
+            tRow.Cells.Add(tCell2);
         }
         Global.Projecten.Reverse();
     }
