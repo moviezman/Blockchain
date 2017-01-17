@@ -6,36 +6,28 @@ body {
     color:black;
     font-family:Lucida Sans;
 }
-
-
 button:hover {
   background: #d5a10c;
   background-image: linear-gradient(to bottom, #edd798, #eac048);
   text-decoration: none;
 }
-
 button:active {
     vertical-align: top;
     padding: 8px 13px 6px;
 }
-
 .klasselabels{
     color:red;
     position:center;
 }
-
 .button{
-    width:100px;
-    height:100px;
+    width:200px;
+    height:200px;
     position: center;
 }
-
 .button:active {
     position: relative;
     transform: translateY(2px);
 }
-
-
 .foutmelding{
     color:red;
     font-size:22px;
@@ -46,59 +38,47 @@ button:active {
     height:25px;
     font-size:15px;
 }
-
 .invoer{
     font-size:20px;
     font-weight:bold;
 }
-
-
 h1 {
     color:#d5a10c;
     font-weight:bold;
     font-family:Lucida Sans;
 }
-
 h2{
     font-weight:bold;
     font-family:Lucida Sans;
     color:#d5a10c;
 }
-
 h3{
     font-size:25px;
     font-weight:bold;
 }
-
 h4{
     font-size:50px;
     font-weight:bold;
     font-family:'Lucida Sans';
     color:rgba(139, 30, 30, 0.99);
 }
-
 p{
     font-family:Lucida Sans;
 }
-
 .uil-spin {
             width: 31px;
         }
-
 .auto-style1 {
             width: 650px;
         }
-
 .windesheimlogo{
-    width: 370px;
     height: 150px;
     position: absolute;
     right: 0px;
     padding: 10px;
 }
-
 .uitloggen{
-     height:40px;
+    height:40px;
     border: 2px ridge grey;
     background: #f33030;
     width: 150px;
@@ -112,66 +92,60 @@ p{
     top:10px;
     right: 10px;
 }
-
 .uitloggen:hover {
   background-image: linear-gradient(to bottom, #ba3636, #ef4646);
   text-decoration: none;
     }
-
 .uitloggen:active {
     vertical-align: top;
     padding: 8px 8px 6px;
 }
-
 .inloggen{
     border-radius: 10px;
     text-align:center;
     height:25px;
     font-size:15px;
 }
-
 .inloggen:hover {
         background-image: linear-gradient(to bottom, #40e6f1, #3ea7cf);
         text-decoration: none;
     }
-
 .inloggen:active {
     position: relative;
     top: 1px;
 }
-
 .InlogBox{
     border-radius: 11px;
     text-align:center;
     height:20px;
     font-size:18px;
 }
-
 .crown{
     width:200px;
     height:200px;
 }
-
 .ZoekBox{
     border-radius: 11px;
     text-align:center;
     height:20px;
     font-size:18px;
 }
-
 .ZoekKnop{
     border-radius: 10px;
     text-align:center;
     height:25px;
     font-size:15px;
 }
-
 .ZoekKnop:hover {
         background-image: linear-gradient(to bottom, #40e6f1, #3ea7cf);
         text-decoration: none;
     }
-
 .ZoekKnop:active {
     position: relative;
     top: 1px;
 }
+.mobileShow { display: none;}
+   /* Smartphone Portrait and Landscape */
+   @media only screen
+   and (min-device-width : 768px)
+   and (max-device-width : 1024px){ .mobileShow { display: inline;}}

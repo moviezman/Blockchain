@@ -20,8 +20,8 @@
         <div>
             <!-- Haalt de Uitslagen op uit de Uitslagen klasse -->
             <% //Response.Write(Uitslagen.UitslagStemming(Request.QueryString["Stemming"])); %>
-            <!--<img alt="Kroon" class="crown" src="fonts/nummers/crown.png" /><br />
-            <h2>Gefeliciteerd!!</h2>-->
+            <img alt="Kroon" class="crown" src="fonts/nummers/crown.png" /><br />
+            <%--<h2>Gefeliciteerd!!</h2>-->--%>
             <h2>Stemming afgelopen</h2>
         </div>
     </form>
