@@ -146,7 +146,9 @@ public partial class _Default : System.Web.UI.Page
                 if (projectNaam.Contains(project))
                 {
                     lbl_Info.Text = "Dit team is al toegevoegd";
+                    txtbx_Project.Text = "";
                     vulTabel();
+                    txtbx_Project.Focus();
                     return;
                 }
             }
@@ -159,6 +161,7 @@ public partial class _Default : System.Web.UI.Page
             lbl_Info.Text = "Vul eerst een teamnaam in";
             vulTabel();
         }
+        txtbx_Project.Focus();
         txtbx_Project.Text = String.Empty;
     }
 
