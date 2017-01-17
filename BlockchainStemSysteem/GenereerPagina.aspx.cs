@@ -168,11 +168,11 @@ public partial class _Default : System.Web.UI.Page
     //Vult de tabel met de lijst Projecten uit de Global klasse
     protected void vulTabel()
     {
+        int nummer = 1;
         Global.Projecten.Reverse();
         foreach (string project in Global.Projecten)
         {
             TableRow tRow = new TableRow();
-            Tbl_Projecten.Rows.Add(tRow);
             TableCell tCell = new TableCell();
             tCell.Text = project;
             tRow.Cells.Add(tCell);
@@ -180,10 +180,23 @@ public partial class _Default : System.Web.UI.Page
             TableCell tCell2 = new TableCell();
             Button button = new Button();
             button.Text = "X";
+            button.ID = nummer.ToString();
+            button.Click += new EventHandler(this.ProjectVerwijderClick);
             tCell2.Controls.Add(button);
             tRow.Cells.Add(tCell2);
+
+            Tbl_Projecten.Rows.Add(tRow);
+            nummer++;
         }
         Global.Projecten.Reverse();
+    }
+
+    public static event Func<int> IntEvent;
+
+    private void ProjectVerwijderClick(object sender, EventArgs e)
+    {
+        Button button = sender as Button;
+        Global.Projecten.RemoveAt(int.Parse(button.ID));
     }
 
     //Redirect naar het overzicht van de beheerder zonder iets op te slaan
