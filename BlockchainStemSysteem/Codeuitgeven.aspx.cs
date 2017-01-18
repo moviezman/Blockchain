@@ -8,35 +8,50 @@ public partial class Codeuitgeven : System.Web.UI.Page
     bool ImageButtons = false;
     protected void Page_Load(object sender, EventArgs e)
     {
-        string Stemming = Request.QueryString["Stemming"];
         DatabaseConnectie dbconnect = new DatabaseConnectie();
         SqlConnection sqlConnection = new SqlConnection(dbconnect.dbConnectie);
+        SqlCommand WwChecken = new SqlCommand("SELECT Hash FROM Wachtwoord ORDER BY Id DESC", sqlConnection);
+
         sqlConnection.Open();
-
-        //Checkt of de stemming bestaat
-        SqlCommand CheckStemmingBestaat = new SqlCommand("SELECT COUNT(*) From Stemming WHERE StemmingsNaam = '" + Stemming + "'", sqlConnection);
-        int StemmingBestaat = (int)CheckStemmingBestaat.ExecuteScalar();
-
-        //Checkt of de stemming actief is
-        SqlCommand CheckActief = new SqlCommand("SELECT Actief FROM Stemming WHERE Stemmingsnaam = '" + Stemming + "'", sqlConnection);
-        bool StemmingActief = Convert.ToBoolean(CheckActief.ExecuteScalar());
+        //Checkt of het wachtwoord overeenkomt met de gehashte versie uit de database
+        string Wachtwoord = (string)WwChecken.ExecuteScalar();
         sqlConnection.Close();
 
-        //Redirect naar de inlogpagina als de stemming niet bestaat
-        if(StemmingBestaat == 0)
+        if ((string)Session["StemmingLogin"] == Wachtwoord)
         {
-            Response.Redirect("Inlogpagina");
-            return;
+            string Stemming = Request.QueryString["Stemming"];
+            sqlConnection.Open();
+
+            //Checkt of de stemming bestaat
+            SqlCommand CheckStemmingBestaat = new SqlCommand("SELECT COUNT(*) From Stemming WHERE StemmingsNaam = '" + Stemming + "'", sqlConnection);
+            int StemmingBestaat = (int)CheckStemmingBestaat.ExecuteScalar();
+
+            //Checkt of de stemming actief is
+            SqlCommand CheckActief = new SqlCommand("SELECT Actief FROM Stemming WHERE Stemmingsnaam = '" + Stemming + "'", sqlConnection);
+            bool StemmingActief = Convert.ToBoolean(CheckActief.ExecuteScalar());
+            sqlConnection.Close();
+
+            //Redirect naar de inlogpagina als de stemming niet bestaat
+            if (StemmingBestaat == 0)
+            {
+                Response.Redirect("Inlogpagina");
+                return;
+            }
+            //Redirect naar de resultatenpagina van de stemming als de stemming afgelopen is
+            if (StemmingActief == false)
+            {
+                Response.Redirect("ResultatenPagina.aspx?Stemming=" + Stemming);
+                return;
+            }
+            if (ImageButtons == false)
+            {
+                txtbx_telnr.Enabled = true;
+            }
         }
-        //Redirect naar de resultatenpagina van de stemming als de stemming afgelopen is
-        if (StemmingActief == false)
+        else
         {
-            Response.Redirect("ResultatenPagina.aspx?Stemming=" + Stemming);
-            return;
-        }
-        if (ImageButtons == false)
-        {
-            txtbx_telnr.Enabled = true;
+            Session["StemmingLogin"] = "";
+            Response.Redirect("StemmingKiezenLogin");
         }
     }
 
